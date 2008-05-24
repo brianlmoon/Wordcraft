@@ -1,0 +1,63 @@
+<?php
+
+// Check that this file is not loaded directly.
+if ( basename( __FILE__ ) == basename( $_SERVER["PHP_SELF"] ) ) exit();
+
+define("WC", "0.1");
+
+$WC = array(
+
+    // Database options
+    "db_prefix"   => "wc",
+    "db_server"   => "",
+    "db_name"     => "",
+    "db_user"     => "",
+    "db_password" => "",
+
+    // base URL for this install
+    "base_url" => "http://example.com/",
+
+    // secret string to be used in making session ids
+    "session_secret" => "",
+    "session_days"   => 30,
+    "session_path"   => "/xaz",
+    "session_domain" => null,
+
+    // date formats
+    "date_format_long"  => "%a, %b %e, %Y %I:%M %p",
+    "date_format_short" => "%D %I:%M %p",
+
+    // template and output
+    "template"            => "terrafirma",
+    "default_title"       => "Wordcraft - A Simple Blogging Application",
+    "default_description" => "Wordcraft is a simple blogging application written in PHP.",
+
+    // URL formats
+    "url_formats" => array(
+            "main"    => array("page"=>"index.php",   "format"=>""),
+            "post"    => array("page"=>"post.php",    "format"=>"?post_id=%d"),
+            "page"    => array("page"=>"page.php",    "format"=>"?page_id=%d"),
+            "comment" => array("page"=>"comment.php", "format"=>""),
+            "tag"     => array("page"=>"tag.php",     "format"=>"?tag=%s"),
+            "feed"    => array("page"=>"feed.php",    "format"=>"?type=%s&tag=%s"),
+    ),
+
+    // akismet settings
+    "akismet_key" => "",
+);
+
+// utility function
+
+function print_var($var) {
+
+    echo "<pre style='text-align: left'>";
+    echo "\n";
+    echo "type:  ".gettype($var)."\n";
+    echo "value: ";
+    $val = print_r($var, true);
+    echo trim(str_replace("\n", "\n       ", $val));
+    echo "\n</pre>";
+    echo "\n";
+}
+
+?>

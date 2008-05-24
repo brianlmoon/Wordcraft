@@ -1,0 +1,78 @@
+a:link, a:visited {
+    color: #73A822;
+}
+
+input.inputgri {
+    width: 764px;
+}
+
+.yui-skin-sam .yui-toolbar-container .yui-toolbar-group h3 {
+    font-size: 85%;
+}
+
+#login {
+    border: 1px solid #CCCCCC;
+    background: White;
+    padding: 20px;
+    width: 300px;
+    margin: 150px auto auto auto;
+}
+
+#login input.inputgri {
+    width: 292px;
+}
+
+#login h1 {
+    color: #73A822;
+}
+
+#delete {
+    text-align: center;
+}
+
+#filter {
+    text-align: right;
+    margin-bottom: 10px;
+}
+
+#filter input.inputgri {
+    width: 200px;
+}
+
+#filter p {
+    float: left;
+}
+
+div.comment {
+    padding: 20px;
+    border-top: 1px solid #CBD6DE;
+    color: #404040;
+    position: relative;
+}
+
+div.comment div.status {
+    float: right;
+}
+div.comment div.moderation {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+}
+
+#content div.comment strong {
+    font-size: 110%;
+}
+
+#content div.comment p {
+    margin: 10px 0 10px 0;
+    padding: 0 20px 0 20px;
+}
+
+
+#content div.UNAPPROVED {
+    background: #EBD1EB;
+}
+
+#content div.SPAM {
+    background: #EBD2D1;
+}
