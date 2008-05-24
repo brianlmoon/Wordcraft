@@ -233,7 +233,13 @@ ul.linklist li.first {
     margin-bottom: 20px;
 }
 
+#primarycontent h1 a {
+    color: #656551;
+    text-decoration: none;
+}
+
 #primarycontent h1 small {
+    display: block;
     font-size: 85%;
     color: #AFAFA4;
 }

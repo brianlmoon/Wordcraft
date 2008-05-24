@@ -73,7 +73,8 @@ function wc_build_common_data(&$WCDATA) {
 
     global $WC;
 
-    $WCDATA["base_url"] = wc_get_url("main");
+    $WCDATA["base_url"] = $WC["base_url"];
+    $WCDATA["home_url"] = wc_get_url("main");
 
     if(empty($WCDATA["feed_url"])){
         $WCDATA["feed_url"] = wc_get_url("feed");
@@ -81,7 +82,7 @@ function wc_build_common_data(&$WCDATA) {
 
     $WCDATA["nav_pages"] = wc_db_get_nav_pages();
     foreach($WCDATA["nav_pages"] as $key=>$page){
-        $WCDATA["nav_pages"][$key]["url"] = wc_get_url("page", $page["page_id"]);
+        $WCDATA["nav_pages"][$key]["url"] = wc_get_url("page", $page["page_id"], $page["uri"]);
     }
 
     $WCDATA["tags"] = wc_db_get_tags();

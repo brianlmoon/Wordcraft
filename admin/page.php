@@ -44,6 +44,10 @@ if(count($_POST)){
             "body"      => $_POST["editor"]
         );
 
+        if(empty($_POST["page_id"])){
+            $page_array["uri"].= strtolower(preg_replace("![^a-z0-9_]+!i", "-", trim($_POST["subject"])));
+        }
+
         $success = wc_db_save_page($page_array);
 
         if($success){
@@ -141,6 +145,7 @@ if(!empty($error)){
         dompath: true,
         focusAtStart: false,
         handleSubmit: true,
+        css: YAHOO.widget.SimpleEditor.prototype._defaultCSS + 'body{ font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 100%; } ',
         toolbar: {
             collapse: false,
             titlebar: '',

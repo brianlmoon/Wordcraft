@@ -60,6 +60,11 @@ if(count($_POST)){
             $post_array["post_date"] = $post_date;
         }
 
+        if(empty($_POST["post_id"])){
+            $post_array["uri"] = date("Y/m/d", strtotime($post_date))."/";
+            $post_array["uri"].= strtolower(preg_replace("![^a-z0-9_]+!i", "-", trim($_POST["subject"])));
+        }
+
         $success = wc_db_save_post($post_array);
 
         if($success){
@@ -168,6 +173,7 @@ if(!empty($error)){
         dompath: true,
         focusAtStart: false,
         handleSubmit: true,
+        css: YAHOO.widget.SimpleEditor.prototype._defaultCSS + 'body{ font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 100%; } ',
         toolbar: {
             collapse: false,
             titlebar: '',

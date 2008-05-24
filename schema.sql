@@ -29,8 +29,10 @@ CREATE TABLE `wc_pages` (
   `title` varchar(100) NOT NULL default '',
   `body` text NOT NULL,
   `nav_label` varchar(30) NOT NULL default '',
+  `uri` varchar(100) NOT NULL default '',
   PRIMARY KEY  (`page_id`),
-  KEY `nav_label` (`nav_label`)
+  KEY `nav_label` (`nav_label`),
+  unique key page_uri (uri)
 ) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 --
@@ -46,7 +48,8 @@ CREATE TABLE `wc_posts` (
   `user_id` int(10) unsigned NOT NULL default '0',
   `uri` varchar(100) NOT NULL default '',
   PRIMARY KEY  (`post_id`),
-  KEY `post_date` (`post_date`)
+  KEY `post_date` (`post_date`),
+  unique key (uri, post_date)
 ) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 
 --

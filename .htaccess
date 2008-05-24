@@ -1,0 +1,4 @@
+RewriteEngine On
+RewriteRule p/(.+)$ post.php?post_uri=$1 [L]
+RewriteRule pg/(.+)$ page.php?page_uri=$1 [L]
+

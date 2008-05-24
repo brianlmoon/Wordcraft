@@ -16,16 +16,36 @@ function wc_get_url() {
 
     } else {
 
+        $encode_args = true;
+
+        // special sef/rewrite handling
+        if($WC["use_rewrite"]){
+            if($args[0]=="post" || $args[0]=="page"){
+                $args[0] = $args[0]."_sef";
+                $args[1] = $args[2];
+                unset($args[2]);
+                $encode_args = false;
+            }
+        }
+
+        if($encode_args){
+            foreach($args as $key=>$arg){
+                if($key>0){
+                    $args[$key] = urlencode($arg);
+                }
+            }
+        }
+
         switch(count($args)){
 
             case 1:
                 $url = sprintf("%s/%s", $WC["base_url"], $WC["url_formats"][$args[0]]["page"]);
                 break;
             case 2:
-                $url = sprintf("%s/%s".$WC["url_formats"][$args[0]]["format"], $WC["base_url"], $WC["url_formats"][$args[0]]["page"], urlencode($args[1]));
+                $url = sprintf("%s/%s".$WC["url_formats"][$args[0]]["format"], $WC["base_url"], $WC["url_formats"][$args[0]]["page"], $args[1]);
                 break;
             case 3:
-                $url = sprintf("%s/%s".$WC["url_formats"][$args[0]]["format"], $WC["base_url"], $WC["url_formats"][$args[0]]["page"], urlencode($args[1]), urlencode($args[2]));
+                $url = sprintf("%s/%s".$WC["url_formats"][$args[0]]["format"], $WC["base_url"], $WC["url_formats"][$args[0]]["page"], $args[1], $args[2]);
                 break;
             default:
                 $bt = debug_backtrace();

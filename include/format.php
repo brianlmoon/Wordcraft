@@ -16,7 +16,7 @@ function wc_format_post(&$post) {
 
     $post["subject"] = htmlspecialchars($post["subject"]);
 
-    $post["url"] = wc_get_url("post", $post["post_id"]);
+    $post["url"] = wc_get_url("post", $post["post_id"], $post["uri"]);
 
     if(isset($post["tags"])){
         $tmp_tags = $post["tags"];

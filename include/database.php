@@ -9,7 +9,7 @@
  */
 
 require_once dirname(__FILE__)."/config.php";
-require_once dirname(__FILE__)."/DB.php";
+require_once dirname(__FILE__)."/WCDB.php";
 
 // Check that this file is not loaded directly.
 if ( basename( __FILE__ ) == basename( $_SERVER["PHP_SELF"] ) ) exit();
@@ -113,7 +113,7 @@ function wc_db_save_post($post){
             case "subject":
             case "body":
             case "post_date":
-            case "user_id":
+            case "uri":
                 $clean_arr[$field] = $WCDB->escape($value);
                 break;
 
@@ -188,25 +188,33 @@ function wc_db_save_post($post){
 /**
  * Fetch a single post from the database
  *
- * @param   $post_id    The id of the post to fetch
+ * @param   $post_id    The id or uri of the post to fetch
  * @return  array
  *
  */
-function wc_db_get_post($post_id) {
+function wc_db_get_post($identifier) {
 
     global $WCDB, $WC;
 
-    $post_id = (int)$post_id;
+    if(is_numeric($identifier)){
+        $where = "post_id = $identifier";
+    } else {
+        $where = "uri = '".$WCDB->escape($identifier)."'";
+    }
 
-    $sql = "select {$WC['posts_table']}.*, {$WC['users_table']}.user_name from {$WC['posts_table']} inner join {$WC['users_table']} using (user_id) where post_id=".$post_id;
+    $sql = "select {$WC['posts_table']}.*, {$WC['users_table']}.user_name from {$WC['posts_table']} inner join {$WC['users_table']} using (user_id) where $where";
 
     $post = $WCDB->query_fetch($sql, WC_DB_FETCH_ASSOC);
 
     if(!empty($post)){
 
+        if(empty($post_id)) $post_id = $post["post_id"];
+
         $sql = "select tag from {$WC['tags_table']} where post_id=".$post_id;
 
         $WCDB->query($sql);
+
+        $post_tags = array();
 
         while($row = $WCDB->fetch()){
             $post["tags"][] = $row["tag"];
@@ -721,17 +729,21 @@ function wc_db_get_comments($post_id=false, $start=false, $limit=false, $filter=
 /**
  * Fetch a single page from the database
  *
- * @param   $page_id    The id of the page to fetch
+ * @param   $identifier    The id or uri of the page to fetch
  * @return  array
  *
  */
-function wc_db_get_page($page_id) {
+function wc_db_get_page($identifier) {
 
     global $WCDB, $WC;
 
-    $page_id = (int)$page_id;
+    if(is_numeric($identifier)){
+        $where = "page_id = $identifier";
+    } else {
+        $where = "uri = '".$WCDB->escape($identifier)."'";
+    }
 
-    $sql = "select {$WC['pages_table']}.* from {$WC['pages_table']} where page_id=".$page_id;
+    $sql = "select {$WC['pages_table']}.* from {$WC['pages_table']} where $where";
 
     $page = $WCDB->query_fetch($sql, WC_DB_FETCH_ASSOC);
 
@@ -899,7 +911,7 @@ function wc_db_get_nav_pages($limit=0) {
 
     $limit = (int)$limit;
 
-    $sql = "select page_id, nav_label from {$WC['pages_table']} order by nav_label";
+    $sql = "select page_id, nav_label, uri from {$WC['pages_table']} order by nav_label";
     if($limit) $sql.= " limit $limit";
 
     $WCDB->query($sql);

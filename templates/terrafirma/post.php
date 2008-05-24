@@ -8,8 +8,8 @@
         </div>
         <div class="footer">
             <ul>
-                <li class="comments"><a href="post.php?post_id=<?php echo $WCDATA["post"]["post_id"]; ?>#comments">Comments (<?php echo $WCDATA["post"]["comment_count"]; ?>)</a></li>
-                <li class="readmore"><a href="post.php?post_id=<?php echo $WCDATA["post"]["post_id"]; ?>">Permalink</a></li>
+                <li class="comments"><a href="<?php echo $WCDATA["post"]["url"]; ?>#comments">Comments (<?php echo $WCDATA["post"]["comment_count"]; ?>)</a></li>
+                <li class="readmore"><a href="<?php echo $WCDATA["post"]["url"]; ?>">Permalink</a></li>
                 <li class="tags">
                     <?php foreach($WCDATA["post"]["tags"] as $tag) { ?>
                         <a href="<?php echo $tag["url"]; ?>"><?php echo $tag["tag"]; ?></a>&nbsp;&nbsp;

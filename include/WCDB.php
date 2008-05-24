@@ -125,7 +125,7 @@ class WCDB {
             $error = "MySQL Error: ".mysqli_error($this->connection)."<br />\n";
             $bt = debug_backtrace();
             foreach($bt as $t){
-               $error.= "File: ".$t["file"]."<br />\nFunction: ".$t["function"]."<br />\nLine:".$t["line"]."<br />\n";
+                $error.= "SQL: $sql<br />\nFile: ".$t["file"]."<br />\nFunction: ".$t["function"]."<br />\nLine:".$t["line"]."<br />\n";
             }
             exit($error);
         }

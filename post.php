@@ -7,13 +7,18 @@ include_once "./include/format.php";
 include_once "./include/url.php";
 
 $post_id = (isset($_GET["post_id"])) ? (int)$_GET["post_id"] : 0;
+$post_uri = (isset($_GET["post_uri"])) ? $_GET["post_uri"] : "";
 
-if(empty($post_id)){
+if(empty($post_id) && empty($post_uri)){
     wc_output("notfound");
     return;
 }
 
-$WCDATA["post"] = wc_db_get_post($post_id);
+if($post_id){
+    $WCDATA["post"] = wc_db_get_post($post_id);
+} else {
+    $WCDATA["post"] = wc_db_get_post($post_uri);
+}
 
 if(empty($WCDATA["post"])){
     wc_output("notfound");

@@ -1,7 +1,7 @@
 <?php  foreach($WCDATA["posts"] as $post) { ?>
     <div class="post">
         <div class="header">
-            <h1><?php echo $post["subject"]; ?> <small>by <?php echo $post["user_name"]; ?></small></h1>
+            <h1><a href="<?php echo $post["url"] ?>"><?php echo $post["subject"]; ?></a> <small>by <?php echo $post["user_name"]; ?></small></h1>
             <div class="date"><?php echo $post["post_date"]; ?></div>
         </div>
         <div class="content">
