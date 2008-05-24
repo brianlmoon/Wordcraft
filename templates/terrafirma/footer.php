@@ -15,6 +15,23 @@
                 </ul>
             </div>
 
+            <?php if(isset($WCDATA["admin"])) { ?>
+            <h3>Admin</h3>
+            <div class="content">
+                <ul class="linklist">
+                    <li><a href="<?php echo $WCDATA["admin"]["base_url"]; ?>">Dashboard</a></li>
+                    <li><a href="<?php echo $WCDATA["admin"]["new_post_url"]; ?>">New Post</a></li>
+                    <li><a href="<?php echo $WCDATA["admin"]["new_page_url"]; ?>">New Page</a></li>
+                    <?php if(isset($WCDATA["admin"]["edit_post_url"])) { ?>
+                        <li><a href="<?php echo $WCDATA["admin"]["edit_post_url"]; ?>">Edit Post</a></li>
+                    <?php } ?>
+                    <?php if(isset($WCDATA["admin"]["edit_page_url"])) { ?>
+                        <li><a href="<?php echo $WCDATA["admin"]["edit_page_url"]; ?>">Edit Page</a></li>
+                    <?php } ?>
+                </ul>
+            </div>
+            <?php  } ?>
+
             <!-- secondary content end -->
 
         </div>

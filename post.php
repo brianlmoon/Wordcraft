@@ -34,9 +34,6 @@ foreach($WCDATA["comments"] as &$comment){
 }
 unset($comment);
 
-// check if this is a logged in author
-$WCDATA["user"] = wc_db_check_cookie($_COOKIE["wc_admin"]);
-
 $WCDATA["title"] = strip_tags($WCDATA["post"]["subject"]);
 $WCDATA["description"] = preg_replace('!\s+!', " ", substr(strip_tags($WCDATA["post"]["body"]), 0, 300));
 

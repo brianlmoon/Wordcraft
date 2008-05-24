@@ -3,12 +3,22 @@ a:link, a:visited {
 }
 
 input.inputgri {
-    width: 764px;
+    width: 924px;
 }
 
 .yui-skin-sam .yui-toolbar-container .yui-toolbar-group h3 {
     font-size: 85%;
 }
+
+.yui-toolbar-group-alignment {
+    width: 120px;
+}
+
+/*
+div.yui-toolbar-group-parastyle {
+    clear: left;
+}
+*/
 
 #login {
     border: 1px solid #CCCCCC;
@@ -75,4 +85,27 @@ div.comment div.moderation {
 
 #content div.SPAM {
     background: #EBD2D1;
+}
+
+/* YUI HTML edit button stuff */
+.yui-skin-sam .yui-toolbar-container .yui-toolbar-editcode span.yui-toolbar-icon {
+    background-image: url( img/html_editor.gif );
+    background-position: 0 1px;
+    left: 5px;
+}
+.yui-skin-sam .yui-toolbar-container .yui-button-editcode-selected span.yui-toolbar-icon {
+    background-image: url( img/html_editor.gif );
+    background-position: 0 1px;
+    left: 5px;
+}
+.editor-hidden {
+    visibility: hidden;
+    top: -9999px;
+    left: -9999px;
+    position: absolute;
+}
+textarea {
+    border: 0;
+    margin: 0;
+    padding: 0;
 }

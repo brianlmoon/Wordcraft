@@ -168,11 +168,12 @@ if(!empty($error)){
         Event = YAHOO.util.Event;
 
     var myConfig = {
-        height: '500px',
-        width: '770px',
+        height: '300px',
+        width: '930px',
         dompath: true,
         focusAtStart: false,
         handleSubmit: true,
+        autoHeight: true,
         css: YAHOO.widget.SimpleEditor.prototype._defaultCSS + 'body{ font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 100%; } ',
         toolbar: {
             collapse: false,
@@ -234,7 +235,8 @@ if(!empty($error)){
                 { group: 'insertitem', label: 'Insert Item',
                     buttons: [
                         { type: 'push', label: 'HTML Link CTRL + SHIFT + L', value: 'createlink', disabled: true },
-                        { type: 'push', label: 'Insert Image', value: 'insertimage' }
+                        { type: 'push', label: 'Insert Image', value: 'insertimage' },
+                        { type: 'push', label: 'Edit HTML Code', value: 'editcode' }
                     ]
                 }
             ]
@@ -243,6 +245,64 @@ if(!empty($error)){
 
     var myEditor = new YAHOO.widget.Editor('editor', myConfig);
     myEditor._defaultToolbar.buttonType = 'advanced';
+
+    var state = 'off';
+
+    myEditor.on('toolbarLoaded', function() {
+
+        this.toolbar.on('editcodeClick', function() {
+
+            var ta = this.get('element'),
+                iframe = this.get('iframe').get('element');
+
+            if (state == 'on') {
+                state = 'off';
+                this.toolbar.set('disabled', false);
+
+                this.setEditorHTML(ta.value);
+                if (!this.browser.ie) {
+                    this._setDesignMode('on');
+                }
+
+                Dom.removeClass(iframe, 'editor-hidden');
+                Dom.addClass(ta, 'editor-hidden');
+                this.show();
+                this._focusWindow();
+            } else {
+                state = 'on';
+
+                this.cleanHTML();
+
+                Dom.addClass(iframe, 'editor-hidden');
+                Dom.removeClass(ta, 'editor-hidden');
+                this.toolbar.set('disabled', true);
+                this.toolbar.getButtonByValue('editcode').set('disabled', false);
+                this.toolbar.selectButton('editcode');
+                this.dompath.innerHTML = 'Editing HTML Code';
+                this.hide();
+            }
+            return false;
+        }, this, true);
+
+        this.on('cleanHTML', function(ev) {
+            this.get('element').value = ev.html;
+        }, this, true);
+
+        this.on('afterRender', function() {
+            var wrapper = this.get('editor_wrapper');
+            wrapper.appendChild(this.get('element'));
+            this.setStyle('width', '100%');
+            this.setStyle('height', '100%');
+            this.setStyle('visibility', '');
+            this.setStyle('top', '');
+            this.setStyle('left', '');
+            this.setStyle('position', '');
+
+            this.addClass('editor-hidden');
+        }, this, true);
+    }, myEditor, true);
+
+
     myEditor.render();
 
 })();

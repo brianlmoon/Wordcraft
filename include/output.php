@@ -98,6 +98,21 @@ function wc_build_common_data(&$WCDATA) {
         $WCDATA["description"] = $WC["default_description"];
     }
 
+    // check if this is a logged in author
+    $WCDATA["user"] = wc_db_check_cookie($_COOKIE["wc_admin"]);
+
+    if(!empty($WCDATA["user"]["user_id"])){
+        $WCDATA["admin"]["base_url"] = $WC["base_url"]."/admin/";
+        $WCDATA["admin"]["new_post_url"] = $WC["base_url"]."/admin/post.php";
+        $WCDATA["admin"]["new_page_url"] = $WC["base_url"]."/admin/page.php";
+        if(isset($WCDATA["post"]["post_id"])) {
+            $WCDATA["admin"]["edit_post_url"] = $WC["base_url"]."/admin/post.php?post_id=".$WCDATA["post"]["post_id"];
+        }
+        if(isset($WCDATA["page"]["page_id"])) {
+            $WCDATA["admin"]["edit_page_url"] = $WC["base_url"]."/admin/page.php?page_id=".$WCDATA["page"]["page_id"];
+        }
+    }
+
 }
 
 ?>
