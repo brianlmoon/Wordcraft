@@ -21,8 +21,6 @@ if($user) {
 
 } else {
 
-    print_var($_POST);
-
     if(empty($_POST["your_name"])){
         wc_output("error", array("error"=>"Please fill in your name."));
         exit();
@@ -31,6 +29,24 @@ if($user) {
     if(empty($_POST["your_comment"])){
         wc_output("error", array("error"=>"Please fill in a comment."));
         exit();
+    }
+
+    if($WC["use_captcha"]){
+        $success = false;
+
+        session_start();
+
+        if(isset($_SESSION["captcha"])){
+
+            if(strtolower($_POST[$_SESSION["captcha"]["input_fieldname"]])==strtolower($_SESSION["captcha"]["answer"])){
+                $success = true;
+            }
+        }
+
+        if(!$success){
+            wc_output("error", array("error"=>"Spam prevention failed.  Please check your input again."));
+            exit();
+        }
     }
 
     $comment_name = $_POST["your_name"];
@@ -50,9 +66,9 @@ $comment = array(
     "ip_address" => $_SERVER["REMOTE_ADDR"]
 );
 
-if(!empty($WC["akismet_key"])
+if(!empty($WC["akismet_key"])){
 
-    $akismet_answer = wc_akismet_http_request( $comment, "comment-check" );
+    $akismet_answer = wc_akismet_request( $comment, "comment-check" );
 
     if($akismet_answer=="true"){
         $comment["status"] = "SPAM";
@@ -63,7 +79,9 @@ $success = wc_db_post_comment($comment);
 
 if($success){
     $post_id = (int)$_POST["post_id"];
-    header("Location: post.php?post_id=".$post_id."#add_comment");
+    $post = wc_db_get_post($post_id);
+    $post_url = wc_get_url("post", $post_id, $post["uri"]);
+    header("Location: $post_url#add_comment");
     exit();
 } else {
     wc_output("error", array("error"=>"Your comment could not be saved."));

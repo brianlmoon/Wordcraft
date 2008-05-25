@@ -26,7 +26,7 @@
 
             <div class="comment">
                 <?php if(!empty($comment["url"])){ ?>
-                    <h4><a href="<?php echo $comment["url"]; ?>"><?php echo $comment["name"]; ?></a> Says:</h4>
+                    <h4><a rel="nofollow" href="<?php echo $comment["url"]; ?>"><?php echo $comment["name"]; ?></a> Says:</h4>
                 <?php } else { ?>
                     <h4><?php echo $comment["name"]; ?> Says:</h4>
                 <?php } ?>
@@ -47,33 +47,35 @@
 
             <?php if(!empty($WCDATA["user"])) { ?>
 
-                <p>
-                    You are logged in as <?php echo $WCDATA["user"]["user_name"]; ?>
-                </p>
+                You are logged in as <?php echo $WCDATA["user"]["user_name"]; ?>
+                <br /><br />
 
             <?php } else { ?>
 
-            <p>
                 Your Name:<br />
                 <input type="text" class="text-input" name="your_name" value="" maxlength="50" size="30" />
-            </p>
+                <br /><br />
 
-            <p>
                 Your Email:<br />
                 <input type="text" class="text-input" name="your_email" value="" maxlength="50" size="30" />
-            </p>
+                <br /><br />
 
-            <p>
                 Your URL:<br />
                 <input type="text" class="text-input" name="your_url" value="" maxlength="50" size="30" />
-            </p>
+                <br /><br />
+
+                <?php if($WCDATA["captcha"]) { ?>
+                    Spam Prevention:<br />
+                    <?php echo $WCDATA["captcha"]; ?>
+                    <br /><br />
+                <?php } ?>
+
 
             <?php } ?>
 
-            <p>
-                Your Comment:<br />
-                <textarea name="your_comment" id="your-comment" /></textarea>
-            </p>
+            Your Comment:<br />
+            <textarea name="your_comment" id="your-comment" /></textarea>
+            <br /><br />
 
             <input type="submit" value="Submit" />
         </form>

@@ -322,9 +322,13 @@ ul.linklist li.first {
     margin-bottom: 15px;
 }
 
-#primarycontent #add-comment input.text-input {
+#primarycontent #add-comment input.text-input, #spamhurdles_captcha_answer_input {
     border: 1px solid #666644;
     padding: 4px;
+}
+
+#spamhurdles_captcha_explain {
+    font-size: 80%;
 }
 
 #primarycontent #add-comment #your-comment {

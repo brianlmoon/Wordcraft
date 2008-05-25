@@ -42,6 +42,12 @@ $WC = array(
             "feed"    => array("page"=>"feed.php",    "format"=>"?type=%s&tag=%s"),
     ),
 
+    // use mod_rewrite
+    "use_rewrite" => true,
+
+    // use captcha
+    "use_captcha" => true,
+
     // akismet settings
     "akismet_key" => "",
 );
