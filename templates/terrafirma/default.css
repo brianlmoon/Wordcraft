@@ -66,7 +66,6 @@ ul.linklist {
 }
 
 ul.linklist li {
-    border-bottom: solid 1px #EEEEEE;
     padding-bottom: 5px;
     margin: 0px 0px 5px 0px;
 }
@@ -192,7 +191,6 @@ ul.linklist li.first {
     position: relative;
     width: 180px;
     float: right;
-    font-size
     padding-bottom: 30px;
 }
 
@@ -204,13 +202,13 @@ ul.linklist li.first {
     color: #656551;
     letter-spacing: -1px;
     background: url('images/a22.gif') bottom repeat-x;
-    padding: 0px 0px 10px 10px;
+    padding: 0px 0px 5px 10px;
     margin-bottom: 20px;
 }
 
 #secondarycontent .content {
     padding: 0px 10px 0px 10px;
-    margin-bottom: 20px;
+    margin-bottom: 40px;
     font-size: 90%;
 }
 

@@ -26,10 +26,11 @@ if(!empty($_POST["comment_id"]) && is_numeric($_POST["comment_id"])){
             break;
         case "approve":
             wc_akismet_request( $comment, "report-ham" );
+            wc_db_save_comment(array("comment_id"=>$_POST["comment_id"], "status"=>"APPROVED"));
             wc_admin_message("Comment approved.");
             break;
         case "hide":
-
+            wc_db_save_comment(array("comment_id"=>$_POST["comment_id"], "status"=>"UNAPPROVED"));
             wc_admin_message("Comment hidden.");
             break;
         default:

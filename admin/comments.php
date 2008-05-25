@@ -76,10 +76,10 @@ if($last > $total) {
             </p>
             <div class="moderation">
                     <a href="comment_moderate.php?comment_id=<?php echo $comment["comment_id"];?>&mode=delete">Delete</a>&nbsp;
-                    <?php if($comment["status"] != "Spam") { ?>
+                    <?php if($comment["status"] != "SPAM") { ?>
                         <a href="comment_moderate.php?comment_id=<?php echo $comment["comment_id"];?>&mode=spam">Spam</a>&nbsp;
                     <?php } ?>
-                    <?php if($comment["status"] == "Approved") { ?>
+                    <?php if($comment["status"] == "APPROVED") { ?>
                         <a href="comment_moderate.php?comment_id=<?php echo $comment["comment_id"];?>&mode=hide">Hide</a>&nbsp;
                     <?php } else { ?>
                         <a href="comment_moderate.php?comment_id=<?php echo $comment["comment_id"];?>&mode=approve">Approve</a>&nbsp;

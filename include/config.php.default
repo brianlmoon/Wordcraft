@@ -20,7 +20,7 @@ $WC = array(
     // secret string to be used in making session ids
     "session_secret" => "",
     "session_days"   => 30,
-    "session_path"   => "/xaz",
+    "session_path"   => "/",
     "session_domain" => null,
 
     // date formats

@@ -223,9 +223,9 @@ function wc_db_get_post($identifier) {
         $post["tags_text"] = implode(", ", $post["tags"]);
 
         // get comment count
-        $sql = "select count(*) as count from {$WC['comments_table']} where post_id=$post_id";
+        $sql = "select count(*) as count from {$WC['comments_table']} where post_id=$post_id and status='APPROVED'";
 
-        $post["comment_count"] = (int)$WCDB->query_fetch($sql, WC_DB_FETCH_FIELD, "count");
+        $post["comment_count"] = (int)$WCDB->query_fetch($sql, WC_DB_FETCH_VALUE, "count");
 
     }
 
@@ -339,7 +339,7 @@ function wc_db_get_post_list($start=false, $limit=false, $bodies=false, $filter=
         unset($post);
 
         // get comment count
-        $sql = "select post_id, count(*) as count from {$WC['comments_table']} where post_id in (".implode(",", array_keys($posts)).")";
+        $sql = "select post_id, count(*) as count from {$WC['comments_table']} where post_id in (".implode(",", array_keys($posts)).") and status='APPROVED'";
 
         $WCDB->query($sql);
 
@@ -588,27 +588,31 @@ function wc_db_get_tags($limit=0) {
 
 /**
  * Posts a comment to the database
+ * To save an existing comment, put the comment_id in the array.
  *
  * @param   $comment    Array contianing comment data
  * @return  mixed
  *
  */
-function wc_db_post_comment($comment) {
+function wc_db_save_comment($comment) {
 
     global $WCDB, $WC;
 
     // these are required
-    if(empty($comment["comment"])) return false;
-    if(empty($comment["post_id"])) return false;
-    if(empty($comment["name"])) return false;
+    if(!isset($comment["comment_id"])){
+        if(empty($comment["comment"])) return false;
+        if(empty($comment["post_id"])) return false;
+        if(empty($comment["name"])) return false;
 
-    if(empty($comment["comment_date"])) $comment["comment_date"] = date("Y-m-d H:i:s");
+        if(empty($comment["comment_date"])) $comment["comment_date"] = date("Y-m-d H:i:s");
+    }
 
     foreach($comment as $field=>$value){
 
         switch($field){
 
             case "post_id":
+            case "comment_id":
                 $clean_arr[$field] = (int)$value;
                 break;
 
@@ -621,6 +625,13 @@ function wc_db_post_comment($comment) {
                 $clean_arr[$field] = $WCDB->escape($value);
                 break;
 
+            case "status":
+                if($value!='APPROVED' && $value!='UNAPPROVED' && $value!='SPAM'){
+                    $value = 'UNAPPROVED';
+                }
+                $clean_arr[$field] = $value;
+                break;
+
             default:
                 trigger_error("Invalid field $field sent to ".__FUNCTION__.".", E_USER_WARNING);
                 break;
@@ -628,15 +639,39 @@ function wc_db_post_comment($comment) {
 
     }
 
-    foreach($clean_arr as $field=>$value){
-        $fields.="$field,";
-        $values.="'$value',";
-    }
-    $fields = substr($fields, 0, -1); // trim the last comma
-    $values = substr($values, 0, -1); // trim the last comma
-    $sql = "insert into {$WC["comments_table"]} ($fields) values ($values)";
+    if(isset($clean_arr["comment_id"])){
 
-    $comment_id = $WCDB->query_fetch($sql, WC_DB_FETCH_INSERT_ID);
+        $fields = "";
+
+        foreach($clean_arr as $field=>$value){
+            if($field!="comment_id"){
+                if(is_numeric($value)){
+                    $fields.="$field = $value,";
+                } else {
+                    $fields.="$field = '$value',";
+                }
+            }
+        }
+        $fields = substr($fields, 0, -1); // trim the last comma
+
+        $sql = "update {$WC["comments_table"]} set $fields where comment_id=".$clean_arr["comment_id"];
+        $success = $WCDB->query($sql);
+
+    } else {
+
+        $fields = "";
+        $values = "";
+        foreach($clean_arr as $field=>$value){
+            $fields.="$field,";
+            $values.="'$value',";
+        }
+        $fields = substr($fields, 0, -1); // trim the last comma
+        $values = substr($values, 0, -1); // trim the last comma
+        $sql = "insert into {$WC["comments_table"]} ($fields) values ($values)";
+
+        $comment_id = $WCDB->query_fetch($sql, WC_DB_FETCH_INSERT_ID);
+
+    }
 
     return $comment_id;
 }
