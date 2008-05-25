@@ -1,0 +1,403 @@
+The templates in Wordcraft are simply PHP scripts.  PHP is a great
+templating language.  Why reinvent the wheel?
+
+The templates are scoped so that global space will not interfere.  The
+variable that Wordcraft prepares within the template scope is name $WCDATA.
+All the data you will need to create your templates should be in this
+array.
+
+To display an element of this array, simple use PHP code like:
+
+<?php echo $WCDATA["title"]; ?>
+
+This would display the contents for the HTML title tag.
+
+Some things are nested arrays like the posts for the front page.  To loop
+through those items, simply use the PHP foreach:
+
+<?php foreach($WCDATA["posts"] as $post) { ?>
+
+    <?php echo $post["subject"]; ?>
+
+<?php } ?>
+
+Below you will find all of the data available to you in the different files.
+Some things are available in all files.  Others are special for certain template
+files.
+
+
+All Pages
+==========
+
+title
+-----
+
+The HTML title for the page.
+
+description
+-----------
+
+The HTML META Description for the page.
+
+base_url
+--------
+
+The base URL for the blog.
+
+home_url
+--------
+
+The URL to the front page of the blog.
+
+feed_url
+--------
+
+The URL to the feed for the blog/page.  If this page is a tag page, the
+feed_url will be the feed for that tag.
+
+
+nav_pages
+---------
+
+An array of the pages available for linking.  Each item in the pages
+array contains:
+
+    page_id
+    -------
+
+    The page's page_id from the database.
+
+    nav_label
+    ---------
+
+    The label to be linked.
+
+    url
+    ---
+
+    The URL of the page.
+
+tags
+----
+
+An array of tags that are used in the blog.  Each item in the tags
+array contains:
+
+    tag
+    ---
+
+    The tag name.
+
+    post_count
+    ----------
+
+    The total number of posts associated with the tag.
+
+    url
+    ---
+
+    The URL to the tag page for this tag.
+
+
+user
+----
+
+If the user is logged in to the admin, this array will appear as well.
+The user array will contain:
+
+    user_id
+    -------
+
+    The user's user_id.
+
+    user_name
+    ---------
+
+    The user's user_name.
+
+    first_name
+    ----------
+
+    The user's first name.
+
+    last_name
+    ---------
+
+    The user's last name.
+
+    email
+    -----
+
+    The user's email address.
+
+    about
+    -----
+
+    A blurb about the user.
+
+
+admin
+-----
+
+If the user is logged in to the admin, some URLs are provided for easy
+access to admin functionality.  This is an array of URLs:
+
+    base_url
+    --------
+
+    The primary URL to the admin area.
+
+    new_post_url
+    ------------
+
+    The URL to start a new post.
+
+    new_page_url
+    ------------
+
+    The URL to start a new page
+
+    edit_post_url
+    -------------
+
+    If the user is viewing a single post, this URL will be available.  It
+    is a direct link to the edit page for the current post.
+
+    edit_page_url
+    -------------
+
+    If the user is viewing a single page, this URL will be available.  It
+    is a direct link to the edit page for the current page.
+
+
+
+Front Page and Tag Page
+=======================
+
+posts
+-----
+
+An array of the posts to display. Eeach item in posts contains:
+
+    post_id
+    -------
+
+    The post's post_id.
+
+    subject
+    -------
+
+    The subject of the post.
+
+    body
+    ----
+
+    The full body of the post.
+
+    post_date
+    ---------
+
+    A long formatted date for the date the post was published.
+
+    user_id
+    -------
+
+    The user id of the user that made the post.
+
+    comment_count
+    -------------
+
+    The total comment count for this post.
+
+    user_name
+    ---------
+
+    The user name of the user that made the post.
+
+    tags_text
+    ---------
+
+    A comma delimited list of the tags associated with this post.
+
+    url
+    ---
+
+    The full URL for this post.
+
+    tags
+    ----
+
+    An array of tags associated with this post.  Each item will contain:
+
+        tag
+        ---
+
+        The tags name.
+
+        url
+        ---
+
+        The URL for the tag page for this tag.
+
+
+
+Post Page
+=========
+
+post
+-----
+
+An array for the post to be displayed. The array will contain:
+
+    post_id
+    -------
+
+    The post's post_id.
+
+    subject
+    -------
+
+    The subject of the post.
+
+    body
+    ----
+
+    The full body of the post.
+
+    post_date
+    ---------
+
+    A long formatted date for the date the post was published.
+
+    user_id
+    -------
+
+    The user id of the user that made the post.
+
+    comment_count
+    -------------
+
+    The total comment count for this post.
+
+    user_name
+    ---------
+
+    The user name of the user that made the post.
+
+    tags_text
+    ---------
+
+    A comma delimited list of the tags associated with this post.
+
+    url
+    ---
+
+    The full URL for this post.
+
+    tags
+    ----
+
+    An array of tags associated with this post.  Each item will contain:
+
+        tag
+        ---
+
+        The tags name.
+
+        url
+        ---
+
+        The URL for the tag page for this tag.
+
+
+comments
+--------
+
+An array of comments associated with the current post.
+
+    comment_id
+    ----------
+
+    The id for the comment.
+
+    post_id
+    -------
+
+    The post_id the comment is associated with.
+
+    name
+    ----
+
+    The name of the commenter.
+
+    email
+    -----
+
+    The email of the commenter.
+
+    url
+    ---
+
+    The URL to be linked to for this commenter.
+
+    comment_date
+    ------------
+
+    The date of the comment.
+
+    comment
+    -------
+
+    The comment body.
+
+    ip_address
+    ----------
+
+    The IP address of the commenter at the time the comment was made.
+
+    status
+    ------
+
+    The status of the comment.  Should be APPROVED.
+
+comment_url
+-----------
+
+The URL for the comment form to use as its action.  The form should use POST.
+
+captcha
+-------
+
+If captcha is enabled and the user is not logged in, this value will be
+available.  It is to be output within the comment form.
+
+
+
+Pages
+=====
+
+page
+----
+
+An array containing the data about the page being viewed.
+
+    page_id
+    -------
+
+    The id for the page being viewed.
+
+    title
+    -----
+
+    The title for the page being viewed.
+
+    body
+    ----
+
+    The body of the page.
+
+    nav_label
+    ---------
+
+    The text used to link to this page.
+

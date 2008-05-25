@@ -1,6 +1,6 @@
     <div class="post">
         <div class="header">
-            <h1><?php echo $WCDATA["post"]["subject"]; ?></h1>
+            <h1><?php echo $WCDATA["post"]["subject"]; ?><small>by <?php echo $WCDATA["post"]["user_name"]; ?></small></h1>
             <div class="date"><?php echo $WCDATA["post"]["post_date"]; ?></div>
         </div>
         <div class="content">
