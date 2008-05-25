@@ -20,12 +20,12 @@ if(!empty($_POST["comment_id"]) && is_numeric($_POST["comment_id"])){
             wc_admin_message("Comment deleted.");
             break;
         case "spam":
-            wc_akismet_request( $comment, "report-spam" );
+            wc_akismet_request( $comment, "submit-spam" );
             wc_db_delete_comment($_POST["comment_id"]);
             wc_admin_message("Comment flagged as spam and deleted.");
             break;
         case "approve":
-            wc_akismet_request( $comment, "report-ham" );
+            wc_akismet_request( $comment, "submit-ham" );
             wc_db_save_comment(array("comment_id"=>$_POST["comment_id"], "status"=>"APPROVED"));
             wc_admin_message("Comment approved.");
             break;
