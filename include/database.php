@@ -20,6 +20,7 @@ if(!defined("WC")) return;
 /**
  * Generate the table names using the prefix
  */
+$WC["settings_table"] = $WC["db_prefix"]."_settings";
 $WC["pages_table"] = $WC["db_prefix"]."_pages";
 $WC["posts_table"] = $WC["db_prefix"]."_posts";
 $WC["users_table"] = $WC["db_prefix"]."_users";
@@ -30,6 +31,104 @@ $WC["tags_table"] = $WC["db_prefix"]."_tags";
  * Create a new database object for these functions to use
  */
 $WCDB = new WCDB($WC["db_server"], $WC["db_name"], $WC["db_user"], $WC["db_password"]);
+
+
+/**
+ * Gets the application settings.
+ *
+ * @return  array
+ *
+ */
+function wc_db_get_settings(){
+
+    global $WC, $WCDB;
+
+    $sql = "select * from {$WC["settings_table"]}";
+
+    $WCDB->query($sql);
+
+    $settings = array();
+
+    while($rec = $WCDB->fetch()){
+        if($rec["S"]){
+            $settings[$rec["name"]] = json_decode($rec["data"]);
+        } else {
+            $settings[$rec["name"]] = $rec["data"];
+        }
+    }
+
+    return $settings;
+}
+
+
+/**
+ * Save the application settings.
+ *
+ * @param   $settings Array of settings to save.
+ * @return  void
+ *
+ */
+function wc_db_save_settings($settings){
+
+    global $WC, $WCDB;
+
+    if(empty($settings)) return false;
+
+    $success = false;
+
+    $clean_arr = array();
+
+    foreach($settings as $name=>$data){
+
+        switch($name){
+            case "session_days":
+                $clean_arr[] = array("name"=>$name, "type"=>"V", "data"=>(int)$data);
+                break;
+
+            case "base_url":
+            case "session_secret":
+            case "session_path":
+            case "session_domain":
+            case "date_format_long":
+            case "date_format_short":
+            case "template":
+            case "default_title":
+            case "default_description":
+            case "akismet_key":
+                $clean_arr[] = array("name"=>$name, "type"=>"V", "data"=>$WCDB->escape($data));
+                break;
+
+            case "use_rewrite":
+            case "use_captcha":
+            case "use_akismet":
+                $clean_arr[] = array("name"=>$name, "type"=>"V", "data"=>(bool)$data);
+                break;
+
+            default:
+                trigger_error("Invalid field $name sent to ".__FUNCTION__.".", E_USER_WARNING);
+                continue;
+        }
+
+    }
+
+    $success = true;
+
+    foreach($clean_arr as $setting){
+
+        $sql = "replace into {$WC["settings_table"]} set
+                    name = '$setting[name]',
+                    type = '$setting[type]',
+                    data = '$setting[data]'";
+
+        if(!$WCDB->query($sql)){
+            $success = false;
+        }
+
+    }
+
+    return $success;
+}
+
 
 /**
  * Checks the given cookie against the database for a user

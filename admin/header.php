@@ -53,6 +53,7 @@
                         <li><a href="page.php">New Page</a></li>
                         <li><a href="users.php">Users</a></li>
                         <li><a href="comments.php">Comments</a></li>
+                        <li><a href="settings.php">Settings</a></li>
                         <!-- Keep Last -->
                         <li><a href="../index.php">View Blog</a></li>
                     </ul>

@@ -11,7 +11,7 @@ $limit = 50;
 
 list($posts, $total) = wc_db_get_post_list($start, $limit, false, $filter);
 
-$WHEREAMI = "Manage";
+$WHEREAMI = "Manage Posts";
 
 include_once "./header.php";
 

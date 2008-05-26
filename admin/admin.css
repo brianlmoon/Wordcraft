@@ -2,7 +2,7 @@ a:link, a:visited {
     color: #73A822;
 }
 
-input.inputgri {
+input.inputgri, textarea.inputgri {
     width: 924px;
 }
 

@@ -1,6 +1,6 @@
 <?php
 
-include_once "./include/config.php";
+include_once "./include/common.php";
 include_once "./include/database.php";
 include_once "./include/format.php";
 include_once "./include/feeds.php";
