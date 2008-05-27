@@ -108,6 +108,7 @@ function wc_build_common_data(&$WCDATA) {
 
     if(!empty($WCDATA["user"]["user_id"])){
         $WCDATA["admin"]["base_url"] = $WC["base_url"]."/admin/";
+        $WCDATA["admin"]["logout_url"] = $WC["base_url"]."/admin/logout.php";
         $WCDATA["admin"]["new_post_url"] = $WC["base_url"]."/admin/post.php";
         $WCDATA["admin"]["new_page_url"] = $WC["base_url"]."/admin/page.php";
         if(isset($WCDATA["post"]["post_id"])) {

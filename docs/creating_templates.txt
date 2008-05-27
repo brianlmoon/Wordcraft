@@ -147,6 +147,11 @@ access to admin functionality.  This is an array of URLs:
 
     The primary URL to the admin area.
 
+    logout_url
+    ----------
+
+    The link to log the user out of the system.
+
     new_post_url
     ------------
 

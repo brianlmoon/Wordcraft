@@ -20,6 +20,7 @@
             <div class="content">
                 <ul class="linklist">
                     <li><a href="<?php echo $WCDATA["admin"]["base_url"]; ?>">Dashboard</a></li>
+                    <li><a href="<?php echo $WCDATA["admin"]["logout_url"]; ?>">Log Out</a></li>
                     <li><a href="<?php echo $WCDATA["admin"]["new_post_url"]; ?>">New Post</a></li>
                     <li><a href="<?php echo $WCDATA["admin"]["new_page_url"]; ?>">New Page</a></li>
                     <?php if(isset($WCDATA["admin"]["edit_post_url"])) { ?>
