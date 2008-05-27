@@ -28,6 +28,7 @@ if(count($_POST)){
             case "use_akismet":
             case "moderate_all":
             case "email_comment":
+            case "allow_comments":
                 $clean_arr[$name] = $data;
                 break;
 
@@ -41,6 +42,7 @@ if(count($_POST)){
     if(empty($clean_arr["use_captcha"])) $clean_arr["use_captcha"] = 0;
     if(empty($clean_arr["use_akismet"])) $clean_arr["use_akismet"] = 0;
     if(empty($clean_arr["moderate_all"])) $clean_arr["moderate_all"] = 0;
+    if(empty($clean_arr["allow_comments"])) $clean_arr["allow_comments"] = 0;
 
     // check askismet key
     if($clean_arr["use_akismet"]){
@@ -113,6 +115,11 @@ include_once "./header.php";
     </p>
 
     <h2>Comment Moderation</h2>
+
+    <p>
+        <strong><input type="checkbox" value="1" <?php if(!empty($settings["allow_comments"])) echo "checked"; ?> id="allow_comments" name="allow_comments" /> <label for="allow_comments">Allow comments by default on new posts</label></strong><br />
+    </p>
+
 
     <p>
         <strong><input type="checkbox" value="1" <?php if(!empty($settings["moderate_all"])) echo "checked"; ?> id="moderate_all" name="moderate_all" /> <label for="moderate_all">Approve all comments</label></strong><br />

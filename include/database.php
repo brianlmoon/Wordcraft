@@ -103,6 +103,7 @@ function wc_db_save_settings($settings){
             case "use_captcha":
             case "use_akismet":
             case "moderate_all":
+            case "allow_comments":
                 $clean_arr[] = array("name"=>$name, "type"=>"V", "data"=>(bool)$data);
                 break;
 
@@ -205,6 +206,7 @@ function wc_db_save_post($post){
         switch($field){
             case "post_id":
             case "user_id":
+            case "allow_comments":
                 $clean_arr[$field] = (int)$value;
                 break;
 

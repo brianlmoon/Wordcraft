@@ -6,6 +6,12 @@ include_once "./include/output.php";
 include_once "./include/format.php";
 include_once "./include/akismet.php";
 
+$post = wc_db_get_post($_POST["post_id"]);
+
+if(!$post["allow_comments"]){
+    wc_output("error", array("error"=>"Comments are disabled on this post."));
+}
+
 // check if this is a logged in author
 $user = wc_db_check_cookie($_COOKIE["wc_admin"]);
 
@@ -94,7 +100,6 @@ if($success){
        (($WC["email_comment"]=="all") ||
        ($WC["email_comment"]=="spam" && $comment["status"]=="SPAM"))){
 
-        $post = wc_db_get_post($comment["post_id"]);
         $subject = "[".$WC["default_title"]."] Comment on $post[subject]";
         $body = "There is a new comment on your post \"$post[subject]\"\n";
         $body.= wc_get_url("post", $post["post_id"], $post["uri"])."#comments\n\n";

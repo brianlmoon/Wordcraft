@@ -164,6 +164,7 @@ include_once "./header.php";
            "template" => "terrafirma",
            "moderate_all" => 0,
            "email_comment" => "spam",
+           "allow_comments" => 1,
         );
 
         $success = wc_db_save_settings($default_settings);

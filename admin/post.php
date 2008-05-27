@@ -1,8 +1,8 @@
 <?php
 
+include_once "../include/common.php";
 include_once "./check_auth.php";
 include_once "./admin_functions.php";
-
 
 // check the mode
 if(isset($_POST["mode"])){
@@ -49,11 +49,12 @@ if(count($_POST)){
     if(empty($error)){
 
         $post_array = array(
-            "user_id"   => $USER["user_id"],
-            "post_id"   => $_POST["post_id"],
-            "subject"   => $_POST["subject"],
-            "body"      => $_POST["editor"],
-            "tags"      => $_POST["tags"],
+            "user_id"        => $USER["user_id"],
+            "post_id"        => $_POST["post_id"],
+            "subject"        => $_POST["subject"],
+            "body"           => $_POST["editor"],
+            "tags"           => $_POST["tags"],
+            "allow_comments" => isset($_POST["allow_comments"]),
         );
 
         if(!empty($post_date)){
@@ -83,6 +84,8 @@ if(count($_POST)){
         $post_tags = $_POST["tags"];
         $post_custom_date = isset($_POST["custom_date"]);
         $post_date = $_POST["date"];
+        $post_allow_comments = isset($_POST["allow_comments"]);
+
     }
 
 } else {
@@ -98,6 +101,7 @@ if(count($_POST)){
             $post_body = $post["body"];
             $post_tags = $post["tags_text"];
             $post_date = strftime("%c", strtotime($post["post_date"]));
+            $post_allow_comments = isset($post["allow_comments"]);
         } else {
             wc_admin_error("The post you requested to edit was not found.");
         }
@@ -110,6 +114,7 @@ if(count($_POST)){
         $post_body = "";
         $post_tags = "";
         $post_date = "";
+        $post_allow_comments = $WC["allow_comments"];
     }
 
 }
@@ -150,8 +155,12 @@ if(!empty($error)){
     </p>
 
     <p>
+        <strong><input type="checkbox" name="allow_comments" id="allow_comments" value="1" <?php if(!empty($post_allow_comments)) echo "checked"; ?>/> <label for="allow_comments">Allow Comments</label></strong><br />
+    </p>
+
+    <p>
         <strong>Post Date:</strong><br />
-        <input type="checkbox" name="custom_date" id="custom_date" value="1" <?php if(!empty($post_custom_post)) echo "selected "; ?>/><label for="custom_date">Custom Date</lable><br />
+        <input type="checkbox" name="custom_date" id="custom_date" value="1" <?php if(!empty($post_custom_post)) echo "checked "; ?>/><label for="custom_date">Custom Date</label><br />
         <input class="inputgri" type="text" value="<?php echo htmlspecialchars($post_date); ?>" id="date" name="date" /><br />
     </p>
 

@@ -38,45 +38,51 @@
     <?php } ?>
 
 
+    <?php if($WCDATA["allow_comments"]) { ?>
+        <div id="add-comment">
+            <a name="add_comment"></a>
+            <h3>Add A Comment</h3>
+            <form action="<?php echo $WCDATA["comment_url"]; ?>" method="post">
+                <input type="hidden" class="text-input" name="post_id" value="<?php echo $WCDATA["post"]["post_id"]; ?>" />
 
-    <div id="add-comment">
-        <a name="add_comment"></a>
-        <h3>Add A Comment</h3>
-        <form action="<?php echo $WCDATA["comment_url"]; ?>" method="post">
-            <input type="hidden" class="text-input" name="post_id" value="<?php echo $WCDATA["post"]["post_id"]; ?>" />
+                <?php if(!empty($WCDATA["user"])) { ?>
 
-            <?php if(!empty($WCDATA["user"])) { ?>
-
-                You are logged in as <?php echo $WCDATA["user"]["user_name"]; ?>
-                <br /><br />
-
-            <?php } else { ?>
-
-                Your Name:<br />
-                <input type="text" class="text-input" name="your_name" value="" maxlength="50" size="30" />
-                <br /><br />
-
-                Your Email:<br />
-                <input type="text" class="text-input" name="your_email" value="" maxlength="50" size="30" />
-                <br /><br />
-
-                Your URL:<br />
-                <input type="text" class="text-input" name="your_url" value="" maxlength="50" size="30" />
-                <br /><br />
-
-                <?php if($WCDATA["captcha"]) { ?>
-                    Spam Prevention:<br />
-                    <?php echo $WCDATA["captcha"]; ?>
+                    You are logged in as <?php echo $WCDATA["user"]["user_name"]; ?>
                     <br /><br />
+
+                <?php } else { ?>
+
+                    Your Name:<br />
+                    <input type="text" class="text-input" name="your_name" value="" maxlength="50" size="30" />
+                    <br /><br />
+
+                    Your Email:<br />
+                    <input type="text" class="text-input" name="your_email" value="" maxlength="50" size="30" />
+                    <br /><br />
+
+                    Your URL:<br />
+                    <input type="text" class="text-input" name="your_url" value="" maxlength="50" size="30" />
+                    <br /><br />
+
+                    <?php if($WCDATA["captcha"]) { ?>
+                        Spam Prevention:<br />
+                        <?php echo $WCDATA["captcha"]; ?>
+                        <br /><br />
+                    <?php } ?>
+
+
                 <?php } ?>
 
+                Your Comment:<br />
+                <textarea name="your_comment" id="your-comment" /></textarea>
+                <br /><br />
 
-            <?php } ?>
+                <input type="submit" value="Submit" />
+            </form>
+        </div>
 
-            Your Comment:<br />
-            <textarea name="your_comment" id="your-comment" /></textarea>
-            <br /><br />
+    <?php } else {?>
 
-            <input type="submit" value="Submit" />
-        </form>
-    </div>
+        <p>Comments are disabled for this post.</p>
+
+    <?php } ?>

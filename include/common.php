@@ -20,7 +20,6 @@ $WC = array_merge($WC, $settings);
 
 unset($settings);
 
-
 // check for stupid magic quotes
 if ( get_magic_quotes_gpc() && count( $_REQUEST ) ) {
 
