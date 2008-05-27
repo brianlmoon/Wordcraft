@@ -1,0 +1,54 @@
+Wordcraft Installation
+======================
+
+ 1. Download the Wordcraft package and unzip it, if you haven't already.
+
+ 2. If you do not already have a database, create one for your Wordcraft
+    installation.  Please take note of the database name, user name and
+    password.
+
+ 3. Go to the include direcory and find the file named config.php.default.
+
+ 4. Rename the file config.php.
+
+ 5. Open the file in your favorite text editor.  We do not recommend using
+    Notepad on Windows as it does not recognize all types of text files.
+    If you do not already have a favorite, we recommend using Wordpad on
+    Windows.  If you are using a Mac, you can use TextEdit.  If you are
+    using Linux, I bet you already have a favorite.
+
+ 6. In this file, you will find a section of text like below:
+
+    // Database options
+    "db_prefix"   => "wc",
+    "db_server"   => "",
+    "db_name"     => "",
+    "db_user"     => "",
+    "db_password" => "",
+
+    Fill in your database settings here.  If you don't know these settings,
+    you will need to ask your web host for them.  You may leave db_prefix
+    as it is unless you are setting up more than copy of Wordcraft in the
+    same database.  If you are, you can use whatever you want here as long
+    as it is numbers, letters and _.  Do not use spaces in your prefix.
+
+ 7. If the Wordpress code is not already on a server, you should upload it
+    now using your FTP client, web hosting control panel, or whatever
+    method you prefer for moving files to your server.
+
+ 8. Once the code is uploaded, go to your browser and load up the install
+    program by going to admin/install.php.
+
+    For example, if your server name is example.com and you installed
+    Wordcraft in the main directory of your web site, you should go to the
+    URL:
+
+        http://example.com/admin/install.php
+
+    If you installed Wordcraft in some other directory, simply add that
+    directory to the URL.
+
+ 9. Follow the on screen instructions to finish the installation.
+
+10. Jump for joy!
+

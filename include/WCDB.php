@@ -34,7 +34,10 @@ class WCDB {
     private $database;
     private $user;
     private $password;
+    private $report_errors = true;
     private $slaves;
+
+    public $last_error = "";
 
     /**
      * Constructor for WCDB mysqli Class
@@ -127,7 +130,11 @@ class WCDB {
             foreach($bt as $t){
                 $error.= "SQL: $sql<br />\nFile: ".$t["file"]."<br />\nFunction: ".$t["function"]."<br />\nLine:".$t["line"]."<br />\n";
             }
-            exit($error);
+            if($this->report_errors){
+                exit($error);
+            } else {
+                $this->last_error = $error;
+            }
         }
 
         return (bool)$this->result;
@@ -314,17 +321,46 @@ class WCDB {
 
 
     /**
+     * Check if the mysql connection is working.  If the connection is
+     * working, true will be returned.  If it is not working, the mysql
+     * error will be returned.
+     * @access  public
+     * @return  mixed
+     */
+    public function check_connection() {
+
+        $error = $this->connect(false, false);
+
+        return $error;
+
+    }
+
+
+    /**
+     * Set error reporting on or off
+     * @access  public
+     */
+    public function report_errors($report_errors) {
+        $this->report_errors = (bool)$report_errors;
+    }
+
+    /**
      * Method for connecting to mysql
      * @access  private
      */
-    private function connect($server=false) {
+    private function connect($server=false, $report_error=true) {
 
         $connect_server = (!$server) ? $this->server : $server;
         $this->connection = mysqli_connect($this->server, $this->user, $this->password, $this->database);
         /* check connection */
         if(!$server){
-            if (mysqli_connect_errno()) {
-               exit("Connection to the mysql server failed.  Please check your settings.  The servers said &quot;".mysqli_connect_error()."&quot;");
+            $error = mysqli_connect_errno();
+            if ($error) {
+                if($report_error){
+                    exit("Connection to the mysql server failed.  Please check your settings.  The servers said &quot;".$error."&quot;");
+                } else {
+                    return $error;
+                }
             }
             // save this connection to the write_connection var
             $this->write_connection = $this->connection;
@@ -332,6 +368,8 @@ class WCDB {
             // save this connection to the read_connection var
             $this->read_connection = $this->connection;
         }
+
+        return true;
     }
 
 

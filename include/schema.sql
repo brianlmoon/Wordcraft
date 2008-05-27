@@ -1,9 +1,8 @@
 --
--- Table structure for table `wc_comments`
+-- Table structure for table `{PREFIX}_comments`
 --
 
-DROP TABLE IF EXISTS `wc_comments`;
-CREATE TABLE `wc_comments` (
+CREATE TABLE `{PREFIX}_comments` (
   `comment_id` int(10) unsigned NOT NULL auto_increment,
   `post_id` int(10) unsigned NOT NULL default '0',
   `name` varchar(50) NOT NULL default '',
@@ -17,30 +16,27 @@ CREATE TABLE `wc_comments` (
   KEY `post_date_status` (`post_id`,`status`,`comment_date`),
   KEY `status_date` (`status`,`comment_date`),
   KEY `comment_date` (`comment_date`)
-) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Table structure for table `wc_pages`
+-- Table structure for table `{PREFIX}_pages`
 --
 
-DROP TABLE IF EXISTS `wc_pages`;
-CREATE TABLE `wc_pages` (
+CREATE TABLE `{PREFIX}_pages` (
   `page_id` int(10) unsigned NOT NULL auto_increment,
   `title` varchar(100) NOT NULL default '',
   `body` text NOT NULL,
   `nav_label` varchar(30) NOT NULL default '',
   `uri` varchar(100) NOT NULL default '',
   PRIMARY KEY  (`page_id`),
-  KEY `nav_label` (`nav_label`),
-  unique key page_uri (uri)
-) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+  KEY `nav_label` (`nav_label`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Table structure for table `wc_posts`
+-- Table structure for table `{PREFIX}_posts`
 --
 
-DROP TABLE IF EXISTS `wc_posts`;
-CREATE TABLE `wc_posts` (
+CREATE TABLE `{PREFIX}_posts` (
   `post_id` int(10) unsigned NOT NULL auto_increment,
   `subject` varchar(100) NOT NULL default '',
   `body` text NOT NULL,
@@ -48,28 +44,37 @@ CREATE TABLE `wc_posts` (
   `user_id` int(10) unsigned NOT NULL default '0',
   `uri` varchar(100) NOT NULL default '',
   PRIMARY KEY  (`post_id`),
-  KEY `post_date` (`post_date`),
-  unique key (uri, post_date)
-) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+  UNIQUE KEY `uri_date` (`uri`,`post_date`),
+  KEY `post_date` (`post_date`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Table structure for table `wc_tags`
+-- Table structure for table `{PREFIX}_settings`
 --
 
-DROP TABLE IF EXISTS `wc_tags`;
-CREATE TABLE `wc_tags` (
+CREATE TABLE `{PREFIX}_settings` (
+  `name` varchar(255) NOT NULL default '',
+  `type` enum('V','S') NOT NULL default 'V',
+  `data` text NOT NULL,
+  PRIMARY KEY  (`name`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Table structure for table `{PREFIX}_tags`
+--
+
+CREATE TABLE `{PREFIX}_tags` (
   `post_id` int(10) unsigned NOT NULL default '0',
   `tag` varchar(20) default NULL,
   UNIQUE KEY `post_id` (`post_id`,`tag`),
   KEY `tag` (`tag`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Table structure for table `wc_users`
+-- Table structure for table `{PREFIX}_users`
 --
 
-DROP TABLE IF EXISTS `wc_users`;
-CREATE TABLE `wc_users` (
+CREATE TABLE `{PREFIX}_users` (
   `user_id` int(10) unsigned NOT NULL auto_increment,
   `user_name` varchar(20) NOT NULL default '',
   `first_name` varchar(25) NOT NULL default '',
@@ -81,7 +86,5 @@ CREATE TABLE `wc_users` (
   PRIMARY KEY  (`user_id`),
   UNIQUE KEY `user_name` (`user_name`,`password`),
   UNIQUE KEY `user_session` (`user_id`,`session_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
-
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 

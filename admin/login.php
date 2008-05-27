@@ -1,5 +1,6 @@
 <?php
 
+include_once "../include/common.php";
 include_once "./admin_functions.php";
 
 $error = false;
@@ -26,7 +27,9 @@ if(count($_POST)){
 
             $session_id = md5($base).sha1($base);
 
-            setcookie("wc_admin", $user_id.":".$session_id, $WC["session_time"], $WC["session_path"], $WC["session_domain"]);
+            $time = (isset($_POST["remember"])) ? time()+(86400*$WC["session_days"]) : 0;
+
+            setcookie("wc_admin", $user_id.":".$session_id, $time, $WC["session_path"], $WC["session_domain"]);
 
             wc_db_save_user(array("user_id"=>$user_id, "session_id"=>$session_id));
 
@@ -71,6 +74,10 @@ if(count($_POST)){
     <p>
         <strong>Password:</strong><br />
         <input class="inputgri" type="password" value="" name="password" id="password" maxlength="64" />
+    </p>
+
+    <p>
+        <input type="checkbox" id="remember" name="remember" value="1" /><label for="remember">Remember me on this computer</label>
     </p>
 
     <input class="button" type="submit" value="Login" />

@@ -67,6 +67,43 @@ include_once "./header.php";
 
     <h2>General Settings</h2>
 
+    <h2>Template and Content</h2>
+
+    <p>
+        <strong>Template:</strong><br />
+        <select class="inputgri" name="template" id="template">
+            <?php echo $template_options; ?>
+        </select>
+    </p>
+
+    <p>
+        <strong>Default HTML Title:</strong><br />
+        <input class="inputgri" type="text" value="<?php echo htmlspecialchars($settings["default_title"]); ?>" id="default_title" name="default_title" />
+    </p>
+
+    <p>
+        <strong>Default HTML META Description:</strong><br />
+        <textarea class="inputgri" id="default_description" name="default_description"><?php echo htmlspecialchars($settings["default_description"]); ?></textarea>
+    </p>
+
+    <p>
+        <strong>Search Engine Friendly URLs:</strong><br />
+        <input type="checkbox" value="1" <?php if(!empty($settings["use_rewrite"])) echo "checked"; ?> id="use_rewrite" name="use_rewrite" /> Yes
+    </p>
+
+    <h2>Spam Prevention</h2>
+
+    <p>
+        <strong><input type="checkbox" value="1" <?php if(!empty($settings["use_captcha"])) echo "checked"; ?> id="use_captcha" name="use_captcha" /> Use Captcha</strong><br />
+    </p>
+
+    <p>
+        <strong><input type="checkbox" value="1" <?php if(!empty($settings["use_akismet"])) echo "checked"; ?> id="use_akismet" name="use_akismet" /> Use Aksimet</strong><br />
+        <strong>Akismet Key:</strong><br />
+        <input class="inputgri" type="text" value="<?php echo htmlspecialchars($settings["akismet_key"]); ?>" id="akismet_key" name="akismet_key" /><br />
+        See <a href="http://akismet.com/">http://akismet.com/</a>
+    </p>
+
     <p>
         <strong>Base URL:</strong><br />
         <input class="inputgri" type="text" value="<?php echo htmlspecialchars($settings["base_url"]); ?>" id="base_url" name="base_url" />
@@ -109,42 +146,6 @@ include_once "./header.php";
         <input class="inputgri" type="text" value="<?php echo htmlspecialchars($settings["date_format_short"]); ?>" id="date_format_short" name="date_format_short" />
     </p>
 
-    <h2>Template and Content</h2>
-
-    <p>
-        <strong>Template:</strong><br />
-        <select class="inputgri" name="template" id="template">
-            <?php echo $template_options; ?>
-        </select>
-    </p>
-
-    <p>
-        <strong>Default HTML Title:</strong><br />
-        <input class="inputgri" type="text" value="<?php echo htmlspecialchars($settings["default_title"]); ?>" id="default_title" name="default_title" />
-    </p>
-
-    <p>
-        <strong>Default HTML META Description:</strong><br />
-        <textarea class="inputgri" id="default_description" name="default_description"><?php echo htmlspecialchars($settings["default_description"]); ?></textarea>
-    </p>
-
-    <p>
-        <strong>Search Engine Friendly URLs:</strong><br />
-        <input type="checkbox" value="1" <?php if(!empty($settings["use_rewrite"])) echo "checked"; ?> id="use_rewrite" name="use_rewrite" /> Yes
-    </p>
-
-    <h2>Spam Prevention</h2>
-
-    <p>
-        <strong><input type="checkbox" value="1" <?php if(!empty($settings["use_captcha"])) echo "checked"; ?> id="use_captcha" name="use_captcha" /> Use Captcha</strong><br />
-    </p>
-
-    <p>
-        <strong><input type="checkbox" value="1" <?php if(!empty($settings["use_akismet"])) echo "checked"; ?> id="use_akismet" name="use_akismet" /> Use Aksimet</strong><br />
-        <strong>Akismet Key:</strong><br />
-        <input class="inputgri" type="text" value="<?php echo htmlspecialchars($settings["akismet_key"]); ?>" id="akismet_key" name="akismet_key" /><br />
-        See <a href="http://akismet.com/">http://akismet.com/</a>
-    </p>
 
     <p>
         <input class="button" type="submit" value="Save" />

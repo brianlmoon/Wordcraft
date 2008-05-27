@@ -15,7 +15,7 @@ require_once dirname(__FILE__)."/WCDB.php";
 if ( basename( __FILE__ ) == basename( $_SERVER["PHP_SELF"] ) ) exit();
 
 // if init has not loaded, quit the file
-if(!defined("WC")) return;
+if(!defined("WC")) exit("common.php not loaded");
 
 /**
  * Generate the table names using the prefix
@@ -627,7 +627,7 @@ function wc_db_save_user($user){
         $values = substr($values, 0, -1); // trim the last comma
         $sql = "insert into {$WC['users_table']} ($fields) values ($values)";
 
-        $user_id = $WCDB->query_fetch($sql, WC_DB_FETCH_INSERT_ID);
+        $result = $WCDB->query_fetch($sql, WC_DB_FETCH_INSERT_ID);
 
     }
 

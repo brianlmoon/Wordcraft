@@ -11,7 +11,7 @@ $limit = 50;
 
 list($posts, $total) = wc_db_get_post_list($start, $limit, false, $filter);
 
-$WHEREAMI = "Manage Posts";
+$WHEREAMI = "Manage";
 
 include_once "./header.php";
 
@@ -77,8 +77,10 @@ if($last > $total) {
         <a href="index.php?start=<?php echo $next; ?>">Next &gt;</a>&nbsp;
         <a href="index.php?start=<?php echo $last; ?>">Last &gt;&gt;</a>
     </p>
-<?php } else { ?>
+<?php } elseif(!empty($_GET["filter"])) { ?>
     No posts match your filter.
+<?php } else { ?>
+    You have not made any posts yet.
 <?php } ?>
 
 <?php include_once "./footer.php"; ?>

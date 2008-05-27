@@ -8,7 +8,7 @@ function wc_admin_error($error_message, $exit=true) {
 
     ?>
         <div class="notice_error">
-            <?php echo $error_message; ?>
+            <?php echo htmlspecialchars($error_message); ?>
         </div>
     <?php
 
@@ -27,7 +27,7 @@ function wc_admin_message($message, $exit=true) {
 
     ?>
         <div class="notice">
-            <?php echo $message; ?>
+            <?php echo htmlspecialchars($message); ?>
         </div>
     <?php
 
