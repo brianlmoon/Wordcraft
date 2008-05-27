@@ -1,8 +1,9 @@
 <?php
 
 include_once "./check_auth.php";
+include_once "../include/common.php";
 include_once "./admin_functions.php";
-include_once "../include/config.php";
+include_once "../include/akismet.php";
 
 if(count($_POST)){
 
@@ -25,11 +26,31 @@ if(count($_POST)){
             case "use_rewrite":
             case "use_captcha":
             case "use_akismet":
+            case "moderate_all":
+            case "email_comment":
                 $clean_arr[$name] = $data;
                 break;
 
             default:
                 wc_admin_error("Invalid post data $name sent.");
+        }
+    }
+
+    // default check boxes to 0
+    if(empty($clean_arr["use_rewrite"])) $clean_arr["use_rewrite"] = 0;
+    if(empty($clean_arr["use_captcha"])) $clean_arr["use_captcha"] = 0;
+    if(empty($clean_arr["use_akismet"])) $clean_arr["use_akismet"] = 0;
+    if(empty($clean_arr["moderate_all"])) $clean_arr["moderate_all"] = 0;
+
+    // check askismet key
+    if($clean_arr["use_akismet"]){
+        if(empty($clean_arr["akismet_key"])){
+            wc_admin_error("To use Akismet, you must provide an Akismet key.");
+        } else {
+            $ret = wc_akismet_request($clean_arr["akismet_key"], "verify-key");
+            if($ret!="valid"){
+                wc_admin_error("The Akismet key you entered could not be verified with the Akismet service.");
+            }
         }
     }
 
@@ -88,17 +109,30 @@ include_once "./header.php";
 
     <p>
         <strong>Search Engine Friendly URLs:</strong><br />
-        <input type="checkbox" value="1" <?php if(!empty($settings["use_rewrite"])) echo "checked"; ?> id="use_rewrite" name="use_rewrite" /> Yes
+        <input type="checkbox" value="1" <?php if(!empty($settings["use_rewrite"])) echo "checked"; ?> id="use_rewrite" name="use_rewrite" /> <label for="use_rewrite">Yes</label>
+    </p>
+
+    <h2>Comment Moderation</h2>
+
+    <p>
+        <strong><input type="checkbox" value="1" <?php if(!empty($settings["moderate_all"])) echo "checked"; ?> id="moderate_all" name="moderate_all" /> <label for="moderate_all">Approve all comments</label></strong><br />
+    </p>
+
+    <p>
+        <strong>Email the author when:</strong><br />
+        <input type="radio" value="all" <?php if($settings["email_comment"]=="all") echo "checked"; ?> id="email_comment_all" name="email_comment" /> <label for="email_comment_all">Any comment is posted.</label><br />
+        <input type="radio" value="spam" <?php if($settings["email_comment"]=="spam") echo "checked"; ?> id="email_comment_spam" name="email_comment" /> <label for="email_comment_spam">Comments marked as spam.</label><br />
+        <input type="radio" value="none" <?php if($settings["email_comment"]=="none") echo "checked"; ?> id="email_comment_spam" name="email_comment" /> <label for="email_comment_spam">Never email comments.</label>
     </p>
 
     <h2>Spam Prevention</h2>
 
     <p>
-        <strong><input type="checkbox" value="1" <?php if(!empty($settings["use_captcha"])) echo "checked"; ?> id="use_captcha" name="use_captcha" /> Use Captcha</strong><br />
+        <strong><input type="checkbox" value="1" <?php if(!empty($settings["use_captcha"])) echo "checked"; ?> id="use_captcha" name="use_captcha" /> <label for="use_captcha">Use Captcha</label></strong><br />
     </p>
 
     <p>
-        <strong><input type="checkbox" value="1" <?php if(!empty($settings["use_akismet"])) echo "checked"; ?> id="use_akismet" name="use_akismet" /> Use Aksimet</strong><br />
+        <strong><input type="checkbox" value="1" <?php if(!empty($settings["use_akismet"])) echo "checked"; ?> id="use_akismet" name="use_akismet" /> <label for="use_akismet">Use Aksimet</label></strong><br />
         <strong>Akismet Key:</strong><br />
         <input class="inputgri" type="text" value="<?php echo htmlspecialchars($settings["akismet_key"]); ?>" id="akismet_key" name="akismet_key" /><br />
         See <a href="http://akismet.com/">http://akismet.com/</a>

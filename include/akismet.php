@@ -5,7 +5,7 @@ function wc_akismet_request( $comment, $mode ) {
 
     global $WC, $WCDB;
 
-    $return = "";
+    $return = "true";
 
     $valid_modes = array(
         "verify-key",
@@ -19,7 +19,7 @@ function wc_akismet_request( $comment, $mode ) {
         return;
     }
 
-    if(!empty($WC["akismet_key"])) {
+    if($WC["use_akismet"] && !empty($WC["akismet_key"])){
 
         if($mode == "verify-key"){
             $host = "rest.akismet.com";

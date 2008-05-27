@@ -95,12 +95,14 @@ function wc_db_save_settings($settings){
             case "default_title":
             case "default_description":
             case "akismet_key":
+            case "email_comment":
                 $clean_arr[] = array("name"=>$name, "type"=>"V", "data"=>$WCDB->escape($data));
                 break;
 
             case "use_rewrite":
             case "use_captcha":
             case "use_akismet":
+            case "moderate_all":
                 $clean_arr[] = array("name"=>$name, "type"=>"V", "data"=>(bool)$data);
                 break;
 

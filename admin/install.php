@@ -161,7 +161,9 @@ include_once "./header.php";
            "session_domain" => "",
            "session_path" => "/",
            "session_secret" => uniqid(),
-           "template" => "terrafirma"
+           "template" => "terrafirma",
+           "moderate_all" => 0,
+           "email_comment" => "spam",
         );
 
         $success = wc_db_save_settings($default_settings);

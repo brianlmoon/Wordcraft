@@ -37,6 +37,11 @@ function wc_output($page, $WCDATA="") {
 
         // check special pages
         switch($page) {
+            case "message":
+                include_once "./templates/$template/header.php";
+                echo $WCDATA["message"];
+                include_once "./templates/$template/footer.php";
+                break;
             case "notfound":
                 header('HTTP/1.1 404 Not Found');
                 header('Status: 404 Not Found');
