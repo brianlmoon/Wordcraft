@@ -14,12 +14,14 @@ $WC = array(
 
     // URL formats
     "url_formats" => array(
-            "main"    => array("page"=>"index.php",   "format"=>""),
-            "post"    => array("page"=>"post.php",    "format"=>"?post_id=%d"),
-            "page"    => array("page"=>"page.php",    "format"=>"?page_id=%d"),
-            "comment" => array("page"=>"comment.php", "format"=>""),
-            "tag"     => array("page"=>"tag.php",     "format"=>"?tag=%s"),
-            "feed"    => array("page"=>"feed.php",    "format"=>"?type=%s&tag=%s"),
+            "main"     => array("page"=>"index.php",    "format"=>""),
+            "post"     => array("page"=>"post.php",     "format"=>"?post_id=%d"),
+            "post_sef" => array("page"=>"p/",           "format"=>"%s"),
+            "page"     => array("page"=>"page.php",     "format"=>"?page_id=%d"),
+            "page_sef" => array("page"=>"pg/",          "format"=>"%s"),
+            "comment"  => array("page"=>"comment.php",  "format"=>""),
+            "tag"      => array("page"=>"tag.php",      "format"=>"?tag=%s"),
+            "feed"     => array("page"=>"feed.php",     "format"=>"?type=%s&tag=%s"),
     ),
 
 );

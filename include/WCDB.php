@@ -314,7 +314,7 @@ class WCDB {
             }
         } else {
             $bt = debug_backtrace();
-            trigger_error("Invalid data type for WCDB->escape() on line ".$bt[0]["line"]." of ".$bt[0]["file"].".", E_USER_WARNING);
+            trigger_error("Invalid data type (".gettype($data).") for WCDB->escape() on line ".$bt[0]["line"]." of ".$bt[0]["file"].".", E_USER_WARNING);
         }
         return $data;
     }
