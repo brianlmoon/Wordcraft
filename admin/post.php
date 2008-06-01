@@ -9,6 +9,8 @@ if(isset($_POST["mode"])){
     $mode = $_POST["mode"];
 } elseif(isset($_GET["mode"])){
     $mode = $_GET["mode"];
+} elseif(isset($_GET["post_id"])) {
+    $mode = "edit";
 } else {
     $mode = "new";
 }

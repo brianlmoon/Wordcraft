@@ -11,11 +11,13 @@
             <ul>
                 <li class="comments"><a href="<?php echo $post["url"]; ?>#comments">Comments (<?php echo $post["comment_count"]; ?>)</a></li>
                 <li class="readmore"><a href="<?php echo $post["url"]; ?>">Permalink</a></li>
-                <li class="tags">
-                    <?php foreach($post["tags"] as $tag) { ?>
-                        <a href="<?php echo $tag["url"]; ?>"><?php echo $tag["tag"]; ?></a>&nbsp;&nbsp;
-                    <?php } ?>
-                </li>
+                <?php if(!empty($post["tags"])) { ?>
+                    <li class="tags">
+                        <?php foreach($post["tags"] as $tag) { ?>
+                            <a href="<?php echo $tag["url"]; ?>"><?php echo $tag["tag"]; ?></a>&nbsp;&nbsp;
+                        <?php } ?>
+                    </li>
+                <?php } ?>
             </ul>
         </div>
     </div>

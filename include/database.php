@@ -249,7 +249,9 @@ function wc_db_save_post(&$post){
 
             $tag_arr = explode(",", $post["tags"]);
             foreach($tag_arr as $tag){
-                $sql = "insert into {$WC['tags_table']} values (".$post["post_id"].", '".$WCDB->escape(trim($tag))."')";
+                $tag = trim($tag);
+                if(empty($tag)) continue;
+                $sql = "insert into {$WC['tags_table']} values (".$post["post_id"].", '".$WCDB->escape($tag)."')";
                 $WCDB->query($sql);
             }
         }
@@ -279,7 +281,9 @@ function wc_db_save_post(&$post){
 
             $tag_arr = explode(",", $post["tags"]);
             foreach($tag_arr as $tag){
-                $sql = "insert into {$WC['tags_table']} values (".$post_id.", '".$WCDB->escape(trim($tag))."')";
+                $tag = trim($tag);
+                if(empty($tag)) continue;
+                $sql = "insert into {$WC['tags_table']} values (".$post_id.", '".$WCDB->escape($tag)."')";
                 $WCDB->query($sql);
             }
         }
@@ -319,7 +323,7 @@ function wc_db_get_post($identifier) {
 
         $WCDB->query($sql);
 
-        $post_tags = array();
+        $post["tags"] = array();
 
         while($row = $WCDB->fetch()){
             $post["tags"][] = $row["tag"];
