@@ -22,6 +22,7 @@ $WC = array(
             "comment"  => array("page"=>"comment.php",  "format"=>""),
             "tag"      => array("page"=>"tag.php",      "format"=>"?tag=%s"),
             "feed"     => array("page"=>"feed.php",     "format"=>"?type=%s&tag=%s"),
+            "pingback" => array("page"=>"linkback.php", "format"=>""),
     ),
 
 );

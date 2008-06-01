@@ -55,6 +55,10 @@ if($WC["use_captcha"]){
     $_SESSION["captcha"] = $data;
 }
 
+if($WCDATA["post"]["allow_comments"]){
+    header("X-Pingback: ".wc_get_url("pingback"));
+}
+
 wc_output("post", $WCDATA);
 
 ?>

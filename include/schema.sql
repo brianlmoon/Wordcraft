@@ -13,6 +13,7 @@ CREATE TABLE `{PREFIX}_comments` (
   `ip_address` varchar(15) NOT NULL default '',
   `status` enum('APPROVED','UNAPPROVED','SPAM') NOT NULL default 'APPROVED',
   `allow_comments` tinyint(1) NOT NULL default '1',
+  `linkback` tinyint not null default 0,
   PRIMARY KEY  (`comment_id`),
   KEY `post_date_status` (`post_id`,`status`,`comment_date`),
   KEY `status_date` (`status`,`comment_date`),

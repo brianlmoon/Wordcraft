@@ -104,6 +104,7 @@ function wc_db_save_settings($settings){
             case "use_akismet":
             case "moderate_all":
             case "allow_comments":
+            case "send_linkbacks":
                 $clean_arr[] = array("name"=>$name, "type"=>"V", "data"=>(bool)$data);
                 break;
 
@@ -192,7 +193,7 @@ function wc_db_check_login($user_name, $password) {
  * @return  bool
  *
  */
-function wc_db_save_post($post){
+function wc_db_save_post(&$post){
 
     global $WCDB, $WC;
 
@@ -270,6 +271,7 @@ function wc_db_save_post($post){
         $sql = "insert into {$WC['posts_table']} ($fields) values ($values)";
 
         $post_id = $WCDB->query_fetch($sql, WC_DB_FETCH_INSERT_ID);
+        $post["post_id"] = $post_id;
 
         if($post_id && isset($post["tags"])){
 

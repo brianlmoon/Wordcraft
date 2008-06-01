@@ -29,6 +29,7 @@ if(count($_POST)){
             case "moderate_all":
             case "email_comment":
             case "allow_comments":
+            case "send_linkbacks":
                 $clean_arr[$name] = $data;
                 break;
 
@@ -131,6 +132,11 @@ include_once "./header.php";
         <input type="radio" value="spam" <?php if($settings["email_comment"]=="spam") echo "checked"; ?> id="email_comment_spam" name="email_comment" /> <label for="email_comment_spam">Comments marked as spam.</label><br />
         <input type="radio" value="none" <?php if($settings["email_comment"]=="none") echo "checked"; ?> id="email_comment_spam" name="email_comment" /> <label for="email_comment_spam">Never email comments.</label>
     </p>
+
+    <p>
+        <strong><input type="checkbox" value="1" <?php if(!empty($settings["send_linkbacks"])) echo "checked"; ?> id="send_linkbacks" name="send_linkbacks" /> <label for="send_linkbacks">Send Pingbacks/Trackbacks to linked pages</label></strong><br />
+    </p>
+
 
     <h2>Spam Prevention</h2>
 

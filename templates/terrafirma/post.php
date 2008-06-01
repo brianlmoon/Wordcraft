@@ -38,7 +38,7 @@
     <?php } ?>
 
 
-    <?php if($WCDATA["allow_comments"]) { ?>
+    <?php if($WCDATA["post"]["allow_comments"]) { ?>
         <div id="add-comment">
             <a name="add_comment"></a>
             <h3>Add A Comment</h3>

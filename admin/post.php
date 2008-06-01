@@ -63,12 +63,18 @@ if(count($_POST)){
 
         if(empty($_POST["post_id"])){
             $post_array["uri"] = date("Y/m/d", strtotime($post_date))."/";
-            $post_array["uri"].= strtolower(preg_replace("![^a-z0-9_]+!i", "-", trim($_POST["subject"])));
+            $post_array["uri"].= trim(strtolower(preg_replace("![^a-z0-9_]+!i", " ", $_POST["subject"])));
+            $post_array["uri"] = str_replace(" ", "-", $post_array["uri"]);
         }
 
         $success = wc_db_save_post($post_array);
 
         if($success){
+
+            if($WC["send_linkbacks"]){
+                wc_admin_handle_linkbacks($post_array["post_id"]);
+            }
+
             wc_admin_message("Post Saved!");
         } else{
             $error = "There was an error saving your post.";
