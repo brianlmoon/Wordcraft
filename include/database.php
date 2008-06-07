@@ -438,14 +438,11 @@ function wc_db_get_post_list($start=false, $limit=false, $bodies=false, $filter=
 
         $WCDB->query($sql);
 
+
         while($row = $WCDB->fetch()){
             $posts[$row["post_id"]]["tags"][] = $row["tag"];
         }
 
-        foreach($posts as &$post){
-            $post["tags_text"] = implode(", ", $post["tags"]);
-        }
-        unset($post);
 
         // get comment count
         $sql = "select post_id, count(*) as count from {$WC['comments_table']} where post_id in (".implode(",", array_keys($posts)).") and status='APPROVED'";
