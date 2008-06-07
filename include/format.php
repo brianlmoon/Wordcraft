@@ -18,7 +18,7 @@ function wc_format_post(&$post) {
 
     $post["url"] = wc_get_url("post", $post["post_id"], $post["uri"]);
 
-    if(isset($post["tags"])){
+    if(!empty($post["tags"])){
         $tmp_tags = $post["tags"];
         unset($post["tags"]);
         foreach($tmp_tags as $tag){
