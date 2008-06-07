@@ -1,4 +1,8 @@
 RewriteEngine On
-RewriteRule p/(.+)$ post.php?post_uri=$1 [L]
-RewriteRule pg/(.+)$ page.php?page_uri=$1 [L]
+
+RewriteRule ([1-3][0-9][0-9][0-9]/[0-1][0-9]/[0-3][0-9]/.+$) post.php?post_uri=$1 [L]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule (.+$) page.php?page_uri=$1 [L]
 
