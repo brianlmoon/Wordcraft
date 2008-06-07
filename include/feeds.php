@@ -28,8 +28,12 @@ function wc_feed_make_rss($posts, $feed_url, $feed_title, $feed_description) {
         $buffer.= "            <link>".htmlspecialchars($url, ENT_COMPAT, "utf-8")."</link>\n";
         $buffer.= "            <description><![CDATA[$body]]></description>\n";
         $buffer.= "            <dc:creator>".htmlspecialchars($post['user_name'], ENT_COMPAT, "utf-8")."</dc:creator>\n";
-        $buffer.= "            <category>".htmlspecialchars($post["tags_text"], ENT_COMPAT, "utf-8")."</category>\n";
         $buffer.= "            <pubDate>".htmlspecialchars($date, ENT_COMPAT, "utf-8")."</pubDate>\n";
+
+        foreach($post["tags"] as $tag){
+            $buffer.= "            <category>".htmlspecialchars($tag["tag"], ENT_COMPAT, "utf-8")."</category>\n";
+        }
+
         $buffer.= "        </item>\n";
     }
 
@@ -62,7 +66,6 @@ function wc_feed_make_atom($posts, $feed_url, $feed_title, $feed_description) {
         $buffer.= "    <entry>\n";
         $buffer.= "        <title type=\"html\">$title</title>\n";
         $buffer.= "        <link href=\"".htmlspecialchars($url, ENT_COMPAT, "utf-8")."\" />\n";
-        $buffer.= "        <category term=\"".htmlspecialchars($post["tags_text"], ENT_COMPAT, "utf-8")."\" />\n";
         $buffer.= "        <published>".date("c", strtotime($post["post_date"]))."</published>\n";
         $buffer.= "        <updated>".date("c", strtotime($post["post_date"]))."</updated>\n";
         $buffer.= "        <id>".htmlspecialchars($url, ENT_COMPAT, "utf-8")."</id>\n";
@@ -70,6 +73,11 @@ function wc_feed_make_atom($posts, $feed_url, $feed_title, $feed_description) {
         $buffer.= "            <name>".htmlspecialchars($post["user_name"], ENT_COMPAT, "utf-8")."</name>\n";
         $buffer.= "        </author>\n";
         $buffer.= "        <summary type=\"html\"><![CDATA[$body]]></summary>\n";
+
+        foreach($post["tags"] as $tag){
+            $buffer.= "        <category term=\"".htmlspecialchars($tag["tag"], ENT_COMPAT, "utf-8")."\" />\n";
+        }
+
         $buffer.= "    </entry>\n";
     }
 
