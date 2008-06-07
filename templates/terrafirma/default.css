@@ -258,7 +258,7 @@ ul.linklist li.first {
 #primarycontent .post .date {
     position: absolute;
     right: 15px;
-    top: 0px;
+    top: 24px;
     line-height: 35px;
     color: #AFAFA4;
     font-weight: bold;
