@@ -1,0 +1,202 @@
+/*
+Template Name: Ebony
+Description: A 2 column, fixed width, light on dark web template.
+Version: 1.0 (5th September 2006)
+Author: Ainslie Johnson
+Author URI: http://webgazette.co.uk/
+
+The Ebony template is open source and released under the Creative Commons Attribution licence v2.5 which means you are free to use and modify it as you want as long as you leave the credit in the top of the stylesheet and the top of any xhtml documents.
+
+It would be nice if you would support my work by keeping my link in the footer but you may remove it if you should wish to do so.
+
+Ebony is also available as a theme for WordPress. See http://webgazette.co.uk for more details
+*/
+
+body {
+background: #666;
+color: #fff;
+font: 72% Verdana, Geneva, Arial, Helvetica, sans-serif;
+margin-bottom: -20px;
+margin-top: -20px;
+}
+
+a {
+color: #39f;
+text-decoration: none;
+}
+
+a:hover {
+color: #ff0;
+}
+
+code {
+font: 1.0em "Courier New", Courier, monospace;
+}
+
+blockquote {
+color: White;
+font-size: 0.8em;
+border: 1px solid #808080;
+margin: 0 40px 0 40px;
+text-align: justify;
+}
+
+blockquote p {
+margin: 0;
+padding: 5px 10px;
+}
+
+/* Containing wrap */
+#container {
+background: url(images/background.jpg) #666 repeat-y left;
+margin: 0 auto;
+width: 760px;
+}
+
+/* Header */
+#header {
+background: url(images/header.jpg) #666 no-repeat top left;
+height: 180px;
+}
+
+#header h1 {
+font-size: 2.4em;
+padding: 80px 0 0 70px;
+}
+
+#header h2 {
+color: #feff55;
+font-size: 1.0em;
+margin-top: -15PX;
+padding: 0px 0 0 70px;
+}
+
+/* Content */
+#content {
+float: left;
+margin: 0px;
+padding: 0 10px 0 70px;
+width: 450px;
+}
+
+#content h1 {
+color: #ff0;
+font-size: 1.6em;
+}
+
+#content h2 {
+font-size: 1.4em;
+margin-bottom: 10px;
+}
+
+#content p {
+font-size: 1.1em;
+line-height: 20px;
+text-align: justify;
+}
+
+#content p.prefix, #content p.suffix {
+border-bottom: 1px solid #06f;
+color: #feff55;
+font-size: 0.9em;
+padding-bottom: 2px;
+}
+
+#content p.prefix {
+margin-top: -10px;
+}
+
+#content p.suffix {
+margin-bottom: 40px;
+}
+
+/* Image display */
+.alignleft {
+background: #000;
+border: 1px solid #fff;
+float: left;
+margin: 0 10px 10px 0;
+padding: 5px;
+text-align: left;
+}
+
+.alignright {
+background: #000;
+border: 1px solid #fff;
+float: right;
+margin: 0 0 10px 10px;
+padding: 5px;
+text-align: right;
+}
+
+/* Sidebar */
+#right {
+float: right;
+padding: 0 60px 0 0;
+width: 160px;
+}
+
+#right ul {
+margin: 0;
+padding-left: 20px;
+}
+
+#right li {
+line-height: 16px;
+list-style: none;
+margin: 0;
+padding-left: 10px;
+}
+
+#right h2 {
+color: #feff55;
+font-size: 1.2em;
+margin: 0;
+padding: 15px 0 5px 20px;
+}
+
+#right a {
+font-size: 1.1em;
+text-decoration: none;
+}
+
+/* Search */
+.searchform {
+background: #2b2b2b;
+border: 1px solid #808080;
+color: #fff;
+width: 110px;
+}
+
+.searchbutton {
+background: #00c;
+border: 1px solid #808080;
+color: #c0c0c0;
+margin-top: 3px;
+}
+
+.searchbutton:hover {
+border: 1px solid #fff;
+color: #fff;
+cursor: pointer;
+}
+
+/* Footer */
+#footer {
+background: url(images/footer.jpg) #666 no-repeat top;
+clear: both;
+height: 95px;
+margin: 0px;
+text-align: center;
+}
+
+#footer p {
+color: #feff55;
+font-size: 0.9em;
+padding-top: 25px;
+}
+
+#footer a {
+font-weight: bold;
+text-decoration: none;
+}
