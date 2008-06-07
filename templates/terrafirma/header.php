@@ -1,4 +1,4 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <!--
     Template Author Info:
     terrafirma1.0 by nodethirtythree design
@@ -20,8 +20,8 @@
     <div id="inner">
 
         <div id="header">
-            <div class="title">Wordcraft<sup>0.1</sup></div>
-            <div class="subtitle">a simple blogging software</div>
+            <div class="title"><a href="<?php echo $WCDATA["home_url"]; ?>"><?php echo $WCDATA["default_title"]; ?></a></div>
+            <div class="subtitle"><?php echo $WCDATA["default_description"]; ?></div>
         </div>
 
         <div id="splash"></div>
