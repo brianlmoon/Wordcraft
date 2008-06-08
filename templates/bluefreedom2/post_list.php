@@ -1,6 +1,6 @@
 <?php  foreach($WCDATA["posts"] as $post) { ?>
 
-    <h2><a href="<?php echo $post["url"] ?>"><?php echo $post["subject"]; ?></a> <small>by <?php echo $post["user_name"]; ?> <?php echo $post["post_date"]; ?></small></h2>
+    <h2><a href="<?php echo $post["url"] ?>"><?php echo $post["subject"]; ?></a> <small>by <?php echo $post["user_name"]; ?> on <?php echo $post["post_date"]; ?></small></h2>
 
     <div class="body">
         <?php echo $post["body"]; ?>

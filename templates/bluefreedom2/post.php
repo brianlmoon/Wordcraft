@@ -1,4 +1,4 @@
-<h2><a href="<?php echo $WCDATA["post"]["url"] ?>"><?php echo $WCDATA["post"]["subject"]; ?></a> <small>by <?php echo $WCDATA["post"]["user_name"]; ?> <?php echo $WCDATA["post"]["post_date"]; ?></small></h2>
+<h2><a href="<?php echo $WCDATA["post"]["url"] ?>"><?php echo $WCDATA["post"]["subject"]; ?></a> <small>by <?php echo $WCDATA["post"]["user_name"]; ?> on <?php echo $WCDATA["post"]["post_date"]; ?></small></h2>
 
 <div class="body">
     <?php echo $WCDATA["post"]["body"]; ?>
