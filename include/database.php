@@ -920,6 +920,7 @@ function wc_db_save_page($page){
             case "nav_label":
             case "title":
             case "body":
+            case "uri":
                 $clean_arr[$field] = $WCDB->escape($value);
                 break;
 
@@ -965,6 +966,27 @@ function wc_db_save_page($page){
     }
 
     return (bool)$result;
+}
+
+
+/**
+ * Deletes a page
+ *
+ * @param   $page_id    The id of the page to be deleted.
+ * @return  bool
+ *
+ */
+function wc_db_delete_page($page_id) {
+
+    global $WCDB, $WC;
+
+    $page_id = (int)$page_id;
+
+    $sql = "delete from {$WC['pages_table']} where page_id=$page_id";
+    $res = $WCDB->query($sql);
+
+    return (bool)$res;
+
 }
 
 
