@@ -45,7 +45,7 @@ if(count($_POST)){
         );
 
         if(empty($_POST["page_id"])){
-            $page_array["uri"].= strtolower(preg_replace("![^a-z0-9_]+!i", "-", trim($_POST["subject"])));
+            $page_array["uri"].= strtolower(preg_replace("![^a-z0-9_]+!i", "-", trim($_POST["title"])));
         }
 
         $success = wc_db_save_page($page_array);
