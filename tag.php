@@ -32,6 +32,6 @@ $WCDATA["description"] = $WC["default_description"];
 
 $WCDATA["feed_url"] = wc_get_url("feed", "rss", $tag);
 
-wc_output("tag", $WCDATA);
+wc_output("post_list", $WCDATA);
 
 ?>
