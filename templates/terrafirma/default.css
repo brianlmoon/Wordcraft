@@ -120,6 +120,11 @@ ul.linklist li.first {
     height: 92px;
 }
 
+#header div.title a {
+    color: #fff;
+    text-decoration: none;
+}
+
 #header div.subtitle {
     position: absolute;
     font-size: 10px;
