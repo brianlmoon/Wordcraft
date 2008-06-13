@@ -95,10 +95,12 @@ function wc_build_common_data(&$WCDATA) {
         $WCDATA["tags"][$key]["url"] = wc_get_url("tag", $tag["tag"]);
     }
 
+    $WCDATA["default_title"] = $WC["default_title"];
     if(empty($WCDATA["title"])){
         $WCDATA["title"] = $WC["default_title"];
     }
 
+    $WCDATA["default_description"] = $WC["default_description"];
     if(empty($WCDATA["description"])){
         $WCDATA["description"] = $WC["default_description"];
     }
