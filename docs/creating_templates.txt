@@ -29,6 +29,17 @@ files.
 All Pages
 ==========
 
+default_title
+-------------
+
+The default title.  Could be used in the page header in place of a logo.
+
+default_description
+-------------------
+
+The default description.  Could be used in the page header in place of
+a logo.
+
 title
 -----
 
