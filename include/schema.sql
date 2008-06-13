@@ -1,8 +1,8 @@
 --
--- Table structure for table `{PREFIX}_comments`
+-- Table structure for table `{PREFIX}comments`
 --
 
-CREATE TABLE `{PREFIX}_comments` (
+CREATE TABLE `{PREFIX}comments` (
   `comment_id` int(10) unsigned NOT NULL auto_increment,
   `post_id` int(10) unsigned NOT NULL default '0',
   `name` varchar(50) NOT NULL default '',
@@ -12,8 +12,7 @@ CREATE TABLE `{PREFIX}_comments` (
   `comment` text NOT NULL,
   `ip_address` varchar(15) NOT NULL default '',
   `status` enum('APPROVED','UNAPPROVED','SPAM') NOT NULL default 'APPROVED',
-  `allow_comments` tinyint(1) NOT NULL default '1',
-  `linkback` tinyint not null default 0,
+  `linkback` tinyint(4) NOT NULL default '0',
   PRIMARY KEY  (`comment_id`),
   KEY `post_date_status` (`post_id`,`status`,`comment_date`),
   KEY `status_date` (`status`,`comment_date`),
@@ -21,10 +20,10 @@ CREATE TABLE `{PREFIX}_comments` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Table structure for table `{PREFIX}_pages`
+-- Table structure for table `{PREFIX}pages`
 --
 
-CREATE TABLE `{PREFIX}_pages` (
+CREATE TABLE `{PREFIX}pages` (
   `page_id` int(10) unsigned NOT NULL auto_increment,
   `title` varchar(100) NOT NULL default '',
   `body` text NOT NULL,
@@ -35,26 +34,27 @@ CREATE TABLE `{PREFIX}_pages` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Table structure for table `{PREFIX}_posts`
+-- Table structure for table `{PREFIX}posts`
 --
 
-CREATE TABLE `{PREFIX}_posts` (
+CREATE TABLE `{PREFIX}posts` (
   `post_id` int(10) unsigned NOT NULL auto_increment,
   `subject` varchar(100) NOT NULL default '',
   `body` text NOT NULL,
   `post_date` datetime NOT NULL default '0000-00-00 00:00:00',
   `user_id` int(10) unsigned NOT NULL default '0',
   `uri` varchar(100) NOT NULL default '',
+  `allow_comments` tinyint(1) NOT NULL default '1',
   PRIMARY KEY  (`post_id`),
   UNIQUE KEY `uri_date` (`uri`,`post_date`),
   KEY `post_date` (`post_date`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Table structure for table `{PREFIX}_settings`
+-- Table structure for table `{PREFIX}settings`
 --
 
-CREATE TABLE `{PREFIX}_settings` (
+CREATE TABLE `{PREFIX}settings` (
   `name` varchar(255) NOT NULL default '',
   `type` enum('V','S') NOT NULL default 'V',
   `data` text NOT NULL,
@@ -62,10 +62,10 @@ CREATE TABLE `{PREFIX}_settings` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Table structure for table `{PREFIX}_tags`
+-- Table structure for table `{PREFIX}tags`
 --
 
-CREATE TABLE `{PREFIX}_tags` (
+CREATE TABLE `{PREFIX}tags` (
   `post_id` int(10) unsigned NOT NULL default '0',
   `tag` varchar(20) default NULL,
   UNIQUE KEY `post_id` (`post_id`,`tag`),
@@ -73,10 +73,10 @@ CREATE TABLE `{PREFIX}_tags` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Table structure for table `{PREFIX}_users`
+-- Table structure for table `{PREFIX}users`
 --
 
-CREATE TABLE `{PREFIX}_users` (
+CREATE TABLE `{PREFIX}users` (
   `user_id` int(10) unsigned NOT NULL auto_increment,
   `user_name` varchar(20) NOT NULL default '',
   `first_name` varchar(25) NOT NULL default '',
