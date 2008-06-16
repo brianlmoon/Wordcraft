@@ -445,7 +445,7 @@ function wc_db_get_post_list($start=false, $limit=false, $bodies=false, $filter=
 
 
         // get comment count
-        $sql = "select post_id, count(*) as count from {$WC['comments_table']} where post_id in (".implode(",", array_keys($posts)).") and status='APPROVED'";
+        $sql = "select post_id, count(*) as count from {$WC['comments_table']} where post_id in (".implode(",", array_keys($posts)).") and status='APPROVED' group by post_id";
 
         $WCDB->query($sql);
 
