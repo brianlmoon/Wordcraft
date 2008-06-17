@@ -17,7 +17,7 @@
 <div id="content">
 
 <div class="header">
-<h1><a href="#"><?php echo $WCDATA["default_title"]; ?></a></h1>
+<h1><a href="<?php echo $WCDATA["base_url"]; ?>"><?php echo $WCDATA["default_title"]; ?></a></h1>
 <h2><?php echo $WCDATA["default_description"]; ?></h2>
 </div>
 
