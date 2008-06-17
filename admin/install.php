@@ -2,6 +2,9 @@
 
 define("WC_INSTALLING", true);
 
+// do this so session check will not fail
+ob_start();
+
 include_once "../include/common.php";
 include_once "./admin_functions.php";
 
