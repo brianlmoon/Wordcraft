@@ -164,7 +164,7 @@ include_once "./header.php";
            "session_domain" => "",
            "session_path" => "/",
            "session_secret" => uniqid(),
-           "template" => "terrafirma",
+           "template" => "Refresh",
            "moderate_all" => 0,
            "email_comment" => "spam",
            "allow_comments" => 1,
