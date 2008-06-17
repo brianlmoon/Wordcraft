@@ -24,6 +24,7 @@ if($user) {
 
     $comment_email = "";
     $comment_url = "";
+    $comment_status = "APPROVED";
 
 } else {
 
