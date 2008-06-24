@@ -167,40 +167,55 @@ class WCDB {
             case WC_DB_FETCH_ALL_ASSOC:
             case WC_DB_FETCH_ALL_NUM:
             case WC_DB_FETCH_ALL_BOTH:
-                $this->query($sql, false, false);
-                $ret_val = $this->fetch_all($return, $key);
+                if($this->query($sql, false)){
+                    $ret_val = $this->fetch_all($return, $key);
+                } else {
+                    $ret_val = false;
+                }
                 break;
 
             case WC_DB_FETCH_ASSOC:
             case WC_DB_FETCH_NUM:
             case WC_DB_FETCH_BOTH:
-                $this->query($sql, false);
-                $ret_val = $this->fetch($return);
+                if($this->query($sql, false)){
+                    $ret_val = $this->fetch($return);
+                } else {
+                    $ret_val = false;
+                }
                 break;
 
             case WC_DB_FETCH_VALUE:
-                $this->query($sql, false);
-                $row = $this->fetch(WC_DB_FETCH_ASSOC);
-                if($key && isset($row[$key])){
-                    // if $key is valid, return its value
-                    $ret_val = $row[$key];
+                if($this->query($sql, false)){
+                    $row = $this->fetch(WC_DB_FETCH_ASSOC);
+                    if($key && isset($row[$key])){
+                        // if $key is valid, return its value
+                        $ret_val = $row[$key];
+                    } else {
+                        // else return the first item in the array
+                        $ret_val = current($row);
+                    }
                 } else {
-                    // else return the first item in the array
-                    $ret_val = current($row);
+                    $ret_val = false;
                 }
                 break;
 
             case WC_DB_FETCH_COUNT:
-                $this->query($sql, true);
-                if($this->result){
-                    $ret_val = mysqli_num_rows($this->result);
+                if($this->query($sql, false)){
+                    if($this->result){
+                        $ret_val = mysqli_num_rows($this->result);
+                    }
+                } else {
+                    $ret_val = false;
                 }
                 break;
 
             case WC_DB_FETCH_INSERT_ID:
-                $this->query($sql, true);
-                if($this->result){
-                    $ret_val = mysqli_insert_id($this->connection);
+                if($this->query($sql, false)){
+                    if($this->result){
+                        $ret_val = mysqli_insert_id($this->connection);
+                    }
+                } else {
+                    $ret_val = false;
                 }
                 break;
         }
