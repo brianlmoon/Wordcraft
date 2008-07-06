@@ -1,10 +1,10 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <title><?php echo $WCDATA["title"]; ?></title>
-<meta name="description" content="<?php echo $WCDATA["description"]; ?>" />
-<link rel="stylesheet" type="text/css" href="<?php echo $WCDATA["base_url"]; ?>/templates/Techmania/style.css" />
-<link rel="alternate" type="application/rss+xml" title="<?php echo $WCDATA["default_title"]; ?>" href="<?php echo $WCDATA["feed_url"]; ?>" />
+<meta name="description" content="<?php echo $WCDATA["description"]; ?>">
+<link rel="stylesheet" type="text/css" href="<?php echo $WCDATA["base_url"]; ?>/templates/Techmania/style.css">
+<link rel="alternate" type="application/rss+xml" title="<?php echo $WCDATA["default_title"]; ?>" href="<?php echo $WCDATA["feed_url"]; ?>">
 </head>
 <body>
 

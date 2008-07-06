@@ -15,10 +15,9 @@
         &nbsp;&nbsp;
         <?php if(!empty($post["tags"])) { ?>
             Tags:
-                <?php foreach($post["tags"] as $tag) { ?>
-                    <a href="<?php echo $tag["url"]; ?>"><?php echo $tag["tag"]; ?></a>&nbsp;&nbsp;
-                <?php } ?>
-            </li>
+            <?php foreach($post["tags"] as $tag) { ?>
+                <a href="<?php echo $tag["url"]; ?>"><?php echo $tag["tag"]; ?></a>&nbsp;&nbsp;
+            <?php } ?>
         <?php } ?>
     </p>
 

@@ -1,4 +1,4 @@
-<h1><a href="<?php echo $WCDATA["post"]["url"] ?>"><?php echo $WCDATA["post"]["subject"]; ?></a> <small>by <?php echo $WCDATA["post"]["user_name"]; ?></small></h2>
+<h1><a href="<?php echo $WCDATA["post"]["url"] ?>"><?php echo $WCDATA["post"]["subject"]; ?></a> <small>by <?php echo $WCDATA["post"]["user_name"]; ?></small></h1>
 
 <div class="body">
     <?php echo $WCDATA["post"]["body"]; ?>
@@ -9,7 +9,7 @@
     <a href="<?php echo $WCDATA["post"]["url"]; ?>#comments" class="comments">Comments (<?php echo $WCDATA["post"]["comment_count"]; ?>)</a>
     <span class="date"><?php echo $WCDATA["post"]["post_date"]; ?></span>
     <?php if(!empty($WCDATA["post"]["tags"])) { ?>
-        <br />
+        <br>
         Tags:
         <?php foreach($WCDATA["post"]["tags"] as $tag) { ?>
             <a href="<?php echo $tag["url"]; ?>"><?php echo $tag["tag"]; ?></a>&nbsp;&nbsp;
@@ -41,41 +41,41 @@
         <a name="add_comment"></a>
         <h3>Add A Comment</h3>
         <form action="<?php echo $WCDATA["comment_url"]; ?>" method="post">
-            <input type="hidden" class="text-input" name="post_id" value="<?php echo $WCDATA["post"]["post_id"]; ?>" />
+            <input type="hidden" class="text-input" name="post_id" value="<?php echo $WCDATA["post"]["post_id"]; ?>">
 
             <?php if(!empty($WCDATA["user"])) { ?>
 
                 You are logged in as <?php echo $WCDATA["user"]["user_name"]; ?>
-                <br /><br />
+                <br><br>
 
             <?php } else { ?>
 
-                Your Name:<br />
-                <input type="text" class="text-input" name="your_name" value="" maxlength="50" size="30" />
-                <br /><br />
+                Your Name:<br>
+                <input type="text" class="text-input" name="your_name" value="" maxlength="50" size="30">
+                <br><br>
 
-                Your Email:<br />
-                <input type="text" class="text-input" name="your_email" value="" maxlength="50" size="30" />
-                <br /><br />
+                Your Email:<br>
+                <input type="text" class="text-input" name="your_email" value="" maxlength="50" size="30">
+                <br><br>
 
-                Your URL:<br />
-                <input type="text" class="text-input" name="your_url" value="" maxlength="50" size="30" />
-                <br /><br />
+                Your URL:<br>
+                <input type="text" class="text-input" name="your_url" value="" maxlength="50" size="30">
+                <br><br>
 
                 <?php if($WCDATA["captcha"]) { ?>
-                    Spam Prevention:<br />
+                    Spam Prevention:<br>
                     <?php echo $WCDATA["captcha"]; ?>
-                    <br /><br />
+                    <br><br>
                 <?php } ?>
 
 
             <?php } ?>
 
-            Your Comment:<br />
-            <textarea name="your_comment" id="your-comment" /></textarea>
-            <br /><br />
+            Your Comment:<br>
+            <textarea cols="30" rows="10" name="your_comment" id="your-comment"></textarea>
+            <br><br>
 
-            <input type="submit" value="Submit" />
+            <input type="submit" value="Submit">
         </form>
     </div>
 
