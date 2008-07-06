@@ -5,7 +5,7 @@ include_once "./include/database.php";
 include_once "./include/output.php";
 
 $page_id = (isset($_GET["page_id"])) ? (int)$_GET["page_id"] : 0;
-$page_uri = (isset($_GET["page_uri"])) ? $_GET["page_uri"] : "";
+$page_uri = (isset($_GET["uri"])) ? $_GET["uri"] : "";
 
 if(empty($page_id) && empty($page_uri)){
     wc_output("notfound");

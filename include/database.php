@@ -26,6 +26,7 @@ $WC["posts_table"] = $WC["db_prefix"]."_posts";
 $WC["users_table"] = $WC["db_prefix"]."_users";
 $WC["comments_table"] = $WC["db_prefix"]."_comments";
 $WC["tags_table"] = $WC["db_prefix"]."_tags";
+$WC["uri_lookup_table"] = $WC["db_prefix"]."_uri_lookup";
 
 /**
  * Create a new database object for these functions to use
@@ -289,6 +290,15 @@ function wc_db_save_post(&$post){
         }
 
     }
+
+    // update uri in uri lookup
+    if(isset($clean_arr["uri"])){
+        $sql = "update {$WC['uri_lookup_table']} set current=0 where type='post' and object_id=".$post["post_id"];
+        $WCDB->query($sql);
+        $sql = "replace into {$WC['uri_lookup_table']} set uri='".$clean_arr["uri"]."' current=1, type='post', object_id=".$post["post_id"];
+        $WCDB->query($sql);
+    }
+
 
     return (bool)$result;
 }
@@ -961,8 +971,22 @@ function wc_db_save_page($page){
         $values = substr($values, 0, -1); // trim the last comma
         $sql = "insert into {$WC['pages_table']} ($fields) values ($values)";
 
-        $result = $WCDB->query_fetch($sql, WC_DB_FETCH_INSERT_ID);
+        $page_id = $WCDB->query_fetch($sql, WC_DB_FETCH_INSERT_ID);
 
+        if($page_id){
+
+            $result = $page_id;
+            $page["page_id"] = $page_id;
+        }
+
+    }
+
+    // update uri in uri lookup
+    if(isset($clean_arr["uri"])){
+        $sql = "update {$WC['uri_lookup_table']} set current=0 where type='page' and object_id=".$page["page_id"];
+        $WCDB->query($sql);
+        $sql = "replace into {$WC['uri_lookup_table']} set uri='".$clean_arr["uri"]."' current=1, type='page', object_id=".$page["page_id"];
+        $WCDB->query($sql);
     }
 
     return (bool)$result;
@@ -1084,6 +1108,28 @@ function wc_db_get_nav_pages($limit=0) {
     }
 
     return $pages;
+}
+
+
+/**
+ * Looks up a URI in the database
+ *
+ * @param   $uri    URI to find
+ * @return  array
+ *
+ */
+function wc_db_lookup_uri($uri) {
+
+    global $WCDB, $WC;
+
+    $sql = "select object_id, type, current from {$WC['uri_lookup_table']} where uri='".$WCDB->escape($uri)."'";
+    $uri_data = $WCDB->query_fetch($sql, WC_DB_FETCH_ASSOC);
+    if(!empty($uri_data["object_id"]) && $uri_data["current"]!=1){
+        $sql = "select uri from {$WC['uri_lookup_table']} where object_id=".$uri_data["object_id"]." and current=1";
+        $uri_data["current_uri"] = $WCDB->query_fetch($sql, WC_DB_FETCH_FIELD);
+    }
+
+    return $uri_data;
 }
 
 ?>

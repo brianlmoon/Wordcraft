@@ -9,7 +9,7 @@ include_once "./include/captcha/CaptchaJavascript.php";
 include_once "./include/captcha/lib/iscramble.php";
 
 $post_id = (isset($_GET["post_id"])) ? (int)$_GET["post_id"] : 0;
-$post_uri = (isset($_GET["post_uri"])) ? $_GET["post_uri"] : "";
+$post_uri = (isset($_GET["uri"])) ? $_GET["uri"] : "";
 
 if(empty($post_id) && empty($post_uri)){
     wc_output("notfound");

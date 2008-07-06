@@ -51,6 +51,20 @@ CREATE TABLE `{PREFIX}_posts` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
+-- Table structure for table `{PREFIX}_uri_lookup`
+--
+
+CREATE TABLE `{PREFIX}_uri_lookup` (
+  `uri` varchar(100) NOT NULL default '',
+  `type` enum('page', 'post') NOT NULL default 'post',
+  `object_id` int(10) unsigned NOT NULL,
+  `current` tinyint(4) NOT NULL default '0',
+  PRIMARY KEY  (`uri`),
+  KEY `object_uri` (`object_id`, `type`, `uri`),
+  KEY `object_current` (`object_id`, `type`, `current`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
 -- Table structure for table `{PREFIX}_settings`
 --
 
