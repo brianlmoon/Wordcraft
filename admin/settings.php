@@ -95,9 +95,10 @@ include_once "./header.php";
 
     <p>
         <strong>Template:</strong><br />
-        <select class="inputgri" name="template" id="template">
+        <select onclick="changePreview(this.value)" class="inputgri" name="template" id="template">
             <?php echo $template_options; ?>
         </select>
+        <a id="preview" target="wcpreview" href="../index.php">Preview</a>
     </p>
 
     <p>

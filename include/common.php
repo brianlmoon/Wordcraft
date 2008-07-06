@@ -20,6 +20,14 @@ $WC = array_merge($WC, $settings);
 
 unset($settings);
 
+// check for template preview
+if($_GET["preview"]){
+    $preview = basename($_GET["preview"]);
+    if(file_exists("./templates/$preview")){
+        $WC["template"] = $_GET["preview"];
+    }
+}
+
 // check for stupid magic quotes
 if ( get_magic_quotes_gpc() && count( $_REQUEST ) ) {
 

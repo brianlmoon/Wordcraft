@@ -22,6 +22,8 @@
     <script type="text/javascript" src="http://yui.yahooapis.com/2.5.1/build/button/button-min.js"></script>
     <script type="text/javascript" src="http://yui.yahooapis.com/2.5.1/build/editor/editor-beta-min.js"></script>
 
+    <!-- App Javascript -->
+    <script type="text/javascript" src="./admin.js"></script>
 
 </head>
 <body class="yui-skin-sam">
