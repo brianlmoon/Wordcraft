@@ -2,7 +2,7 @@
 
         </div>
 
-        <div id="secondarycontent" onclick="alert(document.getElementById('secondarycontent').clientHeight);">
+        <div id="secondarycontent">
 
             <!-- secondary content start -->
 
