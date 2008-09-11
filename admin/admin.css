@@ -2,8 +2,12 @@ a:link, a:visited {
     color: #73A822;
 }
 
+.clear {
+    clear: both;
+}
+
 input.inputgri, textarea.inputgri {
-    width: 924px;
+    width: 650px;
 }
 
 .yui-skin-sam .yui-toolbar-container .yui-toolbar-group h3 {
@@ -85,6 +89,15 @@ div.comment div.moderation {
 
 #content div.SPAM {
     background: #EBD2D1;
+}
+
+#content #post-options {
+    float: right;
+    width: 230px;
+}
+
+#content #post-options input.inputgri {
+    width: 200px;
 }
 
 /* YUI HTML edit button stuff */

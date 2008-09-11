@@ -48,6 +48,19 @@ if(count($_POST)){
         $post_date = date("Y-m-d H:i:s");
     }
 
+    if(empty($_POST["post_id"]) && (empty($_POST["custom_uri"]) || empty($_POST["uri"]))){
+        $post_uri = date("Y/m/d", strtotime($post_date))."/";
+        $post_uri.= trim(strtolower(preg_replace("![^a-z0-9_]+!i", " ", $_POST["subject"])));
+        $post_uri = str_replace(" ", "-", $post_array["uri"]);
+    } else {
+        $post_uri = $_POST["uri"];
+    }
+
+    $post = wc_db_lookup_uri($post_uri);
+    if(!empty($post) && $post["object_id"]!=$_POST["post_id"]){
+        $error = "The URI you entered is already in use by another page or post.";
+    }
+
     if(empty($error)){
 
         $post_array = array(
@@ -57,16 +70,12 @@ if(count($_POST)){
             "body"           => $_POST["editor"],
             "tags"           => $_POST["tags"],
             "allow_comments" => isset($_POST["allow_comments"]),
+            "published"      => isset($_POST["published"]),
+            "uri"            => $post_uri,
         );
 
         if(!empty($post_date)){
             $post_array["post_date"] = $post_date;
-        }
-
-        if(empty($_POST["post_id"])){
-            $post_array["uri"] = date("Y/m/d", strtotime($post_date))."/";
-            $post_array["uri"].= trim(strtolower(preg_replace("![^a-z0-9_]+!i", " ", $_POST["subject"])));
-            $post_array["uri"] = str_replace(" ", "-", $post_array["uri"]);
         }
 
         $success = wc_db_save_post($post_array);
@@ -93,6 +102,7 @@ if(count($_POST)){
         $post_custom_date = isset($_POST["custom_date"]);
         $post_date = $_POST["date"];
         $post_allow_comments = isset($_POST["allow_comments"]);
+        $post_published = isset($_POST["published"]);
 
     }
 
@@ -105,11 +115,13 @@ if(count($_POST)){
 
         if(!empty($post)){
             $post_id = $post["post_id"];
+            $post_uri = $post["uri"];
             $post_subject = $post["subject"];
             $post_body = $post["body"];
             $post_tags = $post["tags_text"];
             $post_date = strftime("%c", strtotime($post["post_date"]));
-            $post_allow_comments = isset($post["allow_comments"]);
+            $post_allow_comments = $post["allow_comments"];
+            $post_published = $post["published"];
         } else {
             wc_admin_error("The post you requested to edit was not found.");
         }
@@ -118,11 +130,13 @@ if(count($_POST)){
 
         // set up new post form
         $post_id = "";
+        $post_uri = "";
         $post_subject = "";
         $post_body = "";
         $post_tags = "";
         $post_date = "";
         $post_allow_comments = $WC["allow_comments"];
+        $post_published = true;
     }
 
 }
@@ -146,15 +160,32 @@ if(!empty($error)){
     <input type="hidden" name="post_id" value="<?php echo htmlspecialchars($post_id); ?>" />
     <input type="hidden" name="mode" value="<?php echo htmlspecialchars($mode); ?>" />
 
+    <div id="post-options">
+        <p>
+            <strong><input type="checkbox" name="allow_comments" id="allow_comments" value="1" <?php if(!empty($post_allow_comments)) echo "checked"; ?>/> <label for="allow_comments">Allow Comments</label></strong><br />
+        </p>
+
+        <p>
+            <strong><input type="checkbox" name="published" id="published" value="1" <?php if(!empty($post_published)) echo "checked"; ?>/> <label for="published">Published</label></strong><br />
+        </p>
+
+        <p>
+            <strong><input type="checkbox" name="custom_date" id="custom_date" value="1" <?php if(!empty($post_custom_date)) echo "checked "; ?>/><label for="custom_date">Custom Date:</label></strong><br />
+            <input class="inputgri" type="text" value="<?php echo htmlspecialchars($post_date); ?>" id="date" name="date" /><br />
+        </p>
+    </div>
+
     <p>
         <strong>Subject:</strong><br />
         <input class="inputgri" type="text" value="<?php echo htmlspecialchars($post_subject); ?>" id="subject" name="subject" maxlength="100" />
     </p>
 
+    <?php if($WC["use_rewrite"]) { ?>
     <p>
-        <strong>Post:</strong><br />
-        <textarea id="editor" name="editor" rows="20" cols="75"><?php echo htmlspecialchars($post_body); ?></textarea>
+        <strong>Post URI:</strong> <input type="checkbox" name="custom_uri" id="custom_uri" value="1" <?php if(!empty($post_custom_uri)) echo "checked "; ?>/><label for="custom_uri">Custom URI</label><br />
+        <input class="inputgri" type="text" value="<?php echo htmlspecialchars($post_uri); ?>" id="uri" name="uri" /><br />
     </p>
+    <?php } ?>
 
     <p>
         <strong>Tags:</strong><br />
@@ -162,14 +193,9 @@ if(!empty($error)){
         <small>Separate with commas. Example: kids, ball game, park</small>
     </p>
 
-    <p>
-        <strong><input type="checkbox" name="allow_comments" id="allow_comments" value="1" <?php if(!empty($post_allow_comments)) echo "checked"; ?>/> <label for="allow_comments">Allow Comments</label></strong><br />
-    </p>
-
-    <p>
-        <strong>Post Date:</strong><br />
-        <input type="checkbox" name="custom_date" id="custom_date" value="1" <?php if(!empty($post_custom_post)) echo "checked "; ?>/><label for="custom_date">Custom Date</label><br />
-        <input class="inputgri" type="text" value="<?php echo htmlspecialchars($post_date); ?>" id="date" name="date" /><br />
+    <p class="clear">
+        <strong>Post:</strong><br />
+        <textarea id="editor" name="editor" rows="20" cols="75"><?php echo htmlspecialchars($post_body); ?></textarea>
     </p>
 
     <p>
