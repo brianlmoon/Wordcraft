@@ -6,6 +6,8 @@ if ( basename( __FILE__ ) == basename( $_SERVER["PHP_SELF"] ) ) exit();
 // if init has not loaded, quit the file
 if(!defined("WC")) return;
 
+#define("WCDB_DEBUG_LOG", "/var/log/wc_sql.log");
+
 // constants for query_fetch() and fetch() method
 define("WC_DB_FETCH_ASSOC", 1);
 define("WC_DB_FETCH_NUM", 2);
@@ -85,6 +87,10 @@ class WCDB {
      * @return  mixed
      */
     public function query($sql, $read_only=false, $buffered=true) {
+
+        if(defined("WCDB_DEBUG_LOG")){
+            file_put_contents(WCDB_DEBUG_LOG, "[".date("r")."] $sql\n\n", FILE_APPEND);
+        }
 
         // if this is a read only query and we have a slave list,
         // pick a read slave for this request.  One request will
