@@ -10,8 +10,14 @@
 <meta name="description" content="<?php echo $WCDATA["description"]; ?>">
 <link rel="stylesheet" type="text/css" href="<?php echo $WCDATA["base_url"]; ?>/templates/doughboy/default.css">
 <link rel="alternate" type="application/rss+xml" title="<?php echo $WCDATA["default_title"]; ?>" href="<?php echo $WCDATA["feed_url"]; ?>">
+<script type="text/javascript">
+function init() {
+    document.getElementById('primarycontent').style.minHeight = document.getElementById('secondarycontent').clientHeight + 'px';
+}
+</script>
+
 </head>
-<body>
+<body onload="init();">
 
 <div id="outer">
 
