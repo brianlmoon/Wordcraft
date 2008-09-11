@@ -209,6 +209,7 @@ function wc_db_save_post(&$post){
             case "post_id":
             case "user_id":
             case "allow_comments":
+            case "published":
                 $clean_arr[$field] = (int)$value;
                 break;
 
@@ -295,7 +296,7 @@ function wc_db_save_post(&$post){
     if(isset($clean_arr["uri"])){
         $sql = "update {$WC['uri_lookup_table']} set current=0 where type='post' and object_id=".$post["post_id"];
         $WCDB->query($sql);
-        $sql = "replace into {$WC['uri_lookup_table']} set uri='".$clean_arr["uri"]."' current=1, type='post', object_id=".$post["post_id"];
+        $sql = "replace into {$WC['uri_lookup_table']} set uri='".$clean_arr["uri"]."', current=1, type='post', object_id=".$post["post_id"];
         $WCDB->query($sql);
     }
 
@@ -729,6 +730,7 @@ function wc_db_save_comment($comment) {
 
             case "post_id":
             case "comment_id":
+            case "linkback":
                 $clean_arr[$field] = (int)$value;
                 break;
 
@@ -985,7 +987,7 @@ function wc_db_save_page($page){
     if(isset($clean_arr["uri"])){
         $sql = "update {$WC['uri_lookup_table']} set current=0 where type='page' and object_id=".$page["page_id"];
         $WCDB->query($sql);
-        $sql = "replace into {$WC['uri_lookup_table']} set uri='".$clean_arr["uri"]."' current=1, type='page', object_id=".$page["page_id"];
+        $sql = "replace into {$WC['uri_lookup_table']} set uri='".$clean_arr["uri"]."', current=1, type='page', object_id=".$page["page_id"];
         $WCDB->query($sql);
     }
 
