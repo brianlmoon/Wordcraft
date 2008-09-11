@@ -1,0 +1,218 @@
+body {
+    background-color: #DBF0F0;
+    font-size: 90%;
+    font-family: Arial, helvetica, sans-serif;
+    line-height: 18px;
+}
+
+a {
+    color: #DB5924;
+    text-decoration: underline;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+
+p {
+    margin-bottom: 14px;
+}
+
+code {
+    font-size: 110%;
+    overflow: scroll;
+}
+
+#outer {
+    position: relative;
+    width: 980px;
+    margin: 10px auto;
+    background: #fff;
+    border: 4px solid #663300;
+}
+
+#header {
+    position: relative;
+}
+
+#header div.title a {
+    position: absolute;
+    display: block;
+    width: 302px;
+    height: 72px;
+    top: 10px;
+    left: 10px;
+    background: transparent url('images/ramblins.png') no-repeat 0 0;
+}
+
+#header div.title a span {
+    display: none;
+}
+
+#header div.subtitle {
+    left: 450px;
+    top: 25px;
+    position: absolute;
+    width: 430px;
+    text-align: center;
+    font-size: 120%;
+    color: #663300;
+    font-family: "Trebuchet MS", helvetica, sans-serif;
+}
+
+#primarycontent {
+    width: 760px;
+    padding: 10px;
+    min-height: 1200px;
+}
+
+#menu {
+    list-style: none;
+    margin: 92px 0 20px 0;
+    background-color: #663300;
+    height: 40px;
+    padding: 0;
+}
+
+#menu li {
+    float: left;
+}
+
+#menu li a:link, #menu li a:visited {
+    text-align: center;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    display: block;
+    float: left;
+    padding: 10px 20px 0;
+    height: 30px;
+}
+
+#menu li a:hover {
+    background-color: #DB5924;
+}
+
+div.post {
+    margin: 0 20px 30px 20px;
+}
+
+div.post img {
+    border: 0;
+}
+
+
+div.post div.header {
+    margin-bottom: 10px;
+}
+
+div.post div.header h1 {
+    color: #DB5924;
+    margin: 0 0 5px;
+    font-size: 140%;
+}
+
+div.post div.header h1 a {
+    text-decoration: none;
+}
+
+div.post div.header small {
+    font-size: 90%;
+}
+
+div.post ul.footer {
+    position: relative;
+    margin: 20px 0 0 0;
+    padding: 0;
+    border-bottom: 1px solid #663300;
+    list-style: none;
+    height: 50px;
+}
+
+div.post ul.footer li {
+    float: left;
+    min-width: 110px;
+}
+
+div.post ul.footer li.tags {
+    position: absolute;
+    right: 0;
+}
+
+
+div.comment {
+    margin: 0 20px 15px 20px;
+    border-bottom: 1px solid #996633;
+    padding-bottom: 15px;
+    min-height: 75px;
+}
+
+div.comment h4 {
+    margin-bottom: 5px;
+}
+
+div.comment p {
+    margin-top: 0;
+}
+
+div.comment h4 a {
+    text-decoration: none;
+}
+
+div.comment img {
+    float: right;
+    margin: 0 0 10px 10px;
+}
+
+#add-comment {
+    margin: 30px 20px 15px 20px;
+}
+
+#add-comment textarea {
+    width: 680px;
+    padding: 10px;
+    font-family: Arial, helvetica, sans-serif;
+    font-size: 100%;
+}
+
+#secondarycontent {
+    position: absolute;
+    right: 0;
+    top: 132px;
+    background-color: #FFE6DB;
+    width: 180px;
+    padding: 10px;
+}
+
+#secondarycontent h3 {
+    color: #663300;
+    font-size: 100%;
+}
+
+#secondarycontent div.content {
+    margin-bottom: 20px;
+}
+
+#secondarycontent ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#secondarycontent ul li {
+    line-height: 180%;
+}
+
+#footer {
+    text-align: center;
+    font-size: 80%;
+    padding: 0 0 20px;
+}
+
+/* legacy Wordpress.com. stuff */
+
+img.aligncenter {
+    display: block;
+    margin: auto;
+}
