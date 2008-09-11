@@ -62,7 +62,7 @@ if($last > $total) {
                 <td><?php echo $post["post_id"]; ?></td>
                 <td><?php echo htmlspecialchars($post["subject"]); ?></td>
                 <td><?php echo strftime($WC["date_format_long"], strtotime($post["post_date"])); ?></td>
-                <td><?php echo htmlspecialchars($post["tags_text"]); ?></td>
+                <td><?php echo htmlspecialchars(implode(", ", $post["tags"])); ?></td>
                 <td><a href="<?php echo wc_get_url("post", $post["post_id"]); ?>" target="_blank">View</a>&nbsp;&nbsp;<a href="post.php?mode=edit&post_id=<?php echo $post["post_id"]; ?>">Edit</a>&nbsp;&nbsp;<a href="delete.php?post_id=<?php echo $post["post_id"]; ?>">Delete</a></td>
             </tr>
         <?php } ?>
