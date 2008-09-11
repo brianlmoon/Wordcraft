@@ -1,0 +1,235 @@
+body {
+    background-color: #F0F0F0;
+    font-size: 90%;
+    font-family: Arial, helvetica, sans-serif;
+    line-height: 18px;
+}
+
+a {
+    color: #0066CC;
+    text-decoration: underline;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+
+p {
+    margin-bottom: 14px;
+}
+
+code {
+    font-size: 110%;
+    overflow: scroll;
+}
+
+#outer {
+    -moz-border-radius: 25px;
+    -webkit-border-radius: 25px;
+    z-index: 99;
+    position: relative;
+    width: 980px;
+    margin: 10px auto;
+    background-color: #CFE0EF;
+    border: 4px solid #4180B6;
+    overflow: none;
+}
+
+#header {
+    height: 92px;
+    position: relative;
+    background: #fff;
+    -moz-border-radius-topright: 21px;
+    -webkit-border-top-right-radius: 21px;
+    -webkit-border-radius-topright: 21px;
+    -moz-border-radius-topleft: 21px;
+    -webkit-border-top-left-radius: 21px;
+}
+
+#header div.title a {
+    position: absolute;
+    display: block;
+    top: 30px;
+    left: 20px;
+    text-decoration: none;
+    font-size: 250%;
+    height: 50px;
+}
+
+
+#header div.subtitle {
+    left: 450px;
+    top: 25px;
+    position: absolute;
+    width: 430px;
+    text-align: center;
+    font-size: 120%;
+    color: #2E4F6B;
+    font-family: "Trebuchet MS", helvetica, sans-serif;
+}
+
+#primarycontent {
+    width: 760px;
+    padding: 30px 10px 10px;
+    min-height: 1200px;
+    background: #fff;
+    -moz-border-radius-topright: 21px;
+    -webkit-border-top-right-radius: 21px;
+}
+
+#menu {
+    list-style: none;
+    margin: 0;
+    background-color: #4180B6;
+    height: 40px;
+    padding: 0;
+}
+
+#menu li {
+    float: left;
+}
+
+#menu li a:link, #menu li a:visited {
+    text-align: center;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    display: block;
+    float: left;
+    padding: 10px 20px 0;
+    height: 30px;
+}
+
+#menu li a:hover {
+    background-color: #414BB6;
+}
+
+div.post {
+    margin: 0 20px 30px 20px;
+}
+
+div.post img {
+    border: 0;
+}
+
+
+div.post div.header {
+    margin-bottom: 10px;
+}
+
+div.post div.header h1 {
+    color: #0066CC;
+    margin: 0 0 5px;
+    font-size: 140%;
+}
+
+div.post div.header h1 a {
+    text-decoration: none;
+}
+
+div.post div.header small {
+    font-size: 90%;
+}
+
+div.post ul.footer {
+    position: relative;
+    margin: 20px 0 0 0;
+    padding: 0;
+    border-bottom: 1px solid #663300;
+    list-style: none;
+    height: 50px;
+}
+
+div.post ul.footer li {
+    float: left;
+    min-width: 110px;
+}
+
+div.post ul.footer li.tags {
+    position: absolute;
+    right: 0;
+}
+
+
+div.comment {
+    margin: 0 20px 15px 20px;
+    border-bottom: 1px solid #996633;
+    padding-bottom: 15px;
+    min-height: 75px;
+}
+
+div.comment h4 {
+    margin-bottom: 5px;
+}
+
+div.comment p {
+    margin-top: 0;
+}
+
+div.comment h4 a {
+    text-decoration: none;
+}
+
+div.comment img {
+    float: right;
+    margin: 0 0 10px 10px;
+}
+
+#add-comment {
+    margin: 30px 20px 15px 20px;
+}
+
+#add-comment textarea {
+    width: 680px;
+    padding: 10px;
+    font-family: Arial, helvetica, sans-serif;
+    font-size: 100%;
+}
+
+#secondarycontent {
+    position: absolute;
+    right: 0;
+    top: 132px;
+    width: 180px;
+    padding: 10px;
+}
+
+#secondarycontent h3 {
+    color: #2E4F6B;
+    font-size: 100%;
+}
+
+#secondarycontent div.content {
+    margin-bottom: 20px;
+}
+
+#secondarycontent ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#secondarycontent ul li {
+    line-height: 180%;
+}
+
+#footer {
+    background: #fff;
+    text-align: center;
+    font-size: 80%;
+    padding: 20px 0;
+    width: 780px;
+    -moz-border-radius-bottomright: 21px;
+    -webkit-border-bottom-right-radius: 21px;
+    -webkit-border-radius-bottomright: 21px;
+    -moz-border-radius-bottomleft: 21px;
+    -webkit-border-bottom-left-radius: 21px;
+}
+
+/* legacy Wordpress.com. stuff */
+
+img.aligncenter {
+    display: block;
+    margin: auto;
+}
