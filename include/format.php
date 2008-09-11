@@ -33,6 +33,8 @@ function wc_format_post(&$post) {
 
 function wc_format_comment(&$comment) {
 
+    global $WC;
+
     $comment["comment"] = strip_tags($comment["comment"]);
     $comment["comment"] = htmlspecialchars($comment["comment"]);
 
@@ -44,6 +46,8 @@ function wc_format_comment(&$comment) {
     $comment["url"] = htmlspecialchars($comment["url"]);
     $comment["email"] = htmlspecialchars($comment["email"]);
     $comment["status"] = ucfirst(strtolower($comment["status"]));
+
+    $comment["gravatar"] = "http://www.gravatar.com/avatar/".md5(strtolower(trim($comment["email"]))).".jpg?r=pg&d=".urlencode($WC["base_url"]."/resources/transparent.png")."&s=75";
 }
 
 ?>
