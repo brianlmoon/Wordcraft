@@ -75,10 +75,16 @@ $dir = dir("../templates");
 while(false !== ($d=$dir->read())){
     if(is_dir("../templates/$d") && file_exists("../templates/$d/info.php")){
         include "../templates/$d/info.php";
-        $template_options.= "<option value=\"$d\"";
-        if($settings["template"]==$d) $template_options.=" selected";
-        $template_options.= ">$name</option>\n";
+        $templates[strtolower($name)] = array($d, $name);
     }
+}
+
+ksort($templates);
+
+foreach($templates as $t){
+    $template_options.= "<option value=\"$t[0]\"";
+    if($settings["template"]==$t[0]) $template_options.=" selected";
+    $template_options.= ">$t[1]</option>\n";
 }
 
 $WHEREAMI = "Settings";
