@@ -45,6 +45,7 @@ CREATE TABLE `{PREFIX}_posts` (
   `user_id` int(10) unsigned NOT NULL default '0',
   `uri` varchar(100) NOT NULL default '',
   `allow_comments` tinyint(1) NOT NULL default '1',
+  `published` tinyint(1) NOT NULL default '0',
   PRIMARY KEY  (`post_id`),
   UNIQUE KEY `uri_date` (`uri`,`post_date`),
   KEY `post_date` (`post_date`)
