@@ -26,11 +26,12 @@ foreach($WCDATA["posts"] as &$post){
 }
 unset($post);
 
-$WCDATA["title"] = $WC["default_title"];
-
-$WCDATA["description"] = $WC["default_description"];
+$WCDATA["title"] = "Posts tagged with '$tag' - ".$WC["default_title"];
+$WCDATA["description"] = "Posts tagged with '$tag'. ".$WC["default_description"];
 
 $WCDATA["feed_url"] = wc_get_url("feed", "rss", $tag);
+
+
 
 wc_output("post_list", $WCDATA);
 
