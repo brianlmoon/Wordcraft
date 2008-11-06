@@ -9,7 +9,7 @@ $filter = (empty($_GET["filter"])) ? "" : $_GET["filter"];
 
 $limit = 50;
 
-list($posts, $total) = wc_db_get_post_list($start, $limit, false, $filter);
+list($posts, $total) = wc_db_get_post_list($start, $limit, false, $filter, "", false, false);
 
 $WHEREAMI = "Manage";
 
