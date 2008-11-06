@@ -3,14 +3,16 @@
 include_once "./check_auth.php";
 include_once "./admin_functions.php";
 include_once "../include/format.php";
-include_once "../include/akismet.php";
+include_once "../include/spam.php";
 
-if(!empty($_POST["comment_id"]) && is_numeric($_POST["comment_id"])){
+if(count($_POST) && ($_POST["mode"]=="delete_spam" || (!empty($_POST["comment_id"]) && is_numeric($_POST["comment_id"])))){
 
-    $comment = wc_db_get_comment($_POST["comment_id"]);
+    if($_POST["mode"]!="delete_spam"){
+        $comment = wc_db_get_comment($_POST["comment_id"]);
 
-    if(empty($comment)){
-        wc_admin_error("Comment not found.");
+        if(empty($comment)){
+            wc_admin_error("Comment not found.");
+        }
     }
 
     switch($_POST["mode"]){
@@ -33,13 +35,16 @@ if(!empty($_POST["comment_id"]) && is_numeric($_POST["comment_id"])){
             wc_db_save_comment(array("comment_id"=>$_POST["comment_id"], "status"=>"UNAPPROVED"));
             wc_admin_message("Comment hidden.");
             break;
+        case "delete_spam":
+            wc_db_delete_spam();
+            wc_admin_message("Spam deleted.");
+            break;
         default:
             wc_admin_error("Invalid mode ".htmlspecialchars($_POST["mode"])." for comment moderation.");
 
     }
 
-} elseif(empty($_GET["mode"]) || empty($_GET["comment_id"]) || !is_numeric($_GET["comment_id"])){
-
+} elseif(empty($_GET["mode"])){
     wc_admin_error("Invalid input for comment moderation.");
 }
 
@@ -57,21 +62,26 @@ switch($_GET["mode"]){
     case "hide":
         $question = "hide this comment";
         break;
+    case "delete_spam":
+        $question = "delete all comments marked as spam";
+        break;
     default:
         wc_admin_error("Invalid mode ".htmlspecialchars($_POST["mode"])." for comment moderation.");
 
 }
 
-$comment = wc_db_get_comment($_GET["comment_id"]);
+if($_GET["mode"]!="delete_spam"){
+    $comment = wc_db_get_comment($_GET["comment_id"]);
 
-if(empty($comment)){
-    wc_admin_error("Comment not found.");
+    if(empty($comment)){
+        wc_admin_error("Comment not found.");
+    }
+
+    wc_format_comment($comment);
+
+    $post = wc_db_get_post($comment["post_id"]);
+    wc_format_post($post);
 }
-
-wc_format_comment($comment);
-
-$post = wc_db_get_post($comment["post_id"]);
-wc_format_post($post);
 
 $WHEREAMI = "Comment Moderation";
 
@@ -83,7 +93,9 @@ include_once "./header.php";
 
     <h3>Are you sure you wish to <?php echo $question; ?>?</h3>
 
-    <h1>Comment by <?php echo $comment["name"]; ?>. In response to <?php echo $post["subject"]; ?></h1>
+    <?php if(!empty($comment)) { ?>
+        <h1>Comment by <?php echo $comment["name"]; ?>. In response to <?php echo $post["subject"]; ?></h1>
+    <?php } ?>
     <form action="comment_moderate.php" method="post">
         <input type="hidden" name="comment_id" value="<?php echo (int)$_GET["comment_id"]; ?>" />
         <input type="hidden" name="mode" value="<?php echo $_GET["mode"]; ?>" />

@@ -4,9 +4,16 @@ include_once "./include/common.php";
 include_once "./include/database.php";
 include_once "./include/output.php";
 include_once "./include/format.php";
-include_once "./include/akismet.php";
+include_once "./include/spam.php";
+
+if(empty($_POST)){
+    header('HTTP/1.1 405 Method Not Allowed');
+    header('Status: 405 Method Not Allowed');
+    exit();
+}
 
 $post = wc_db_get_post($_POST["post_id"]);
+wc_format_post($post);
 
 if(!$post["allow_comments"]){
     wc_output("error", array("error"=>"Comments are disabled on this post."));
@@ -66,7 +73,19 @@ if($user) {
         $comment_status = "APPROVED";
     }
 
-    if($WC["use_akismet"] && !empty($WC["akismet_key"])){
+    $score = wc_score_user_submission($_POST["your_comment"]);
+
+    if($score < 0){
+
+        if($score < -20){
+            header('HTTP/1.1 403 Forbidden');
+            header('Status: 403 Forbidden');
+            exit();
+        }
+
+        $comment_status = "SPAM";
+
+    } elseif($WC["use_akismet"] && !empty($WC["akismet_key"])){
 
         $akismet_answer = wc_akismet_request( $comment, "comment-check" );
 
@@ -108,6 +127,7 @@ if($success){
         $body.= "E-mail : $comment[email]\n";
         $body.= "URL    : $comment[url]\n";
         $body.= "Status : $comment[status]\n";
+        $body.= "Score  : $score\n";
         $body.= "Comment: \n\n$comment[comment]\n\n";
         $body.= "Delete:  $WC[base_url]/admin/comment_moderate.php?mode=delete&comment_id=$comment[comment_id]\n";
         if($comment["status"]!="SPAM"){

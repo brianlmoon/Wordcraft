@@ -10,14 +10,37 @@ $status = (empty($_GET["status"])) ? false : $_GET["status"];
 
 $limit = 50;
 
-list($comments, $total) = wc_db_get_comments(false, $start, $limit, $filter, $status);
+if($status == "non-spam" || empty($status)){
+    $fetch_status = array(
+        "approved",
+        "hidden"
+    );
+} else {
+    $fetch_status = $status;
+}
+
+list($comments, $total) = wc_db_get_comments(false, $start, $limit, $filter, $fetch_status);
 
 foreach($comments as $comment){
   wc_format_comment($comment);
   $post_ids[$comment["post_id"]] = $comment["post_id"];
 }
 
-list($posts, $post_count) = wc_db_get_post_list(false, false, false, false, false, $post_ids);
+list($posts, $post_count) = wc_db_get_post_list(false, false, false, false, false, $post_ids, false);
+
+// get spam count
+$spam_count = 0;
+if($status!="spam"){
+    list($spam, $spam_count) = wc_db_get_comments(false, 0, 101, "", "spam");
+    unset($spam);
+    if($spam_count > 0){
+
+        if($spam_count > 100){
+            $spam_count = "more than $spam_count";
+        }
+
+    }
+}
 
 $WHEREAMI = "Comments";
 
@@ -49,7 +72,8 @@ if($last > $total) {
 
 <div id="filter">
     <form action="comments.php" method="get">
-        <input type="radio" id="status-all" name="status" value="" <?php if(empty($_GET["status"])) echo "checked"; ?> /><label for="status-all"> All</label>
+        <input type="radio" id="status-all" name="status" value="all" <?php if($_GET["status"]=="all") echo "checked"; ?> /><label for="status-all"> All</label>
+        <input type="radio" id="status-non-spam" name="status" value="non-spam" <?php if(empty($_GET["status"])) echo "checked"; ?> /><label for="status-all"> Non-Spam</label>
         <input type="radio" id="status-approved" name="status" value="approved" <?php if($_GET["status"]=="approved") echo "checked"; ?> /><label for="status-approved"> Approved</label>
         <input type="radio" id="status-hidden" name="status" value="hidden" <?php if($_GET["status"]=="hidden") echo "checked"; ?> /><label for="status-hidden"> Hidden</label>
         <input type="radio" id="status-spam" name="status" value="spam" <?php if($_GET["status"]=="spam") echo "checked"; ?> /><label for="status-spam"> Spam</label><br />
@@ -58,6 +82,12 @@ if($last > $total) {
         <a href="comments.php">Reset</a>
     </form>
 </div>
+
+<?php if($spam_count) { ?>
+    <div class="notice_error">
+        There are <?=$spam_count?> comments flagged as spam.  <a href="comments.php?status=spam">View</a> | <a href="comment_moderate.php?mode=delete_spam">Delete now</a>.
+    </div>
+<?php } ?>
 
 <?php if(!empty($comments)) { ?>
     <?php foreach($comments as $comment) { ?>

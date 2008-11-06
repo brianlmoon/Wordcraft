@@ -362,7 +362,7 @@ function wc_db_get_post($identifier) {
  * @return  mixed
  *
  */
-function wc_db_get_post_list($start=false, $limit=false, $bodies=false, $filter="", $tag="", $post_ids=false) {
+function wc_db_get_post_list($start=false, $limit=false, $bodies=false, $filter="", $tag="", $post_ids=false, $current=true) {
 
     global $WCDB, $WC;
 
@@ -404,11 +404,15 @@ function wc_db_get_post_list($start=false, $limit=false, $bodies=false, $filter=
         }
     }
 
+    if($current) {
+        $where[] = "post_date < now()";
+    }
+
     if(count($where)){
         $sql.= " where ".implode(" and ", $where);
     }
 
-    $sql.= "order by post_date desc";
+    $sql.= " order by post_date desc";
 
     if(is_numeric($start) && is_numeric($limit)){
         $sql.= " limit $start, $limit";
@@ -816,6 +820,22 @@ function wc_db_delete_comment($comment_id) {
 }
 
 
+/**
+ * Deletes all spam comments from the database
+ *
+ * @return  bool
+ *
+ */
+function wc_db_delete_spam() {
+
+    global $WCDB, $WC;
+
+    $sql = "delete from {$WC["comments_table"]} where status='spam'";
+    return (bool)$WCDB->query($sql);
+
+}
+
+
 function wc_db_get_comment($comment_id) {
 
     global $WCDB, $WC;
@@ -855,7 +875,15 @@ function wc_db_get_comments($post_id=false, $start=false, $limit=false, $filter=
     }
 
     if($status!==false){
-        $where[] = "status='".$WCDB->escape($status)."'";
+        if(is_array($status)){
+            foreach($status as &$s){
+                $s = $WCDB->escape($s);
+            }
+            $w = "status in ('".implode("','", $status)."')";
+            $where[] = $w;
+        } else {
+            $where[] = "status='".$WCDB->escape($status)."'";
+        }
     }
 
     if(!empty($where)){
