@@ -2,6 +2,7 @@
 
 include_once "./include/common.php";
 include_once "./include/database.php";
+include_once "./include/output.php";
 
 $uri = (isset($_GET["uri"])) ? $_GET["uri"] : "";
 
