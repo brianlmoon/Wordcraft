@@ -266,6 +266,9 @@ function wc_db_save_post(&$post){
 
         if(!isset($post["body"])) $post["body"] = "";
 
+        $fields = "";
+        $values = "";
+
         foreach($clean_arr as $field=>$value){
             $fields.="$field,";
             $values.="'$value',";
@@ -285,7 +288,7 @@ function wc_db_save_post(&$post){
             foreach($tag_arr as $tag){
                 $tag = trim($tag);
                 if(empty($tag)) continue;
-                $sql = "insert into {$WC['tags_table']} values (".$post_id.", '".$WCDB->escape($tag)."')";
+                $sql = "replace into {$WC['tags_table']} values (".$post_id.", '".$WCDB->escape($tag)."')";
                 $WCDB->query($sql);
             }
         }
