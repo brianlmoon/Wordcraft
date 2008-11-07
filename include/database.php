@@ -357,13 +357,15 @@ function wc_db_get_post($identifier) {
 }
 
 /**
- * Function description
- * The funtion returns an array where the first element
- * is the posts and the second is the total.
+ * Gets a post list
  *
- * @param   $var    desctription
- * @return  mixed
- *
+ * @var $start      The starting point of the limit to fetch
+ * @var $limit      How many rows to return
+ * @var $bodies     Should the post bodies be returned
+ * @var $filter     A search filter to be applied
+ * @var $tag        Show messages only with these tags
+ * @var $post_ids   Return only these posts
+ * @var $current    Return only post marked as published and with a publish time less than now
  */
 function wc_db_get_post_list($start=false, $limit=false, $bodies=false, $filter="", $tag="", $post_ids=false, $current=true) {
 
@@ -408,7 +410,7 @@ function wc_db_get_post_list($start=false, $limit=false, $bodies=false, $filter=
     }
 
     if($current) {
-        $where[] = "post_date < now()";
+        $where[] = "post_date < now() and published=1";
     }
 
     if(count($where)){
