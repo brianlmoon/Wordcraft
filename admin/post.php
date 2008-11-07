@@ -49,9 +49,7 @@ if(count($_POST)){
     }
 
     if(empty($_POST["post_id"]) && (empty($_POST["custom_uri"]) || empty($_POST["uri"]))){
-        $post_uri = date("Y/m/d", strtotime($post_date))."/";
-        $post_uri.= trim(strtolower(preg_replace("![^a-z0-9_]+!i", " ", $_POST["subject"])));
-        $post_uri = str_replace(" ", "-", $post_array["uri"]);
+        $post_uri = trim(strtolower(preg_replace("![^a-z0-9_]+!i", "-", $_POST["subject"])));
     } else {
         $post_uri = $_POST["uri"];
     }

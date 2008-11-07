@@ -21,10 +21,13 @@ function wc_get_url() {
         // special sef/rewrite handling
         if($WC["use_rewrite"]){
             if($args[0]=="post" || $args[0]=="page"){
-                $args[0] = $args[0]."_sef";
-                $args[1] = $args[2];
-                unset($args[2]);
-                $encode_args = false;
+                // only create a sef url if there is a custom uri value
+                if(!empty($args[2])){
+                    $args[0] = $args[0]."_sef";
+                    $args[1] = $args[2];
+                    unset($args[2]);
+                    $encode_args = false;
+                }
             }
         }
 
