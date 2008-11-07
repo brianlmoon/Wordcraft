@@ -7,6 +7,11 @@ include_once "../include/spam.php";
 
 if(count($_POST) && ($_POST["mode"]=="delete_spam" || (!empty($_POST["comment_id"]) && is_numeric($_POST["comment_id"])))){
 
+    if($_POST["confirm"] != "Yes"){
+        header("Location: comments.php");
+        exit();
+    }
+
     if($_POST["mode"]!="delete_spam"){
         $comment = wc_db_get_comment($_POST["comment_id"]);
 
