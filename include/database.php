@@ -641,6 +641,9 @@ function wc_db_save_user($user){
 
         if(!isset($user["body"])) $user["body"] = "";
 
+        $fields = "";
+        $values = "";
+
         foreach($clean_arr as $field=>$value){
             $fields.="$field,";
             $values.="'$value',";
