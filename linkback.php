@@ -149,9 +149,8 @@ function handle_linkback($remote, $local, $title="", $except="") {
         $comment = wc_db_get_comment($success);
 
         // email the comment
-        if(empty($user) &&
-           (($WC["email_comment"]=="all") ||
-           ($WC["email_comment"]=="spam" && $comment["status"]=="SPAM"))){
+        if(($WC["email_comment"]=="all") ||
+           ($WC["email_comment"]=="spam" && $comment["status"]=="SPAM")){
 
             $subject = "[".$WC["default_title"]."] Link to $post[subject]";
             $body = "There is a new link back to your post \"$post[subject]\"\n";
