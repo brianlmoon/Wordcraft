@@ -51,7 +51,7 @@ function wc_db_get_settings(){
     $settings = array();
 
     while($rec = $WCDB->fetch()){
-        if($rec["S"]){
+        if(!empty($rec["S"])){
             $settings[$rec["name"]] = json_decode($rec["data"]);
         } else {
             $settings[$rec["name"]] = $rec["data"];
