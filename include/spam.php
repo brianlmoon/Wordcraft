@@ -108,17 +108,14 @@ function wc_score_user_submission($submission) {
         $points += 2;
     }
 
-
-
     // How long is the body
     // More than 20 characters and there's no links + 2 points
     // Less than 20 characters -1 point
-    if(strlen($submission>20) && $link_count==0){
+    if(strlen($submission)>20){
         $points += 2;
     } else {
         $points--;
     }
-
 
     // attempted BBCode -1 point per
     if(preg_match_all('!\[(url|image|img)!i', $submission, $match)){
@@ -133,15 +130,13 @@ function wc_score_user_submission($submission) {
         }
     }
 
-
     // Milder bad words -5 point per word matched
     $bad_words = array('/\bamcik\b/i','/\bandskota\b/i','/\barschloch\b/i','/\bayir\b/i','/\bboiolas\b/i','/\bbollock.*/i','/\bbuceta\b/i','/\bcabron\b/i','/\bcazzo\b/i','/\bchraa\b/i','/\bchuj\b/i','/\bcipa\b/i','/\bdago\b/i','/\bdaygo\b/i','/\bdego\b/i','/\bdirsa\b/i','/\bdupa\b/i','/\bdziwka\b/i','/\bEkrem.*/i','/\bEkto\b/i','/\benculer\b/i','/\bfaen\b/i','/\bfanculo\b/i','/\bfanny\b/i','/\bfitt.*/i','/\bFlikker\b/i','/\bFotze\b/i','/\bguiena\b/i','/\bhax0r\b/i','/\bh4xor\b/i','/\bh4x0r\b/i','/\bhell\b/i','/\bhelvete\b/i','/\bHuevon\b/i','/\bhui\b/i','/\binjun\b/i','/\bkanker.*/i','/\bklootzak\b/i','/\bknulle\b/i','/\bkuk\b/i','/\bkuksuger\b/i','/\bKurac\b/i','/\bkurwa\b/i','/\bkusi.*/i','/\bkyrpa.*/i','/\bmamhoon\b/i','/\bmerd.*/i','/\bmibun\b/i','/\bmonkleigh\b/i','/\bmouliewop\b/i','/\bmuie\b/i','/\bmulkku\b/i','/\bmuschi\b/i','/\bnazi.*/i','/\bnepesaurio\b/i','/\borospu\b/i','/\bpaska.*/i','/\bperse\b/i','/\bpicka\b/i','/\bpierdol.*/i','/\bpillu.*/i','/\bpimmel\b/i','/\bpimpis\b/i','/\bpizda\b/i','/\bpoontsee\b/i','/\bpreteen\b/i','/\bpula\b/i','/\bpule\b/i','/\bqahbeh\b/i','/\brautenberg\b/i','/\bschaffer\b/i','/\bscheiss.*/i','/\bschlampe\b/i','/\bschmuck\b/i','/\bscrew\b/i','/\bsharmuta\b/i','/\bsharmute\b/i','/\bshipal\b/i','/\bshiz\b/i','/\bskribz\b/i','/\bskurwysyn\b/i','/\bspierdalaj\b/i','/\bsuka\b/i','/\bwichser\b/i','/\bwop.*/i','/\bwtf\b/i','/\byed\b/i','/\bzabourah\b/');
     foreach($bad_words as $word) {
         if(preg_match($word, $submission)){
-            $points -= 5;
+            $points -= .25;
         }
     }
-
 
     // URLs that have certain TLDs -1 point
     $bad_tld = array('AC','AD','AE','AERO','AF','AG','AI','AL','AM','AN','AO','AQ','AR','ARPA','AS','ASIA','AT','AU','AW','AX','AZ','BA','BB','BD','BE','BF','BG','BH','BI','BIZ','BJ','BM','BN','BO','BR','BS','BT','BV','BW','BY','BZ','CA','CAT','CC','CD','CF','CG','CH','CI','CK','CL','CM','CN','CO','COOP','CR','CU','CV','CX','CY','CZ','DE','DJ','DK','DM','DO','DZ','EC','EDU','EE','EG','ER','ES','ET','EU','FI','FJ','FK','FM','FO','FR','GA','GB','GD','GE','GF','GG','GH','GI','GL','GM','GN','GOV','GP','GQ','GR','GS','GT','GU','GW','GY','HK','HM','HN','HR','HT','HU','ID','IE','IL','IM','IN','INFO','INT','IO','IQ','IR','IS','IT','JE','JM','JO','JOBS','JP','KE','KG','KH','KI','KM','KN','KP','KR','KW','KY','KZ','LA','LB','LC','LI','LK','LR','LS','LT','LU','LV','LY','MA','MC','MD','ME','MG','MH','MIL','MK','ML','MM','MN','MO','MOBI','MP','MQ','MR','MS','MT','MU','MUSEUM','MV','MW','MX','MY','MZ','NA','NAME','NC','NE','NF','NG','NI','NL','NO','NP','NR','NU','NZ','OM','PA','PE','PF','PG','PH','PK','PL','PM','PN','PR','PRO','PS','PT','PW','PY','QA','RE','RO','RS','RU','RW','SA','SB','SC','SD','SE','SG','SH','SI','SJ','SK','SL','SM','SN','SO','SR','ST','SU','SV','SY','SZ','TC','TD','TEL','TF','TG','TH','TJ','TK','TL','TM','TN','TO','TP','TR','TRAVEL','TT','TV','TW','TZ','UA','UG','US','UY','UZ','VA','VC','VE','VG','VI','VN','VU','WF','WS','XN','YE','YT','YU','ZA','ZM','ZW');
@@ -150,7 +145,6 @@ function wc_score_user_submission($submission) {
             $points--;
         }
     }
-
 
     // URL length More than 30 characters -1 point
     if(preg_match_all('!https*://[^\s]+!i', $submission, $matches)){
@@ -161,17 +155,16 @@ function wc_score_user_submission($submission) {
         }
     }
 
-
     // Body starts with common spammy words-2 points
     if(preg_match('/^(Interesting|Sorry|Nice|Cool|Thanks|Wow)/i', $submission)){
         $points -= 2;
     }
 
-
     // Random character match 5 consonants -1 point per
     if(preg_match_all('/[bcdfghjklmnpqrstvwxz][bcdfghjklmnpqrstvwxz][bcdfghjklmnpqrstvwxz][bcdfghjklmnpqrstvwxz][bcdfghjklmnpqrstvwxz]/i', $submission, $match)){
         $points -= count($match[0]);
     }
+
 
     return $points;
 }
