@@ -103,16 +103,15 @@ function wc_score_user_submission($submission) {
         if(strlen($submission)>1024){
             $points -= 10;
         }
-
-    } else {
-        $points += 2;
     }
 
     // How long is the body
-    // More than 20 characters and there's no links + 2 points
+    // More than 200 characters and there's less than 2 links, + 5 points
     // Less than 20 characters -1 point
     if(strlen($submission)>20){
-        $points += 2;
+        if(strlen($submission)>200 && $link_count<2){
+            $points += 5;
+        }
     } else {
         $points -= 5;
     }
