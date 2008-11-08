@@ -95,7 +95,7 @@ if(count($_POST)){
         // setup the form with the posted data if there is an error
         $post_id = $_POST["post_id"];
         $post_subject = $_POST["subject"];
-        $post_body = $_POST["body"];
+        $post_body = $_POST["editor"];
         $post_tags = $_POST["tags"];
         $post_custom_date = isset($_POST["custom_date"]);
         $post_date = $_POST["date"];
