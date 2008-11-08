@@ -29,8 +29,8 @@ if($user) {
         $comment_name = trim($user["first_name"]." ".$user["last_name"]);
     }
 
-    $comment_email = "";
-    $comment_url = "";
+    $comment_email = $user["email"];
+    $comment_url = wc_get_url("main");
     $comment_status = "APPROVED";
 
 } else {
