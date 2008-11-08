@@ -158,6 +158,20 @@ background: #85ACF7 url('images/hidr.jpg');
 }
 
 
+#pagenav {
+    float: left;
+    width: 100%;
+}
+
+#pagenav .older {
+    float: right;
+}
+
+#pagenav .newer {
+    float: left;
+}
+
+
 #clear {
     display: block;
     clear: both;

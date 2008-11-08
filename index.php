@@ -37,9 +37,15 @@ include_once "./include/database.php";
 include_once "./include/output.php";
 include_once "./include/format.php";
 
-$data = wc_db_get_post_list(0, 10, true);
+$display = 10;
 
-$WCDATA["posts"] = $data[0];
+if(isset($_GET["s"])){
+    $start = (int)$_GET["s"];
+} else {
+    $start = 0;
+}
+
+list($WCDATA["posts"], $total_posts) = wc_db_get_post_list($start, $display, true);
 
 foreach($WCDATA["posts"] as &$post){
     wc_format_post($post);
@@ -49,6 +55,22 @@ unset($post);
 $WCDATA["title"] = $WC["default_title"];
 
 $WCDATA["description"] = $WC["default_description"];
+
+if($total_posts > $start + $display) {
+    $WCDATA["older_url"] = wc_get_url("main");
+    $s = $start + $display;
+    if($s>0){
+        $WCDATA["older_url"].="?s=$s";
+    }
+}
+
+if(($start > 0)){
+    $WCDATA["newer_url"] = wc_get_url("main");
+    $s = $start - $display;
+    if($s>0){
+        $WCDATA["newer_url"].="?s=$s";
+    }
+}
 
 wc_output("post_list", $WCDATA);
 

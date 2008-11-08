@@ -5,6 +5,14 @@ include_once "./include/database.php";
 include_once "./include/output.php";
 include_once "./include/format.php";
 
+$display = 10;
+
+if(isset($_GET["s"])){
+    $start = (int)$_GET["s"];
+} else {
+    $start = 0;
+}
+
 $tag = (isset($_GET["tag"])) ? trim((string)$_GET["tag"]) : "";
 
 if(empty($tag)){
@@ -12,14 +20,12 @@ if(empty($tag)){
     return;
 }
 
-$data = wc_db_get_post_list(0, 10, true, "", $tag);
+list($WCDATA["posts"], $total_posts) = wc_db_get_post_list($start, $display, true, "", $tag);
 
-if($data[1]<1){
+if($total_posts<1){
     wc_output("notfound");
     return;
 }
-
-$WCDATA["posts"] = $data[0];
 
 foreach($WCDATA["posts"] as &$post){
     wc_format_post($post);
@@ -31,6 +37,18 @@ $WCDATA["description"] = "Posts tagged with '$tag'. ".$WC["default_description"]
 
 $WCDATA["feed_url"] = wc_get_url("feed", "rss", $tag);
 
+if($total_posts > $start + $display) {
+    $s = $start + $display;
+    $WCDATA["older_url"] = wc_get_url("tag", $tag)."&s=$s";
+}
+
+if(($start > 0)){
+    $WCDATA["newer_url"] = wc_get_url("tag", $tag);
+    $s = $start - $display;
+    if($s>0){
+        $WCDATA["newer_url"].="&s=$s";
+    }
+}
 
 
 wc_output("post_list", $WCDATA);

@@ -281,6 +281,21 @@ input.button {
     margin-top: 40px;
 }
 
+#pagenav {
+    float: left;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+#pagenav .older {
+    float: right;
+}
+
+#pagenav .newer {
+    float: left;
+}
+
+
 /* sidebar */
 #sidebar {
     float: right;

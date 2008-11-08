@@ -145,6 +145,20 @@ div.post ul.footer li.tags {
 }
 
 
+#pagenav {
+    float: left;
+    width: 720px;
+    padding-left: 20px;
+}
+
+#pagenav .older {
+    float: right;
+}
+
+#pagenav .newer {
+    float: left;
+}
+
 div.comment {
     margin: 0 20px 15px 20px;
     border-bottom: 1px solid #B3B2AB;

@@ -264,6 +264,21 @@ form.search input.button {
     padding-left: 20px; margin: 0 10px 0 5px;
 }
 
+#pagenav {
+    float: left;
+    width: 100%;
+    margin-top: 20px;
+}
+
+#pagenav .older {
+    float: right;
+}
+
+#pagenav .newer {
+    float: left;
+}
+
+
 /* Comments */
 #comments {
     margin: 20px 10px;

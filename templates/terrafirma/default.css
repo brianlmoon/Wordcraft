@@ -340,6 +340,20 @@ ul.linklist li.first {
     border: 1px solid #666644;
 }
 
+#pagenav {
+    float: left;
+    width: 100%;
+}
+
+#pagenav .older {
+    float: right;
+}
+
+#pagenav .newer {
+    float: left;
+}
+
+
 #footer {
     font-size: 75%;
     position: relative;

@@ -181,6 +181,20 @@ color: #fff;
 cursor: pointer;
 }
 
+#pagenav {
+float: left;
+width: 100%;
+}
+
+#pagenav .older {
+float: right;
+}
+
+#pagenav .newer {
+float: left;
+}
+
+
 /* Footer */
 #footer {
 background: url(images/footer.jpg) #666 no-repeat top;

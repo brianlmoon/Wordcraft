@@ -23,3 +23,20 @@
     </div>
 
 <?php } ?>
+
+<?php if(isset($WCDATA["older_url"]) || isset($WCDATA["newer_url"])){ ?>
+
+    <div id="pagenav">
+
+        <?php if(isset($WCDATA["newer_url"])){ ?>
+            <a class="newer" href="<?php echo $WCDATA["newer_url"]; ?>">Newer Posts</a>
+        <?php } ?>
+
+        <?php if(isset($WCDATA["older_url"])){ ?>
+            <a class="older" href="<?php echo $WCDATA["older_url"]; ?>">Older Posts</a>
+        <?php } ?>
+
+    </div>
+
+<?php } ?>
+

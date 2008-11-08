@@ -185,6 +185,19 @@ body
     margin-bottom: 15px;
 }
 
+#pagenav {
+    float: left;
+    width: 100%;
+}
+
+#pagenav .older {
+    float: right;
+}
+
+#pagenav .newer {
+    float: left;
+}
+
 #column1 #add-comment input.text-input, #spamhurdles_captcha_answer_input {
     border: solid 1px #CECF8F;
     padding: 4px;
