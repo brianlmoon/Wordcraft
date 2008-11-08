@@ -114,7 +114,7 @@ function wc_score_user_submission($submission) {
     if(strlen($submission)>20){
         $points += 2;
     } else {
-        $points--;
+        $points -= 5;
     }
 
     // attempted BBCode -1 point per
@@ -156,7 +156,7 @@ function wc_score_user_submission($submission) {
     }
 
     // Body starts with common spammy words-2 points
-    if(preg_match('/^(Interesting|Sorry|Nice|Cool|Thanks|Wow)/i', $submission)){
+    if(preg_match('/^(Hello|Hi|Interesting|Sorry|Nice|Cool|Thanks|Wow)\b/i', $submission)){
         $points -= 2;
     }
 
