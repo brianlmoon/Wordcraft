@@ -20,9 +20,11 @@ if(!$post["allow_comments"]){
 }
 
 // check if this is a logged in author
-$user = wc_db_check_cookie($_COOKIE["wc_admin"]);
+if(empty($user) && isset($_COOKIE["wc_admin"])){
+    $user = wc_db_check_cookie($_COOKIE["wc_admin"]);
+}
 
-if($user) {
+if(!empty($user)) {
     if(empty($user["first_name"]) && empty($user["last_name"])){
         $comment_name = $user["user_name"];
     } else {
