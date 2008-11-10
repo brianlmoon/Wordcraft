@@ -33,7 +33,7 @@ if(empty($post_id)){
     $post_id = $WCDATA["post"]["post_id"];
 }
 
-list($WCDATA["comments"], $comment_total) = wc_db_get_comments($post_id);
+list($WCDATA["comments"], $comment_total) = wc_db_get_comments($post_id, "APPROVED");
 
 foreach($WCDATA["comments"] as &$comment){
     wc_format_comment($comment);

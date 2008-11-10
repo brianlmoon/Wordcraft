@@ -13,13 +13,15 @@ $limit = 50;
 if($status == "non-spam" || empty($status)){
     $fetch_status = array(
         "approved",
-        "hidden"
+        "unapproved"
     );
+} elseif($status=="all"){
+    $fetch_status = "";
 } else {
     $fetch_status = $status;
 }
 
-list($comments, $total) = wc_db_get_comments(false, $start, $limit, $filter, $fetch_status);
+list($comments, $total) = wc_db_get_comments(false, $fetch_status, $start, $limit, $filter);
 
 foreach($comments as $comment){
   wc_format_comment($comment);
@@ -31,7 +33,7 @@ list($posts, $post_count) = wc_db_get_post_list(false, false, false, false, fals
 // get spam count
 $spam_count = 0;
 if($status!="spam"){
-    list($spam, $spam_count) = wc_db_get_comments(false, 0, 101, "", "spam");
+    list($spam, $spam_count) = wc_db_get_comments(false, "spam", 0, 101, "");
     unset($spam);
     if($spam_count > 0){
 
@@ -75,7 +77,7 @@ if($last > $total) {
         <input type="radio" id="status-all" name="status" value="all" <?php if($_GET["status"]=="all") echo "checked"; ?> /><label for="status-all"> All</label>
         <input type="radio" id="status-non-spam" name="status" value="non-spam" <?php if(empty($_GET["status"])) echo "checked"; ?> /><label for="status-all"> Non-Spam</label>
         <input type="radio" id="status-approved" name="status" value="approved" <?php if($_GET["status"]=="approved") echo "checked"; ?> /><label for="status-approved"> Approved</label>
-        <input type="radio" id="status-hidden" name="status" value="hidden" <?php if($_GET["status"]=="hidden") echo "checked"; ?> /><label for="status-hidden"> Hidden</label>
+        <input type="radio" id="status-hidden" name="status" value="unapproved" <?php if($_GET["status"]=="unapproved") echo "checked"; ?> /><label for="status-hidden"> Hidden</label>
         <input type="radio" id="status-spam" name="status" value="spam" <?php if($_GET["status"]=="spam") echo "checked"; ?> /><label for="status-spam"> Spam</label><br />
         <input type="text" class="inputgri" name="filter" value="<?php echo htmlspecialchars($filter); ?>" />
         <input type="submit" class="button" value="Filter" />

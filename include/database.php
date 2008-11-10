@@ -395,11 +395,7 @@ function wc_db_get_post_list($start=false, $limit=false, $bodies=false, $filter=
 
     if($filter) {
 
-        $words = preg_split('!\s+!', $filter);
-
-        $match = $WCDB->escape("+".implode(" +", $words));
-
-        $where[] = "match (subject, body) against ('$match' in boolean mode)";
+        $where[] = wc_db_create_like_string(array("subject", "body"), $filter);
     }
 
     if($post_ids!=false && is_array($post_ids)){
@@ -859,7 +855,7 @@ function wc_db_get_comment($comment_id) {
 }
 
 
-function wc_db_get_comments($post_id=false, $start=false, $limit=false, $filter=false, $status=false) {
+function wc_db_get_comments($post_id=false, $status=false, $start=false, $limit=false, $filter=false) {
 
     global $WCDB, $WC;
 
@@ -875,11 +871,7 @@ function wc_db_get_comments($post_id=false, $start=false, $limit=false, $filter=
 
     if($filter) {
 
-        $words = preg_split('!\s+!', $filter);
-
-        $match = $WCDB->escape("+".implode(" +", $words));
-
-        $where[] = "match (name, comment, email) against ('$match' in boolean mode)";
+        $where[] = wc_db_create_like_string(array("name", "comment", "email"), $filter);
     }
 
     if($status!==false){
@@ -912,6 +904,90 @@ function wc_db_get_comments($post_id=false, $start=false, $limit=false, $filter=
     if(empty($comments)) $comments = array();
 
     return array($comments, $total);
+}
+
+/**
+ * Creates a LIKE clause for a query
+ *
+ * @param   $fields     Fields to be searched
+ * @param   $search     The search string provided by the user
+ * @return  string
+ *
+ */
+function wc_db_create_like_string($fields, $search) {
+
+    global $WCDB;
+
+    // Surround with spaces so matching is easier.
+    $search = " $search ";
+
+    // Pull out all grouped terms, e.g. (nano mini).
+    $paren_terms = array();
+    if (strstr($search, '(')) {
+        preg_match_all('/ (\-*\(.+?\)) /', $search, $m);
+        $search = preg_replace('/ \-*\(.+?\) /', ' ', $search);
+        $paren_terms = $m[1];
+    }
+
+    // Pull out all the double quoted strings,
+    // e.g. '"iMac DV" or -"iMac DV".
+    $quoted_terms = array();
+    if (strstr( $search, '"')) {
+        preg_match_all('/ (\-*".+?") /', $search, $m);
+        $search = preg_replace('/ \-*".+?" /', ' ', $search);
+        $quoted_terms = $m[1];
+    }
+
+    // Finally, pull out the rest words in the string.
+    $norm_terms = preg_split("/\s+/", $search, 0, PREG_SPLIT_NO_EMPTY);
+
+    // Merge all search terms together.
+    $tokens =  array_merge($quoted_terms, $paren_terms, $norm_terms);
+
+
+    $clauses = array();
+
+    foreach($tokens as $token){
+
+        if(preg_match('!\((.+?)\)!', $token, $match)){
+
+            $sub_token = explode(",", $match[1]);
+
+        } else {
+
+            $sub_token = array($token);
+        }
+
+        $tok_clauses = array();
+
+        foreach($sub_token as $sub){
+
+            $sub = trim($sub);
+
+            if($sub[0]=="-"){
+                $sub = substr($sub, 1);
+                $cond = "NOT LIKE";
+            } else {
+                $cond = "LIKE";
+            }
+
+            if(preg_match('!"(.+?)"!', $sub, $match)){
+                $sub = $match[1];
+            }
+
+            $sub = $WCDB->escape($sub);
+
+            foreach($fields as $field){
+
+                $tok_clauses[] = "$field $cond '%$sub%'";
+            }
+
+        }
+
+        $clauses[] = "(".implode(" OR ", $tok_clauses).")";
+    }
+
+    return implode(" AND\n", $clauses);
 }
 
 
