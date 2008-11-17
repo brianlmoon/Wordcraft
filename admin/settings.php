@@ -3,7 +3,7 @@
 include_once "./check_auth.php";
 include_once "../include/common.php";
 include_once "./admin_functions.php";
-include_once "../include/akismet.php";
+include_once "../include/spam.php";
 
 if(count($_POST)){
 
