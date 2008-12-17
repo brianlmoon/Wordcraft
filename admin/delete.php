@@ -9,7 +9,7 @@ if(!empty($_POST["post_id"]) && is_numeric($_POST["post_id"])){
 
         wc_db_delete_post($_POST["post_id"]);
 
-        wc_admin_message("Post deleted.");
+        wc_admin_message("Post deleted.", true, "index.php");
 
     } else {
 
@@ -23,7 +23,7 @@ if(!empty($_POST["post_id"]) && is_numeric($_POST["post_id"])){
 
         wc_db_delete_page($_POST["page_id"]);
 
-        wc_admin_message("Page deleted.");
+        wc_admin_message("Page deleted.", true, "pages.php");
 
     } else {
 

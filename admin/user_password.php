@@ -38,7 +38,7 @@ if(count($_POST)){
         $success = wc_db_save_user($user_array);
 
         if($success){
-            wc_admin_message("User Password Saved!");
+            wc_admin_message("User Password Saved!", true, "users.php");
         } else{
             $error = "There was an error saving the user.";
         }

@@ -24,25 +24,25 @@ if(count($_POST) && ($_POST["mode"]=="delete_spam" || (!empty($_POST["comment_id
 
         case "delete":
             wc_db_delete_comment($_POST["comment_id"]);
-            wc_admin_message("Comment deleted.");
+            wc_admin_message("Comment deleted.", true, "comments.php");
             break;
         case "spam":
             wc_akismet_request( $comment, "submit-spam" );
             wc_db_delete_comment($_POST["comment_id"]);
-            wc_admin_message("Comment flagged as spam and deleted.");
+            wc_admin_message("Comment flagged as spam and deleted.", true, "comments.php");
             break;
         case "approve":
             wc_akismet_request( $comment, "submit-ham" );
             wc_db_save_comment(array("comment_id"=>$_POST["comment_id"], "status"=>"APPROVED"));
-            wc_admin_message("Comment approved.");
+            wc_admin_message("Comment approved.", true, "comments.php");
             break;
         case "hide":
             wc_db_save_comment(array("comment_id"=>$_POST["comment_id"], "status"=>"UNAPPROVED"));
-            wc_admin_message("Comment hidden.");
+            wc_admin_message("Comment hidden.", true, "comments.php");
             break;
         case "delete_spam":
             wc_db_delete_spam();
-            wc_admin_message("Spam deleted.");
+            wc_admin_message("Spam deleted.", true, "comments.php");
             break;
         default:
             wc_admin_error("Invalid mode ".htmlspecialchars($_POST["mode"])." for comment moderation.");

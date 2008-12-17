@@ -9,7 +9,7 @@ if(!empty($_POST["user_id"]) && is_numeric($_POST["user_id"])){
 
         wc_db_delete_user($_POST["user_id"]);
 
-        wc_admin_message("User deleted.");
+        wc_admin_message("User deleted.", true, "users.php");
 
     } else {
 

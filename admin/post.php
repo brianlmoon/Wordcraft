@@ -59,16 +59,28 @@ if(count($_POST)){
         $error = "The URI you entered is already in use by another page or post.";
     }
 
+    if($_POST["save_mode"]=="Publish"){
+        $published = 1;
+        $redir = false;
+        $post_date = date("Y-m-d H:i:s");
+    } elseif($_POST["save_mode"]=="Save"){
+        $published = 0;
+        $redir = true;
+    } else {
+        $published = (int)$_POST["published"];
+        $redir = false;
+    }
+
     if(empty($error)){
 
         $post_array = array(
-            "user_id"        => $USER["user_id"],
+            "user_id"        => $WC["user"]["user_id"],
             "post_id"        => $_POST["post_id"],
             "subject"        => $_POST["subject"],
             "body"           => $_POST["editor"],
             "tags"           => $_POST["tags"],
-            "allow_comments" => isset($_POST["allow_comments"]),
-            "published"      => isset($_POST["published"]),
+            "allow_comments" => (int)$_POST["allow_comments"],
+            "published"      => (int)$published,
             "uri"            => $post_uri,
         );
 
@@ -84,8 +96,15 @@ if(count($_POST)){
                 wc_admin_handle_linkbacks($post_array["post_id"]);
             }
 
-            wc_admin_message("Post Saved!");
+            if($redir){
+                header("Location: post.php??mode=edit&post_id=$post_array[post_id]");
+                exit();
+            }
+
+            wc_admin_message("Post Saved!", true, "index.php");
+
         } else{
+
             $error = "There was an error saving your post.";
         }
     }
@@ -197,7 +216,14 @@ if(!empty($error)){
     </p>
 
     <p>
-        <input class="button" type="submit" value="Save" />
+        <?php if(!empty($post_id) && !empty($post_published)) { ?>
+            <input class="button" type="submit" name="save_mode" value="Update" />
+        <?php } else {?>
+            <?php if(empty($post_id) || empty($post_published)) { ?>
+                <input class="button" type="submit" name="save_mode" value="Publish" />
+            <?php } ?>
+            <input class="button" type="submit" name="save_mode" value="Save" />
+        <?php } ?>
     </p>
 
 </form>

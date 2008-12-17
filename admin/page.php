@@ -51,7 +51,7 @@ if(count($_POST)){
         $success = wc_db_save_page($page_array);
 
         if($success){
-            wc_admin_message("Page Saved!");
+            wc_admin_message("Page Saved!", true, "pages.php");
         } else{
             $error = "There was an error saving your page.";
         }

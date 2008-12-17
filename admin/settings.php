@@ -13,9 +13,6 @@ if(count($_POST)){
 
         switch($name){
             case "base_url":
-            case "session_secret":
-            case "session_path":
-            case "session_domain":
             case "date_format_long":
             case "date_format_short":
             case "template":
@@ -62,7 +59,7 @@ if(count($_POST)){
     if(!$success){
         wc_admin_error("Settings could not be saved.");
     } else {
-        wc_admin_message("Settings saved!");
+        wc_admin_message("Settings saved!", true, "index.php");
     }
 
 }
@@ -166,23 +163,8 @@ include_once "./header.php";
     <h2>Session Settings</h2>
 
     <p>
-        <strong>Session Cookie Expires in Days:</strong><br />
+        <strong>Remembered Session Cookie Expires in Days:</strong><br />
         <input class="inputgri" type="text" value="<?php echo htmlspecialchars($settings["session_days"]); ?>" id="session_days" name="session_days" />
-    </p>
-
-    <p>
-        <strong>Session Cookie Path:</strong><br />
-        <input class="inputgri" type="text" value="<?php echo htmlspecialchars($settings["session_path"]); ?>" id="session_path" name="session_path" />
-    </p>
-
-    <p>
-        <strong>Session Cookie Domain:</strong><br />
-        <input class="inputgri" type="text" value="<?php echo htmlspecialchars($settings["session_domain"]); ?>" id="session_domain" name="session_domain" />
-    </p>
-
-    <p>
-        <strong>Session Cookie Secret:</strong><br />
-        <input class="inputgri" type="text" value="<?php echo htmlspecialchars($settings["session_secret"]); ?>" id="session_secret" name="session_secret" />
     </p>
 
 

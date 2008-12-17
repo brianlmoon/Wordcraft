@@ -23,17 +23,17 @@ if(count($_POST)){
 
         } else {
 
-            $base = uniqid().$WC["session_secret"];
+            $_SESSION["wc_user_id"] = $user_id;
 
-            $session_id = md5($base).sha1($base);
+            session_write_close();
 
-            $time = (isset($_POST["remember"])) ? time()+(86400*$WC["session_days"]) : 0;
+            if(empty($_SERVER["HTTP_REFERER"])){
+                $redir = "index.php";
+            } else {
+                $redir = $_SERVER["HTTP_REFERER"];
+            }
 
-            setcookie("wc_admin", $user_id.":".$session_id, $time, $WC["session_path"], $WC["session_domain"]);
-
-            wc_db_save_user(array("user_id"=>$user_id, "session_id"=>$session_id));
-
-            header("Location: index.php");
+            header("Location: $redir");
             exit();
 
         }

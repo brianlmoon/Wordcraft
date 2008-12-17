@@ -15,7 +15,7 @@ if(empty($_POST)){
 $post = wc_db_get_post($_POST["post_id"]);
 wc_format_post($post);
 
-if(!$post["allow_comments"]){
+if(empty($post["allow_comments"])){
     wc_output("error", array("error"=>"Comments are disabled on this post."));
 }
 

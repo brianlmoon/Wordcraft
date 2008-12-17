@@ -28,9 +28,9 @@
             <div id="header">
                 <!-- rightheader -->
                 <div id="rightheader">
-                <?php if(!empty($USER["user_name"])) { ?>
+                <?php if(!empty($WC["user"]["user_name"])) { ?>
                     <p>
-                        Hey <strong><?php echo $USER["user_name"]; ?></strong>, <a href="logout.php">Logout</a>
+                        Hey <strong><?php echo $WC["user"]["user_name"]; ?></strong>, <a href="logout.php">Logout</a>
                    </p>
                 <?php } ?>
                 </div>
@@ -44,7 +44,7 @@
                 </div>
 
                 <!-- navigation -->
-                <?php if(!empty($USER["user_name"])) { ?>
+                <?php if(!empty($WC["user"]["user_name"])) { ?>
                 <div id="navigation">
                     <ul>
                         <li><a href="index.php">Manage Posts</a></li>

@@ -4,7 +4,7 @@ include_once "../include/url.php";
 
 function wc_admin_error($error_message, $exit=true) {
 
-    global $WC, $USER;
+    global $WC;
 
     if($exit) include_once "./header.php";
 
@@ -21,9 +21,9 @@ function wc_admin_error($error_message, $exit=true) {
     }
 }
 
-function wc_admin_message($message, $exit=true) {
+function wc_admin_message($message, $exit=true, $redir=null) {
 
-    global $WC, $USER;
+    global $WC;
 
     if($exit) include_once "./header.php";
 
@@ -31,7 +31,16 @@ function wc_admin_message($message, $exit=true) {
         <div class="notice">
             <?php echo htmlspecialchars($message); ?>
         </div>
+
+        <?php if(!empty($redir)){ ?>
+
+            <meta http-equiv="refresh" content="3;url=<?=$redir?>">
+
+        <?php } ?>
+
     <?php
+
+
 
     if($exit) include_once "./footer.php";
 

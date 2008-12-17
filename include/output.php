@@ -105,10 +105,10 @@ function wc_build_common_data(&$WCDATA) {
         $WCDATA["description"] = $WC["default_description"];
     }
 
-    // check if this is a logged in author
-    $WCDATA["user"] = wc_db_check_cookie($_COOKIE["wc_admin"]);
+    if(!empty($WC["user"]["user_id"])){
 
-    if(!empty($WCDATA["user"]["user_id"])){
+        $WCDATA["user"] = $WC["user"];
+
         $WCDATA["admin"]["base_url"] = $WC["base_url"]."/admin/";
         $WCDATA["admin"]["logout_url"] = $WC["base_url"]."/admin/logout.php";
         $WCDATA["admin"]["new_post_url"] = $WC["base_url"]."/admin/post.php";
