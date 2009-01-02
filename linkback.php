@@ -40,14 +40,11 @@ function handle_linkback($remote, $local, $title="", $except="") {
         }
     }
 
-
     // check for sef urls if no $post
     if(empty($post)){
-        if(preg_match('!\d\d\d\d/\d\d/\d\d/[a-z0-9_\-]+!i', $local, $match)){
-            $uri = $match[0];
-            if($uri){
-                $post = wc_db_get_post($uri);
-            }
+        $uri = str_replace($WC["base_url"]."/", "", $local);
+        if($uri){
+            $post = wc_db_get_post($uri);
         }
     }
 
@@ -225,6 +222,7 @@ if(!empty($xml)){
                 $response.= '</fault>';
                 $response.= '</methodResponse>';
             }
+file_put_contents("/tmp/db.log", $response."\n", FILE_APPEND);
 
             header("Content-Type: text/xml");
             echo $response;
