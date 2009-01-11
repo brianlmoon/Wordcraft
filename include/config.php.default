@@ -23,6 +23,7 @@ $WC = array(
             "tag"      => array("page"=>"tag.php",      "format"=>"?tag=%s"),
             "feed"     => array("page"=>"feed.php",     "format"=>"?type=%s&tag=%s"),
             "pingback" => array("page"=>"linkback.php", "format"=>""),
+            "search"   => array("page"=>"search.php",   "format"=>""),
     ),
 
 );
