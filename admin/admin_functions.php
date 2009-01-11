@@ -58,8 +58,8 @@ function wc_admin_handle_linkbacks($post_id) {
     $post_url = wc_get_url("post", $post_id, $post["uri"]);
 
 
-        // handle pingbacks/trackbacks
-    if(preg_match_all('!href="(.+?)"|href=\'(.+?)\'|href=([^ >]+)!', $post["body"], $match)){
+    // handle pingbacks/trackbacks
+    if(preg_match_all('!href=\s*"(.+?)"|href=\s*\'(.+?)\'|href=\s*([^ >]+)!si', $post["body"], $match)){
 
         $urls = array_unique(array_merge($match[1], $match[2], $match[3]));
 
@@ -75,7 +75,7 @@ function wc_admin_handle_linkbacks($post_id) {
             }
 
             if(empty($pingback_url)){
-                $data = file_get_contents($url);
+                $data = @file_get_contents($url);
                 if(preg_match('!<link.+?rel="pingback".*>!si', $data, $match)){
                     if(preg_match('!href="(.+?)"|href=\'(.+?)\'|href=([^ >]+)!', $match[0], $match)){
                         $pingback_url = max($match[1], $match[2], $match[3]);
@@ -110,6 +110,7 @@ function wc_admin_handle_linkbacks($post_id) {
             }
 
         }
+
     }
 
 }
