@@ -133,6 +133,9 @@ div.post div.date {
     font-size: 90%;
 }
 
+div.post div.body li {
+    margin-bottom: 8px;
+}
 
 ul.stats {
     background: transparent url(images/stats.png) repeat 0 0;
