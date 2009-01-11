@@ -62,7 +62,9 @@ if(count($_POST)){
     if($_POST["save_mode"]=="Publish"){
         $published = 1;
         $redir = false;
-        $post_date = date("Y-m-d H:i:s");
+        if(empty($post_date)){
+            $post_date = date("Y-m-d H:i:s");
+        }
     } elseif($_POST["save_mode"]=="Save"){
         $published = 0;
         $redir = true;
@@ -72,6 +74,21 @@ if(count($_POST)){
     }
 
     if(empty($error)){
+
+        if(function_exists("tidy_repair_string")){
+            // if we have tidy available, lets use it to conform our
+            // HTML to HTML 4 and not XHTML as TinMCE likes to write.
+            $html = '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"><html><head></head><body>'.$_POST["editor"]."</body></html>";
+            $config = array(
+                "indent"          => true,
+                "indent-spaces"   => 4,
+                "show-body-only"  => true,
+                "vertical-space"  => true,
+                "sort-attributes" => "alpha",
+            );
+            $_POST["editor"] = trim(tidy_repair_string($html, $config, "utf8"));
+        }
+
 
         $post_array = array(
             "user_id"        => $WC["user"]["user_id"],
@@ -211,6 +228,43 @@ if(!empty($error)){
     </p>
 
     <p class="clear">
+        <!-- TinyMCE -->
+        <script type="text/javascript" src="./tiny_mce/tiny_mce.js"></script>
+        <script type="text/javascript">
+            tinyMCE.init({
+                // General options
+                mode : "textareas",
+                theme : "advanced",
+                skin : "wordcraft",
+
+                width : "930",
+
+                relative_urls : false,
+                convert_urls : false,
+
+                plugins : "safari,style,table,advimage,advlink,inlinepopups,media,paste,nonbreaking",
+
+                // Theme options
+                theme_advanced_buttons1 : "bold,italic,underline,strikethrough,sub,sup,|,justifyleft,justifycenter,justifyright,justifyfull,formatselect,fontsizeselect,styleprops,|,forecolor,backcolor,|,help",
+                theme_advanced_buttons2 : "link,unlink,anchor,image,media,|,pastetext,pasteword,|,bullist,numlist,|,outdent,indent,blockquote,|,undo,redo,|,tablecontrols,code,cleanup,nonbreaking",
+                theme_advanced_buttons3 : "",
+                theme_advanced_toolbar_location : "top",
+                theme_advanced_toolbar_align : "left",
+                theme_advanced_statusbar_location : "bottom",
+                theme_advanced_resizing : true,
+
+                // Example content CSS (should be your site CSS)
+                content_css : "css/content.css",
+
+                // Drop lists for link/image/media/template dialogs
+                template_external_list_url : "lists/template_list.js",
+                external_link_list_url : "lists/link_list.js",
+                external_image_list_url : "lists/image_list.js",
+                media_external_list_url : "lists/media_list.js",
+
+            });
+        </script>
+        <!-- /TinyMCE -->
         <strong>Post:</strong><br />
         <textarea id="editor" name="editor" rows="20" cols="75"><?php echo htmlspecialchars($post_body); ?></textarea>
     </p>
@@ -227,6 +281,10 @@ if(!empty($error)){
     </p>
 
 </form>
+
+<?php
+
+/*
 
 <script>
 
@@ -376,6 +434,8 @@ if(!empty($error)){
 </script>
 
 <?php
+
+*/
 
 include_once "./footer.php";
 
