@@ -2,6 +2,11 @@
 
             <div id="sidebar">
 
+                <h1>Search</h1>
+                <form id="search" action="<?php echo $WCDATA["search_url"]; ?>" method="get">
+                    <input type="text" class="textbox" name="q" id="q"><input class="button" type="submit" id="submit" value="Go">
+                </form>
+
                 <h1>Tags</h1>
                 <ul class="sidemenu">
                     <?php foreach($WCDATA["tags"] as $tag) { ?>

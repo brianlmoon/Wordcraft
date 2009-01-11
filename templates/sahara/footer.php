@@ -1,6 +1,12 @@
             </div>
 
             <div id="column2">
+
+                <h3>Search</h3>
+                <form id="search" action="<?php echo $WCDATA["search_url"]; ?>" method="get">
+                    <input type="text" name="q" id="q"><input type="submit" id="submit" value="Go">
+                </form>
+
                 <h3>Tags</h3>
                 <ul>
                     <?php foreach($WCDATA["tags"] as $tag) { ?>

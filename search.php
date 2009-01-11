@@ -13,14 +13,14 @@ if(isset($_GET["s"])){
     $start = 0;
 }
 
-$tag = (isset($_GET["tag"])) ? trim((string)$_GET["tag"]) : "";
+$query = (isset($_GET["q"])) ? trim((string)$_GET["q"]) : "";
 
-if(empty($tag)){
+if(empty($query)){
     wc_output("notfound");
     return;
 }
 
-list($WCDATA["posts"], $total_posts) = wc_db_get_post_list($start, $display, true, "", $tag);
+list($WCDATA["posts"], $total_posts) = wc_db_get_post_list($start, $display, true, $query);
 
 if($total_posts<1){
     wc_output("notfound");
@@ -32,10 +32,10 @@ foreach($WCDATA["posts"] as &$post){
 }
 unset($post);
 
-$WCDATA["title"] = "Posts tagged with `".htmlspecialchars($tag)."` - ".$WC["default_title"];
-$WCDATA["description"] = "Posts tagged with `".htmlspecialchars($tag)."`. ".$WC["default_description"];
+$WCDATA["title"] = "Posts containing `".htmlspecialchars($query)."` - ".$WC["default_title"];
+$WCDATA["description"] = "Posts containing `".htmlspecialchars($query)."`. ".$WC["default_description"];
 
-$WCDATA["feed_url"] = wc_get_url("feed", "rss", $tag, "");
+$WCDATA["feed_url"] = wc_get_url("feed", "rss", "", $query);
 
 if($total_posts > $start + $display) {
     $s = $start + $display;

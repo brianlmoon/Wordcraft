@@ -131,8 +131,6 @@ input.button {
 
 /* search */
 form.search {
-    position: absolute;
-    top: 35px; right: 25px;
     background: transparent;
     border: none;
 }
@@ -146,7 +144,7 @@ form.search input.button {
     background: #CCC url(images/headerbg.gif) repeat-x;
     color: #333;
     border: none;
-    width: 70px; height: 21px;
+    width: 40px; height: 21px;
 }
 
 /********************************************

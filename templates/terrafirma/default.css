@@ -217,6 +217,14 @@ ul.linklist li.first {
     font-size: 90%;
 }
 
+#secondarycontent #search {
+    padding: 0px 10px 0px 10px;
+}
+
+#secondarycontent #q {
+    width: 60%;
+}
+
 #primarycontent {
     position: relative;
     width: 480px;

@@ -140,7 +140,7 @@ input.button {
 #sidebar #search {
     background: #f2f2f2;
     margin: 0 15px;
-    padding: 5px 0;
+    padding: 5px;
 }
 #sidebar #search img {
     vertical-align: bottom;

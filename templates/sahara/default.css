@@ -249,3 +249,7 @@ body
 {
     border-bottom: dashed 1px #EFEFD6;
 }
+
+#q {
+    width: 70%;
+}

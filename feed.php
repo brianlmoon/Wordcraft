@@ -6,8 +6,9 @@ include_once "./include/format.php";
 include_once "./include/feeds.php";
 
 $tag = (empty($_GET["tag"])) ? "" : $_GET["tag"];
+$query = (empty($_GET["q"])) ? "" : $_GET["q"];
 
-$data = wc_db_get_post_list(0, 30, true, "", $tag);
+$data = wc_db_get_post_list(0, 30, true, $query, $tag);
 
 $WCDATA["posts"] = $data[0];
 
@@ -26,7 +27,7 @@ $WCDATA["description"] = $WC["default_description"];
 
 $feed_type = (empty($_GET["type"])) ? "rss" : $_GET["type"];
 
-$url = wc_get_url("feed", $feed_type, $tag);
+$url = wc_get_url("feed", $feed_type, $tag, $query);
 
 switch($feed_type){
     case "atom":

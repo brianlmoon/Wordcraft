@@ -161,24 +161,11 @@ text-decoration: none;
 }
 
 /* Search */
-.searchform {
-background: #2b2b2b;
-border: 1px solid #808080;
-color: #fff;
-width: 110px;
+#search {
+    padding-left: 20px;
 }
-
-.searchbutton {
-background: #00c;
-border: 1px solid #808080;
-color: #c0c0c0;
-margin-top: 3px;
-}
-
-.searchbutton:hover {
-border: 1px solid #fff;
-color: #fff;
-cursor: pointer;
+#q {
+    width: 60%;
 }
 
 #pagenav {

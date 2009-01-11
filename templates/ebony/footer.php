@@ -10,6 +10,11 @@
             <?php } ?>
         </ul>
 
+        <h2>Search</h2>
+        <form id="search" action="<?php echo $WCDATA["search_url"]; ?>" method="get">
+            <input type="text" name="q" id="q"><input type="submit" id="submit" value="Go">
+        </form>
+
         <h2>Tags</h2>
         <ul>
             <?php foreach($WCDATA["tags"] as $tag) { ?>

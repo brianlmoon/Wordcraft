@@ -50,6 +50,9 @@ function wc_get_url() {
             case 3:
                 $url = sprintf("%s/%s".$WC["url_formats"][$args[0]]["format"], $WC["base_url"], $WC["url_formats"][$args[0]]["page"], $args[1], $args[2]);
                 break;
+            case 4:
+                $url = sprintf("%s/%s".$WC["url_formats"][$args[0]]["format"], $WC["base_url"], $WC["url_formats"][$args[0]]["page"], $args[1], $args[2], $args[3]);
+                break;
             default:
                 $bt = debug_backtrace();
                 trigger_error("Wrong parameter count for ".__FUNCTION__."() in ".$bt[0]["file"]." on line ".$bt[0]["line"], E_USER_WARNING);

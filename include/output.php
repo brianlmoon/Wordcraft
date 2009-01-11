@@ -80,6 +80,7 @@ function wc_build_common_data(&$WCDATA) {
 
     $WCDATA["base_url"] = $WC["base_url"];
     $WCDATA["home_url"] = wc_get_url("main");
+    $WCDATA["search_url"] = wc_get_url("search");
 
     if(empty($WCDATA["feed_url"])){
         $WCDATA["feed_url"] = wc_get_url("feed");

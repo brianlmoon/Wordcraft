@@ -214,6 +214,11 @@ div.comment img {
     font-size: 100%;
 }
 
+#secondarycontent form #q {
+    width: 75%;
+}
+
+
 #secondarycontent div.content {
     margin-bottom: 20px;
 }

@@ -36,6 +36,11 @@
 
             <div id="sidebar">
 
+                <h1>Search</h1>
+                <form id="search" class="search" action="<?php echo $WCDATA["search_url"]; ?>" method="get">
+                    <input type="text" name="q" id="q" class="textbox"><input class="button" type="submit" id="submit" value="Go">
+                </form>
+
                 <h1>Tags</h1>
                 <div class="left-box">
                     <ul class="sidemenu">

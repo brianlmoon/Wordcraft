@@ -8,6 +8,17 @@
                         Brian Moon, of dealnews.com, shares what he knows (and learns) about PHP, MySQL and other stuff
                     </div>
 
+                    <h3>search</h3>
+
+                    <ul>
+                        <li>
+                            <form id="search" action="<?php echo $WCDATA["search_url"]; ?>" method="get">
+                                <input type="text" name="q" id="q"><input type="submit" value="Go">
+                            </form>
+                        </li>
+                    </ul>
+
+
                     <div id="ad">
                         <script type="text/javascript"><!--
                         google_ad_client = "pub-7076699294893330";
