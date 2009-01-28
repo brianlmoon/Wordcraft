@@ -55,48 +55,28 @@ if ( get_magic_quotes_gpc() && count( $_REQUEST ) ) {
 // initialize output settings
 $WCDATA = array();
 
-// check for login and set the session lifetime based on the remmber flag
-if(isset($_POST["user_name"]) && isset($_POST["password"])){
-    if(isset($_POST["remember"])){
 
-        session_set_cookie_params  ( $WC["session_days"] * 86400 );
-
-    } else {
-
-        session_set_cookie_params  ( 0 );
-    }
-}
 
 session_name("WCSESSID");
 
 session_start();
 
-
-// if this is a new session, the session_start call
-// above will set the cookie.  We don't want to
-// set it twice, so we check for something in the session
-// or set it if not set.
-
-if(isset($_SESSION["restored"])){
-
-    $ttl = ini_get("session.cookie_lifetime");
-    if($ttl > 0){
-        $ttl += time();
-    }
+// if the session is set to remember or remember
+// was checked on the login form, set the cookie with a ttl
+if(!empty($_SESSION["remember"]) || isset($_POST["remember"])){
 
     setcookie(
         ini_get("session.name"),
         session_id(),
-        $ttl,
+        time() + $WC["session_days"] * 86400,
         ini_get("session.cookie_path"),
         ini_get("session.cookie_domain"),
         ini_get("session.cookie_secure"),
         ini_get("session.cookie_httponly")
     );
-} else {
-    $_SESSION["restored"] = true;
-}
 
+    $_SESSION["remember"] = true;
+}
 
 
 if(isset($_SESSION["wc_user_id"])){
