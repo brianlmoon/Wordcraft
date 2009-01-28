@@ -19,19 +19,14 @@ if(empty($post["allow_comments"])){
     wc_output("error", array("error"=>"Comments are disabled on this post."));
 }
 
-// check if this is a logged in author
-if(empty($user) && isset($_COOKIE["wc_admin"])){
-    $user = wc_db_check_cookie($_COOKIE["wc_admin"]);
-}
-
-if(!empty($user)) {
-    if(empty($user["first_name"]) && empty($user["last_name"])){
-        $comment_name = $user["user_name"];
+if(!empty($WC["user"])) {
+    if(empty($WC["user"]["first_name"]) && empty($WC["user"]["last_name"])){
+        $comment_name = $WC["user"]["user_name"];
     } else {
-        $comment_name = trim($user["first_name"]." ".$user["last_name"]);
+        $comment_name = trim($WC["user"]["first_name"]." ".$WC["user"]["last_name"]);
     }
 
-    $comment_email = $user["email"];
+    $comment_email = $WC["user"]["email"];
     $comment_url = wc_get_url("main");
     $comment_status = "APPROVED";
 
