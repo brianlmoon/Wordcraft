@@ -59,7 +59,6 @@ $WCDATA = array();
 if(isset($_POST["user_name"]) && isset($_POST["password"])){
     if(isset($_POST["remember"])){
 
-
         session_set_cookie_params  ( $WC["session_days"] * 86400 );
 
     } else {
@@ -71,6 +70,34 @@ if(isset($_POST["user_name"]) && isset($_POST["password"])){
 session_name("WCSESSID");
 
 session_start();
+
+
+// if this is a new session, the session_start call
+// above will set the cookie.  We don't want to
+// set it twice, so we check for something in the session
+// or set it if not set.
+
+if(isset($_SESSION["restored"])){
+
+    $ttl = ini_get("session.cookie_lifetime");
+    if($ttl > 0){
+        $ttl += time();
+    }
+
+    setcookie(
+        ini_get("session.name"),
+        session_id(),
+        $ttl,
+        ini_get("session.cookie_path"),
+        ini_get("session.cookie_domain"),
+        ini_get("session.cookie_secure"),
+        ini_get("session.cookie_httponly")
+    );
+} else {
+    $_SESSION["restored"] = true;
+}
+
+
 
 if(isset($_SESSION["wc_user_id"])){
 
