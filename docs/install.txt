@@ -32,7 +32,7 @@ Wordcraft Installation
     same database.  If you are, you can use whatever you want here as long
     as it is numbers, letters and _.  Do not use spaces in your prefix.
 
- 7. If the Wordpress code is not already on a server, you should upload it
+ 7. If the Wordcraft code is not already on a server, you should upload it
     now using your FTP client, web hosting control panel, or whatever
     method you prefer for moving files to your server.
 
