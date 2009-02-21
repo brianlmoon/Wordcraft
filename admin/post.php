@@ -228,43 +228,6 @@ if(!empty($error)){
     </p>
 
     <p class="clear">
-        <!-- TinyMCE -->
-        <script type="text/javascript" src="./tiny_mce/tiny_mce.js"></script>
-        <script type="text/javascript">
-            tinyMCE.init({
-                // General options
-                mode : "textareas",
-                theme : "advanced",
-                skin : "wordcraft",
-
-                width : "930",
-
-                relative_urls : false,
-                convert_urls : false,
-
-                plugins : "safari,style,table,advimage,advlink,inlinepopups,media,paste,nonbreaking",
-
-                // Theme options
-                theme_advanced_buttons1 : "bold,italic,underline,strikethrough,sub,sup,|,justifyleft,justifycenter,justifyright,justifyfull,formatselect,fontsizeselect,styleprops,|,forecolor,backcolor,|,help",
-                theme_advanced_buttons2 : "link,unlink,anchor,image,media,|,pastetext,pasteword,|,bullist,numlist,|,outdent,indent,blockquote,|,undo,redo,|,tablecontrols,code,cleanup,nonbreaking",
-                theme_advanced_buttons3 : "",
-                theme_advanced_toolbar_location : "top",
-                theme_advanced_toolbar_align : "left",
-                theme_advanced_statusbar_location : "bottom",
-                theme_advanced_resizing : true,
-
-                // Example content CSS (should be your site CSS)
-                content_css : "css/content.css",
-
-                // Drop lists for link/image/media/template dialogs
-                template_external_list_url : "lists/template_list.js",
-                external_link_list_url : "lists/link_list.js",
-                external_image_list_url : "lists/image_list.js",
-                media_external_list_url : "lists/media_list.js",
-
-            });
-        </script>
-        <!-- /TinyMCE -->
         <strong>Post:</strong><br />
         <textarea id="editor" name="editor" rows="20" cols="75"><?php echo htmlspecialchars($post_body); ?></textarea>
     </p>
@@ -282,11 +245,7 @@ if(!empty($error)){
 
 </form>
 
-<?php
-
-/*
-
-<script>
+<script type="text/javascript">
 
 (function() {
     var Dom = YAHOO.util.Dom,
@@ -306,7 +265,7 @@ if(!empty($error)){
             draggable: false,
             buttonType: 'advanced',
             buttons: [
-                { group: 'textstyle', label: 'Font Style',
+                { group: 'textstyle', label: '',
                     buttons: [
                         { type: 'push', label: 'Bold CTRL + SHIFT + B', value: 'bold' },
                         { type: 'push', label: 'Italic CTRL + SHIFT + I', value: 'italic' },
@@ -323,7 +282,7 @@ if(!empty($error)){
                     ]
                 },
                 { type: 'separator' },
-                { group: 'alignment', label: 'Alignment',
+                { group: 'alignment', label: '',
                     buttons: [
                         { type: 'push', label: 'Align Left CTRL + SHIFT + [', value: 'justifyleft' },
                         { type: 'push', label: 'Align Center CTRL + SHIFT + |', value: 'justifycenter' },
@@ -332,7 +291,7 @@ if(!empty($error)){
                     ]
                 },
                 { type: 'separator' },
-                { group: 'parastyle', label: 'Paragraph Style',
+                { group: 'parastyle', label: '',
                     buttons: [
                     { type: 'select', label: 'Normal', value: 'heading', disabled: true,
                         menu: [
@@ -348,7 +307,7 @@ if(!empty($error)){
                     ]
                 },
                 { type: 'separator' },
-                { group: 'indentlist', label: 'Indenting and Lists',
+                { group: 'indentlist', label: '',
                     buttons: [
                         { type: 'push', label: 'Indent', value: 'indent', disabled: true },
                         { type: 'push', label: 'Outdent', value: 'outdent', disabled: true },
@@ -357,7 +316,7 @@ if(!empty($error)){
                     ]
                 },
                 { type: 'separator' },
-                { group: 'insertitem', label: 'Insert Item',
+                { group: 'insertitem', label: '',
                     buttons: [
                         { type: 'push', label: 'HTML Link CTRL + SHIFT + L', value: 'createlink', disabled: true },
                         { type: 'push', label: 'Insert Image', value: 'insertimage' },
@@ -383,6 +342,11 @@ if(!empty($error)){
             if (state == 'on') {
                 state = 'off';
                 this.toolbar.set('disabled', false);
+                var nodes = YAHOO.util.Selector.query('input[type=submit]');
+                for(x=0; x<nodes.length; x++){
+                    nodes[x].disabled=false;
+                    nodes[x].style.opacity = 1;
+                }
 
                 this.setEditorHTML(ta.value);
                 if (!this.browser.ie) {
@@ -401,6 +365,11 @@ if(!empty($error)){
                 Dom.addClass(iframe, 'editor-hidden');
                 Dom.removeClass(ta, 'editor-hidden');
                 this.toolbar.set('disabled', true);
+                var nodes = YAHOO.util.Selector.query('input[type=submit]');
+                for(x=0; x<nodes.length; x++){
+                    nodes[x].disabled=true;
+                    nodes[x].style.opacity = .5;
+                }
                 this.toolbar.getButtonByValue('editcode').set('disabled', false);
                 this.toolbar.selectButton('editcode');
                 this.dompath.innerHTML = 'Editing HTML Code';
@@ -434,8 +403,6 @@ if(!empty($error)){
 </script>
 
 <?php
-
-*/
 
 include_once "./footer.php";
 

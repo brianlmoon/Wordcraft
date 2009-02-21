@@ -10,19 +10,6 @@ input.inputgri, textarea.inputgri {
     width: 650px;
 }
 
-.yui-skin-sam .yui-toolbar-container .yui-toolbar-group h3 {
-    font-size: 85%;
-}
-
-.yui-toolbar-group-alignment {
-    width: 120px;
-}
-
-/*
-div.yui-toolbar-group-parastyle {
-    clear: left;
-}
-*/
 
 #login {
     border: 1px solid #CCCCCC;
@@ -122,3 +109,17 @@ textarea {
     margin: 0;
     padding: 0;
 }
+
+/* YUI fixes */
+.yui-skin-sam .yui-toolbar-container .yui-toolbar-group h3 {
+    font-size: 85%;
+}
+
+.yui-toolbar-group-alignment {
+    width: 120px;
+}
+
+.yui-skin-sam .yui-toolbar-container .yui-toolbar-subcont {
+    padding-top: .35em;
+}
+

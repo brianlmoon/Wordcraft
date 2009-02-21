@@ -4,25 +4,14 @@
     <title>Wordcraft Admin</title>
 
     <!-- YUI Stylesheets -->
-<?php
-/*
-    <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.5.2/build/fonts/fonts-min.css" />
-    <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.5.2/build/container/assets/skins/sam/container.css" />
-    <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.5.2/build/menu/assets/skins/sam/menu.css" />
-    <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.5.2/build/button/assets/skins/sam/button.css" />
-    <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.5.2/build/editor/assets/skins/sam/editor.css" />
-*/
-?>
+    <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/combo?2.7.0/build/fonts/fonts-min.css&2.7.0/build/container/assets/skins/sam/container.css&2.7.0/build/menu/assets/skins/sam/menu.css&2.7.0/build/button/assets/skins/sam/button.css&2.7.0/build/editor/assets/skins/sam/editor.css" />
+
     <!-- App Stylesheets -->
     <link rel="stylesheet" type="text/css" href="./atrandafir582.css" media="screen,print" />
     <link rel="stylesheet" type="text/css" href="./admin.css" media="screen,print" />
 
     <!-- YUI JavaScript -->
-<?php
-/*
-    <script type="text/javascript" src="http://yui.yahooapis.com/combo?2.5.2/build/yahoo-dom-event/yahoo-dom-event.js&2.5.2/build/container/container_core-min.js&2.5.2/build/menu/menu-min.js&2.5.2/build/element/element-beta-min.js&2.5.2/build/button/button-min.js&2.5.2/build/editor/editor-beta-min.js"></script>
-*/
-?>
+    <script type="text/javascript" src="http://yui.yahooapis.com/combo?2.7.0/build/yahoo-dom-event/yahoo-dom-event.js&2.7.0/build/element/element-min.js&2.7.0/build/container/container_core-min.js&2.7.0/build/menu/menu-min.js&2.7.0/build/button/button-min.js&2.7.0/build/editor/editor-min.js&2.7.0/build/selector/selector-min.js"></script>
 
     <!-- App Javascript -->
     <script type="text/javascript" src="./admin.js"></script>
