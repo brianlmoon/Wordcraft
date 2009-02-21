@@ -44,7 +44,7 @@ function wc_db_get_settings(){
 
     global $WC, $WCDB;
 
-    $sql = "select * from {$WC["settings_table"]}";
+    $sql = "select * from {$WC['settings_table']}";
 
     $WCDB->query($sql);
 
@@ -120,7 +120,7 @@ function wc_db_save_settings($settings){
 
     foreach($clean_arr as $setting){
 
-        $sql = "replace into {$WC["settings_table"]} set
+        $sql = "replace into {$WC['settings_table']} set
                     name = '$setting[name]',
                     type = '$setting[type]',
                     data = '$setting[data]'";
@@ -782,7 +782,7 @@ function wc_db_save_comment($comment) {
         }
         $fields = substr($fields, 0, -1); // trim the last comma
 
-        $sql = "update {$WC["comments_table"]} set $fields where comment_id=".$clean_arr["comment_id"];
+        $sql = "update {$WC['comments_table']} set $fields where comment_id=".$clean_arr["comment_id"];
         $success = $WCDB->query($sql);
 
     } else {
@@ -795,7 +795,7 @@ function wc_db_save_comment($comment) {
         }
         $fields = substr($fields, 0, -1); // trim the last comma
         $values = substr($values, 0, -1); // trim the last comma
-        $sql = "insert into {$WC["comments_table"]} ($fields) values ($values)";
+        $sql = "insert into {$WC['comments_table']} ($fields) values ($values)";
 
         $comment_id = $WCDB->query_fetch($sql, WC_DB_FETCH_INSERT_ID);
 
@@ -820,7 +820,7 @@ function wc_db_delete_comment($comment_id) {
     $comment_id = (int)$comment_id;
     if(empty($comment_id)) return false;
 
-    $sql = "delete from {$WC["comments_table"]} where comment_id=$comment_id";
+    $sql = "delete from {$WC['comments_table']} where comment_id=$comment_id";
     return (bool)$WCDB->query($sql);
 
 }
@@ -836,7 +836,7 @@ function wc_db_delete_spam() {
 
     global $WCDB, $WC;
 
-    $sql = "delete from {$WC["comments_table"]} where status='spam'";
+    $sql = "delete from {$WC['comments_table']} where status='spam'";
     return (bool)$WCDB->query($sql);
 
 }
@@ -848,7 +848,7 @@ function wc_db_get_comment($comment_id) {
 
     $comment_id = (int)$comment_id;
 
-    $sql = "select * from {$WC["comments_table"]} where comment_id=$comment_id";
+    $sql = "select * from {$WC['comments_table']} where comment_id=$comment_id";
 
     $comment = $WCDB->query_fetch($sql, WC_DB_FETCH_ASSOC);
 
@@ -861,7 +861,7 @@ function wc_db_get_comments($post_id=false, $status=false, $start=false, $limit=
 
     global $WCDB, $WC;
 
-    $sql = "select SQL_CALC_FOUND_ROWS * from {$WC["comments_table"]} ";
+    $sql = "select SQL_CALC_FOUND_ROWS * from {$WC['comments_table']} ";
 
     $order_by = "comment_id desc";
 
@@ -1139,7 +1139,7 @@ function wc_db_delete_page($page_id) {
  * @return  mixed
  *
  */
-function wc_db_get_page_list($start=false, $limit=false, $bodies=false, $filter="", $tag="", $page_ids=false) {
+function wc_db_get_page_list($start=false, $limit=false, $bodies=false, $filter="", $page_ids=false) {
 
     global $WCDB, $WC;
 
