@@ -76,22 +76,22 @@ if(!empty($error)){
 
 <form method="post" action="user_password.php" id="user-form">
 
-    <input type="hidden" name="user_id" value="<?php echo htmlspecialchars($user_id); ?>" />
+    <input type="hidden" name="user_id" value="<?php echo htmlspecialchars($user_id); ?>">
 
     <p>
         <strong>User Name: </strong><?php echo $user["user_name"]; ?>
     </p>
 
     <p>
-        <strong>Password:</strong><br />
-        <input class="inputgri" type="password" autocomplete="off" value="" id="password1" name="password1" />
+        <strong>Password:</strong><br>
+        <input class="inputgri" type="password" autocomplete="off" value="" id="password1" name="password1">
     </p>
     <p>
-        <strong>Confirm Password:</strong><br />
-        <input class="inputgri" type="password" autocomplete="off" value="" id="password2" name="password2" />
+        <strong>Confirm Password:</strong><br>
+        <input class="inputgri" type="password" autocomplete="off" value="" id="password2" name="password2">
     </p>
     <p>
-        <input class="button" type="submit" value="Save" />
+        <input class="button" type="submit" value="Save">
     </p>
 
 </form>

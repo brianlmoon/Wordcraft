@@ -37,8 +37,8 @@ $x = 1;
 
     <h1><?php echo $user["user_name"]; ?></h1>
     <form action="user_delete.php" method="post">
-        <input type="hidden" name="user_id" value="<?php echo $user["user_id"]; ?>" />
-        <input type="submit" name="delete" value="Yes" />&nbsp;&nbsp;<input type="submit" name="delete" value="No" />
+        <input type="hidden" name="user_id" value="<?php echo $user["user_id"]; ?>">
+        <input type="submit" name="delete" value="Yes">&nbsp;&nbsp;<input type="submit" name="delete" value="No">
     </form>
 
 </div>

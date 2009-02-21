@@ -97,7 +97,7 @@ include_once "./header.php";
     <h2>Template and Content</h2>
 
     <p>
-        <strong>Template:</strong><br />
+        <strong>Template:</strong><br>
         <select onclick="changePreview(this.value)" class="inputgri" name="template" id="template">
             <?php echo $template_options; ?>
         </select>
@@ -105,66 +105,66 @@ include_once "./header.php";
     </p>
 
     <p>
-        <strong>Default HTML Title:</strong><br />
-        <input class="inputgri" type="text" value="<?php echo htmlspecialchars($settings["default_title"]); ?>" id="default_title" name="default_title" />
+        <strong>Default HTML Title:</strong><br>
+        <input class="inputgri" type="text" value="<?php echo htmlspecialchars($settings["default_title"]); ?>" id="default_title" name="default_title">
     </p>
 
     <p>
-        <strong>Default HTML META Description:</strong><br />
+        <strong>Default HTML META Description:</strong><br>
         <textarea class="inputgri" id="default_description" name="default_description"><?php echo htmlspecialchars($settings["default_description"]); ?></textarea>
     </p>
 
     <p>
-        <strong>Search Engine Friendly URLs:</strong><br />
-        <input type="checkbox" value="1" <?php if(!empty($settings["use_rewrite"])) echo "checked"; ?> id="use_rewrite" name="use_rewrite" /> <label for="use_rewrite">Yes</label>
+        <strong>Search Engine Friendly URLs:</strong><br>
+        <input type="checkbox" value="1" <?php if(!empty($settings["use_rewrite"])) echo "checked"; ?> id="use_rewrite" name="use_rewrite"> <label for="use_rewrite">Yes</label>
     </p>
 
     <h2>Comment Moderation</h2>
 
     <p>
-        <strong><input type="checkbox" value="1" <?php if(!empty($settings["allow_comments"])) echo "checked"; ?> id="allow_comments" name="allow_comments" /> <label for="allow_comments">Allow comments by default on new posts</label></strong><br />
+        <strong><input type="checkbox" value="1" <?php if(!empty($settings["allow_comments"])) echo "checked"; ?> id="allow_comments" name="allow_comments"> <label for="allow_comments">Allow comments by default on new posts</label></strong><br>
     </p>
 
 
     <p>
-        <strong><input type="checkbox" value="1" <?php if(!empty($settings["moderate_all"])) echo "checked"; ?> id="moderate_all" name="moderate_all" /> <label for="moderate_all">Approve all comments</label></strong><br />
+        <strong><input type="checkbox" value="1" <?php if(!empty($settings["moderate_all"])) echo "checked"; ?> id="moderate_all" name="moderate_all"> <label for="moderate_all">Approve all comments</label></strong><br>
     </p>
 
     <p>
-        <strong>Email the author when:</strong><br />
-        <input type="radio" value="all" <?php if($settings["email_comment"]=="all") echo "checked"; ?> id="email_comment_all" name="email_comment" /> <label for="email_comment_all">Any comment is posted.</label><br />
-        <input type="radio" value="spam" <?php if($settings["email_comment"]=="spam") echo "checked"; ?> id="email_comment_spam" name="email_comment" /> <label for="email_comment_spam">Comments marked as spam.</label><br />
-        <input type="radio" value="none" <?php if($settings["email_comment"]=="none") echo "checked"; ?> id="email_comment_spam" name="email_comment" /> <label for="email_comment_spam">Never email comments.</label>
+        <strong>Email the author when:</strong><br>
+        <input type="radio" value="all" <?php if($settings["email_comment"]=="all") echo "checked"; ?> id="email_comment_all" name="email_comment"> <label for="email_comment_all">Any comment is posted.</label><br>
+        <input type="radio" value="spam" <?php if($settings["email_comment"]=="spam") echo "checked"; ?> id="email_comment_spam" name="email_comment"> <label for="email_comment_spam">Comments marked as spam.</label><br>
+        <input type="radio" value="none" <?php if($settings["email_comment"]=="none") echo "checked"; ?> id="email_comment_spam" name="email_comment"> <label for="email_comment_spam">Never email comments.</label>
     </p>
 
     <p>
-        <strong><input type="checkbox" value="1" <?php if(!empty($settings["send_linkbacks"])) echo "checked"; ?> id="send_linkbacks" name="send_linkbacks" /> <label for="send_linkbacks">Send Pingbacks/Trackbacks to linked pages</label></strong><br />
+        <strong><input type="checkbox" value="1" <?php if(!empty($settings["send_linkbacks"])) echo "checked"; ?> id="send_linkbacks" name="send_linkbacks"> <label for="send_linkbacks">Send Pingbacks/Trackbacks to linked pages</label></strong><br>
     </p>
 
 
     <h2>Spam Prevention</h2>
 
     <p>
-        <strong><input type="checkbox" value="1" <?php if(!empty($settings["use_captcha"])) echo "checked"; ?> id="use_captcha" name="use_captcha" /> <label for="use_captcha">Use Captcha</label></strong><br />
+        <strong><input type="checkbox" value="1" <?php if(!empty($settings["use_captcha"])) echo "checked"; ?> id="use_captcha" name="use_captcha"> <label for="use_captcha">Use Captcha</label></strong><br>
     </p>
 
     <p>
-        <strong><input type="checkbox" value="1" <?php if(!empty($settings["use_akismet"])) echo "checked"; ?> id="use_akismet" name="use_akismet" /> <label for="use_akismet">Use Aksimet</label></strong><br />
-        <strong>Akismet Key:</strong><br />
-        <input class="inputgri" type="text" value="<?php echo htmlspecialchars($settings["akismet_key"]); ?>" id="akismet_key" name="akismet_key" /><br />
+        <strong><input type="checkbox" value="1" <?php if(!empty($settings["use_akismet"])) echo "checked"; ?> id="use_akismet" name="use_akismet"> <label for="use_akismet">Use Aksimet</label></strong><br>
+        <strong>Akismet Key:</strong><br>
+        <input class="inputgri" type="text" value="<?php echo htmlspecialchars($settings["akismet_key"]); ?>" id="akismet_key" name="akismet_key"><br>
         See <a href="http://akismet.com/">http://akismet.com/</a>
     </p>
 
     <p>
-        <strong>Base URL:</strong><br />
-        <input class="inputgri" type="text" value="<?php echo htmlspecialchars($settings["base_url"]); ?>" id="base_url" name="base_url" />
+        <strong>Base URL:</strong><br>
+        <input class="inputgri" type="text" value="<?php echo htmlspecialchars($settings["base_url"]); ?>" id="base_url" name="base_url">
     </p>
 
     <h2>Session Settings</h2>
 
     <p>
-        <strong>Remembered Session Cookie Expires in Days:</strong><br />
-        <input class="inputgri" type="text" value="<?php echo htmlspecialchars($settings["session_days"]); ?>" id="session_days" name="session_days" />
+        <strong>Remembered Session Cookie Expires in Days:</strong><br>
+        <input class="inputgri" type="text" value="<?php echo htmlspecialchars($settings["session_days"]); ?>" id="session_days" name="session_days">
     </p>
 
 
@@ -173,18 +173,18 @@ include_once "./header.php";
     <p>See: <a href="http://www.php.net/strftime">http://www.php.net/strftime</a></p>
 
     <p>
-        <strong>Long Date Format:</strong><br />
-        <input class="inputgri" type="text" value="<?php echo htmlspecialchars($settings["date_format_long"]); ?>" id="date_format_long" name="date_format_long" />
+        <strong>Long Date Format:</strong><br>
+        <input class="inputgri" type="text" value="<?php echo htmlspecialchars($settings["date_format_long"]); ?>" id="date_format_long" name="date_format_long">
     </p>
 
     <p>
-        <strong>Short Date Format:</strong><br />
-        <input class="inputgri" type="text" value="<?php echo htmlspecialchars($settings["date_format_short"]); ?>" id="date_format_short" name="date_format_short" />
+        <strong>Short Date Format:</strong><br>
+        <input class="inputgri" type="text" value="<?php echo htmlspecialchars($settings["date_format_short"]); ?>" id="date_format_short" name="date_format_short">
     </p>
 
 
     <p>
-        <input class="button" type="submit" value="Save" />
+        <input class="button" type="submit" value="Save">
     </p>
 
 </form>

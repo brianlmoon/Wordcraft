@@ -41,8 +41,8 @@ if($last > $total) {
 
 <div id="filter">
     <form action="pages.php" method="get">
-        <input type="text" class="inputgri" name="filter" value="<?php echo htmlspecialchars($filter); ?>" />
-        <input type="submit" class="button" value="Filter" />
+        <input type="text" class="inputgri" name="filter" value="<?php echo htmlspecialchars($filter); ?>">
+        <input type="submit" class="button" value="Filter">
         <a href="pages.php">Reset</a>
     </form>
 </div>

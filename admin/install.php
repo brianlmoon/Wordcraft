@@ -73,17 +73,17 @@ include_once "./header.php";
     $message = "";
 
     if(isset($ok)){
-        $message.= "Good news, these items are just fine.<br /><span style=\"color: green;\">";
-        $message.= implode("<br />", $ok);
+        $message.= "Good news, these items are just fine.<br><span style=\"color: green;\">";
+        $message.= implode("<br>", $ok);
         $message.= "</span>";
         if(empty($show_stoppers) && empty($warnings)){
-            $message.="<br />Hit continue and we can keep going.";
+            $message.="<br>Hit continue and we can keep going.";
         }
     }
 
     if(isset($show_stoppers)){
-        $message.= "Some major problems are preventing us from continuing.<br /><span style=\"color: red;\">";
-        $message.= implode("<br />", $show_stoppers);
+        $message.= "Some major problems are preventing us from continuing.<br><span style=\"color: red;\">";
+        $message.= implode("<br>", $show_stoppers);
         $message.= "</span>";
         $continue = false;
     } else {
@@ -91,9 +91,9 @@ include_once "./header.php";
     }
 
     if(isset($warnings)){
-        $message.= "Hmm, there are a few things that may be a problem for Wordcraft.<br /><span style=\"color: orange;\">";
-        $message.= implode("<br />", $warnings);
-        $message.= "</span><br />If you think you can live with these problems, go ahead and continue.";
+        $message.= "Hmm, there are a few things that may be a problem for Wordcraft.<br><span style=\"color: orange;\">";
+        $message.= implode("<br>", $warnings);
+        $message.= "</span><br>If you think you can live with these problems, go ahead and continue.";
     }
 
 
@@ -232,8 +232,8 @@ include_once "./header.php";
             if(!$success || !empty($errors)){
 
                 if(!empty($errors)){
-                    $message = "Wordcraft needs a little more information.<br />";
-                    $message.= implode("<br />", $errors);
+                    $message = "Wordcraft needs a little more information.<br>";
+                    $message.= implode("<br>", $errors);
                 } else {
                     $message = "Uh Oh!  Your user could not be created.  The database said '".$WCDB->last_error."'.";
                 }
@@ -259,29 +259,29 @@ include_once "./header.php";
         <?php } ?>
 
         <form action="install.php" method="post">
-            <input type="hidden" name="step" value="<?php echo $step; ?>" />
+            <input type="hidden" name="step" value="<?php echo $step; ?>">
 
             <p>
-                <strong>User Name:</strong><br />
-                <input class="inputgri" type="text" value="<?php echo htmlspecialchars($user_name); ?>" id="user_name" name="user_name" maxlength="20" />
+                <strong>User Name:</strong><br>
+                <input class="inputgri" type="text" value="<?php echo htmlspecialchars($user_name); ?>" id="user_name" name="user_name" maxlength="20">
             </p>
 
             <p>
-                <strong>Email:</strong><br />
-                <input class="inputgri" type="text" value="<?php echo htmlspecialchars($user_email); ?>" id="email" name="email" maxlength="50" />
+                <strong>Email:</strong><br>
+                <input class="inputgri" type="text" value="<?php echo htmlspecialchars($user_email); ?>" id="email" name="email" maxlength="50">
             </p>
 
             <p>
-                <strong>Password:</strong><br />
-                <input class="inputgri" type="password" autocomplete="off" value="" id="password1" name="password1" />
+                <strong>Password:</strong><br>
+                <input class="inputgri" type="password" autocomplete="off" value="" id="password1" name="password1">
             </p>
 
             <p>
-                <strong>Confirm Password:</strong><br />
-                <input class="inputgri" type="password" autocomplete="off" value="" id="password2" name="password2" />
+                <strong>Confirm Password:</strong><br>
+                <input class="inputgri" type="password" autocomplete="off" value="" id="password2" name="password2">
             </p>
 
-            <input type="submit" value="Continue >" />
+            <input type="submit" value="Continue >">
 
         </form>
     <?php } ?>
@@ -306,8 +306,8 @@ include_once "./header.php";
 
 <?php if($continue) { ?>
 <form action="install.php" method="post">
-    <input type="hidden" name="step" value="<?php echo $step; ?>" />
-    <input type="submit" value="Continue >" />
+    <input type="hidden" name="step" value="<?php echo $step; ?>">
+    <input type="submit" value="Continue >">
 </form>
 <?php } ?>
 

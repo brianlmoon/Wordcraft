@@ -43,8 +43,8 @@ if($last > $total) {
         <a href="user.php">Add a User</a>
     </p>
     <form action="users.php" method="get">
-        <input type="text" class="inputgri" name="filter" value="<?php echo htmlspecialchars($filter); ?>" />
-        <input type="submit" class="button" value="Filter" />
+        <input type="text" class="inputgri" name="filter" value="<?php echo htmlspecialchars($filter); ?>">
+        <input type="submit" class="button" value="Filter">
         <a href="users.php">Reset</a>
     </form>
 </div>

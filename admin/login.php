@@ -48,8 +48,8 @@ if(count($_POST)){
 <head>
     <title>Wordcraft Login</title>
 
-    <link rel="stylesheet" type="text/css" href="./atrandafir582.css" media="screen,print" />
-    <link rel="stylesheet" type="text/css" href="./admin.css" media="screen,print" />
+    <link rel="stylesheet" type="text/css" href="./atrandafir582.css" media="screen,print">
+    <link rel="stylesheet" type="text/css" href="./admin.css" media="screen,print">
 
 </head>
 <body>
@@ -67,20 +67,20 @@ if(count($_POST)){
     ?>
 
     <p>
-        <strong>User Name:</strong><br />
-        <input class="inputgri" type="text" value="" name="user_name" id="user_name" maxlength="20" />
+        <strong>User Name:</strong><br>
+        <input class="inputgri" type="text" value="" name="user_name" id="user_name" maxlength="20">
     </p>
 
     <p>
-        <strong>Password:</strong><br />
-        <input class="inputgri" type="password" value="" name="password" id="password" maxlength="64" />
+        <strong>Password:</strong><br>
+        <input class="inputgri" type="password" value="" name="password" id="password" maxlength="64">
     </p>
 
     <p>
-        <input type="checkbox" id="remember" name="remember" value="1" /><label for="remember">Remember me on this computer</label>
+        <input type="checkbox" id="remember" name="remember" value="1"><label for="remember">Remember me on this computer</label>
     </p>
 
-    <input class="button" type="submit" value="Login" />
+    <input class="button" type="submit" value="Login">
 
     </form>
 

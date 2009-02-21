@@ -68,11 +68,11 @@ $x = 1;
     <h1><?php echo $subject; ?></h1>
     <form action="delete.php" method="post">
         <?php if($object=="post") { ?>
-            <input type="hidden" name="post_id" value="<?php echo $post["post_id"]; ?>" />
+            <input type="hidden" name="post_id" value="<?php echo $post["post_id"]; ?>">
         <?php } elseif($object=="page") { ?>
-            <input type="hidden" name="page_id" value="<?php echo $page["page_id"]; ?>" />
+            <input type="hidden" name="page_id" value="<?php echo $page["page_id"]; ?>">
         <?php } ?>
-        <input type="submit" name="delete" value="Yes" />&nbsp;&nbsp;<input type="submit" name="delete" value="No" />
+        <input type="submit" name="delete" value="Yes">&nbsp;&nbsp;<input type="submit" name="delete" value="No">
     </form>
 
 </div>

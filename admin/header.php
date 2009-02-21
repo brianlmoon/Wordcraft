@@ -1,20 +1,24 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" >
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <head>
     <title>Wordcraft Admin</title>
 
     <!-- YUI Stylesheets -->
-    <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/combo?2.7.0/build/fonts/fonts-min.css&2.7.0/build/container/assets/skins/sam/container.css&2.7.0/build/menu/assets/skins/sam/menu.css&2.7.0/build/button/assets/skins/sam/button.css&2.7.0/build/editor/assets/skins/sam/editor.css" />
+    <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/combo?2.7.0/build/fonts/fonts-min.css&2.7.0/build/container/assets/skins/sam/container.css&2.7.0/build/menu/assets/skins/sam/menu.css&2.7.0/build/button/assets/skins/sam/button.css&2.7.0/build/editor/assets/skins/sam/editor.css">
 
     <!-- App Stylesheets -->
-    <link rel="stylesheet" type="text/css" href="./atrandafir582.css" media="screen,print" />
-    <link rel="stylesheet" type="text/css" href="./admin.css" media="screen,print" />
+    <link rel="stylesheet" type="text/css" href="./atrandafir582.css" media="screen,print">
+    <link rel="stylesheet" type="text/css" href="./admin.css" media="screen,print">
 
     <!-- YUI JavaScript -->
     <script type="text/javascript" src="http://yui.yahooapis.com/combo?2.7.0/build/yahoo-dom-event/yahoo-dom-event.js&2.7.0/build/element/element-min.js&2.7.0/build/container/container_core-min.js&2.7.0/build/menu/menu-min.js&2.7.0/build/button/button-min.js&2.7.0/build/editor/editor-min.js&2.7.0/build/selector/selector-min.js"></script>
 
     <!-- App Javascript -->
     <script type="text/javascript" src="./admin.js"></script>
+
+    <!-- Editor Config -->
+    <?php if(isset($WC_ADMIN_EDITOR)){ ?>
+        <script type="text/javascript" src="./yui_editor.js"></script>
+    <?php } ?>
 
 </head>
 <body class="yui-skin-sam">
