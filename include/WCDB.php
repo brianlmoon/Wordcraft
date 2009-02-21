@@ -386,6 +386,8 @@ class WCDB {
             // save this connection to the write_connection var
             $this->write_connection = $this->connection;
         } else {
+            // set the character set to UTF-8.  Wordcraft is UTF-8 only.
+            mysqli_set_charset($this->connection, 'utf8');
             // save this connection to the read_connection var
             $this->read_connection = $this->connection;
         }
