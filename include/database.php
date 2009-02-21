@@ -421,6 +421,8 @@ function wc_db_get_post_list($start=false, $limit=false, $bodies=false, $filter=
 
     $WCDB->query($sql);
 
+    $posts = array();
+
     while($row = $WCDB->fetch()){
 
         // seed comment count and tags
