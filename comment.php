@@ -70,10 +70,15 @@ if(!empty($WC["user"])) {
         $comment_status = "APPROVED";
     }
 
-    $score = wc_score_user_submission($_POST["your_comment"]);
+    $score = 0;
+
+    if($WC["use_spam_score"]){
+        $score = wc_score_user_submission($_POST["your_comment"]);
+    }
 
     if($score < 0){
 
+        // if a comment is really bad, just don't post it
         if($score < -20){
             header('HTTP/1.1 403 Forbidden');
             header('Status: 403 Forbidden');

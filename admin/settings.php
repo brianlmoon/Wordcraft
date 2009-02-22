@@ -21,6 +21,7 @@ if(count($_POST)){
             case "akismet_key":
             case "session_days":
             case "use_rewrite":
+            case "use_spam_score":
             case "use_captcha":
             case "use_akismet":
             case "moderate_all":
@@ -37,6 +38,7 @@ if(count($_POST)){
 
     // default check boxes to 0
     if(empty($clean_arr["use_rewrite"])) $clean_arr["use_rewrite"] = 0;
+    if(empty($clean_arr["use_spam_score"])) $clean_arr["use_spam_score"] = 0;
     if(empty($clean_arr["use_captcha"])) $clean_arr["use_captcha"] = 0;
     if(empty($clean_arr["use_akismet"])) $clean_arr["use_akismet"] = 0;
     if(empty($clean_arr["moderate_all"])) $clean_arr["moderate_all"] = 0;
@@ -94,6 +96,17 @@ include_once "./header.php";
 
     <h2>General Settings</h2>
 
+    <p>
+        <strong>Base URL:</strong><br>
+        <input class="inputgri" type="text" value="<?php echo htmlspecialchars($settings["base_url"]); ?>" id="base_url" name="base_url">
+    </p>
+
+    <p>
+        <strong>Search Engine Friendly URLs:</strong><br>
+        <input type="checkbox" value="1" <?php if(!empty($settings["use_rewrite"])) echo "checked"; ?> id="use_rewrite" name="use_rewrite"> <label for="use_rewrite">Yes</label>
+    </p>
+
+
     <h2>Template and Content</h2>
 
     <p>
@@ -114,20 +127,14 @@ include_once "./header.php";
         <textarea class="inputgri" id="default_description" name="default_description"><?php echo htmlspecialchars($settings["default_description"]); ?></textarea>
     </p>
 
-    <p>
-        <strong>Search Engine Friendly URLs:</strong><br>
-        <input type="checkbox" value="1" <?php if(!empty($settings["use_rewrite"])) echo "checked"; ?> id="use_rewrite" name="use_rewrite"> <label for="use_rewrite">Yes</label>
-    </p>
-
     <h2>Comment Moderation</h2>
 
     <p>
         <strong><input type="checkbox" value="1" <?php if(!empty($settings["allow_comments"])) echo "checked"; ?> id="allow_comments" name="allow_comments"> <label for="allow_comments">Allow comments by default on new posts</label></strong><br>
     </p>
 
-
     <p>
-        <strong><input type="checkbox" value="1" <?php if(!empty($settings["moderate_all"])) echo "checked"; ?> id="moderate_all" name="moderate_all"> <label for="moderate_all">Approve all comments</label></strong><br>
+        <strong><input type="checkbox" value="1" <?php if(!empty($settings["moderate_all"])) echo "checked"; ?> id="moderate_all" name="moderate_all"> <label for="moderate_all">Moderate all comments</label></strong><br>
     </p>
 
     <p>
@@ -144,26 +151,29 @@ include_once "./header.php";
 
     <h2>Spam Prevention</h2>
 
-    <p>
-        <strong><input type="checkbox" value="1" <?php if(!empty($settings["use_captcha"])) echo "checked"; ?> id="use_captcha" name="use_captcha"> <label for="use_captcha">Use Captcha</label></strong><br>
-    </p>
+    <strong><input type="checkbox" value="1" <?php if(!empty($settings["use_spam_score"])) echo "checked"; ?> id="use_spam_score" name="use_spam_score"> <label for="use_spam_score">Use internal scoring system</label></strong><br>
+    <blockquote>
+        Wordcraft's internal scoring system is a decent first defense against spam.  If you still have problems after using the internal checking you can enable one of the more advanced systems below to compliment it.
+    </blockquote>
 
-    <p>
-        <strong><input type="checkbox" value="1" <?php if(!empty($settings["use_akismet"])) echo "checked"; ?> id="use_akismet" name="use_akismet"> <label for="use_akismet">Use Aksimet</label></strong><br>
+    <strong><input type="checkbox" value="1" <?php if(!empty($settings["use_captcha"])) echo "checked"; ?> id="use_captcha" name="use_captcha"> <label for="use_captcha">Use Captcha</label></strong><br>
+    <blockquote>
+        CAPTCHA is a system that is design to separate humans and computers.  Commenters are required to type a series of letters and numbers that appear in an image.
+    </blockquote>
+
+    <strong><input type="checkbox" value="1" <?php if(!empty($settings["use_akismet"])) echo "checked"; ?> id="use_akismet" name="use_akismet"> <label for="use_akismet">Use Aksimet</label></strong><br>
+    <blockquote>
         <strong>Akismet Key:</strong><br>
         <input class="inputgri" type="text" value="<?php echo htmlspecialchars($settings["akismet_key"]); ?>" id="akismet_key" name="akismet_key"><br>
-        See <a href="http://akismet.com/">http://akismet.com/</a>
-    </p>
+        Akismet is a web services based spam checking system.  It utilizes knowledge from thousands of blogs to identify spam comments.
+        Akismet is free for personal use, but does require you register your blog and obtain a key. For more information see <a href="http://akismet.com/">http://akismet.com/</a>
+    </blockquote>
 
-    <p>
-        <strong>Base URL:</strong><br>
-        <input class="inputgri" type="text" value="<?php echo htmlspecialchars($settings["base_url"]); ?>" id="base_url" name="base_url">
-    </p>
 
     <h2>Session Settings</h2>
 
     <p>
-        <strong>Remembered Session Cookie Expires in Days:</strong><br>
+        <strong>Days to remember logged in sessions:</strong><br>
         <input class="inputgri" type="text" value="<?php echo htmlspecialchars($settings["session_days"]); ?>" id="session_days" name="session_days">
     </p>
 

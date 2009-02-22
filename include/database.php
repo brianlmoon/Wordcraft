@@ -2,10 +2,6 @@
 
 /**
  * This file controls all databsae access
- *
- * @author     Brian Moon <brianm@phorum.org>
- * @copyright  1997-Present WC Blog Dev Team
- *
  */
 
 require_once dirname(__FILE__)."/config.php";
@@ -101,6 +97,7 @@ function wc_db_save_settings($settings){
                 break;
 
             case "use_rewrite":
+            case "use_spam_score":
             case "use_captcha":
             case "use_akismet":
             case "moderate_all":
