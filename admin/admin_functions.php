@@ -1,7 +1,28 @@
 <?php
 
+/**
+ * Functions used in several areas of the admin
+ *
+ * @author     Brian Moon <brian@moonspot.net>
+ * @copyright  1997-Present Brian Moon
+ * @package    Wordcraft
+ * @license    http://wordcraft.googlecode.com/files/license.txt
+ * @link       http://wordcraft.googlecode.com/
+ *
+ */
+
 include_once "../include/url.php";
 
+
+/**
+ * Displays an error message in the admin
+ *
+ * @param   string  $error_message  The error to display
+ * @param   bool    $exit           If true, the script will exit after showing
+ *                                  the error message
+ * @return  mixed
+ *
+ */
 function wc_admin_error($error_message, $exit=true) {
 
     global $WC;
@@ -21,6 +42,16 @@ function wc_admin_error($error_message, $exit=true) {
     }
 }
 
+/**
+ * Shows a message such as a success event.
+ *
+ * @param   string  $message    The message to be displayed
+ * @param   bool    $exit       If true, the script will exit after showing
+ *                              the error message
+ * @param   string  $redir      A URL to redirect to after showing the message
+ * @return  mixed
+ *
+ */
 function wc_admin_message($message, $exit=true, $redir=null) {
 
     global $WC;
@@ -50,6 +81,13 @@ function wc_admin_message($message, $exit=true, $redir=null) {
 }
 
 
+/**
+ * Sends linkbacks to other sites that posts link to
+ *
+ * @param   int     $post_id    The id of the post to check for links
+ * @return  mixed
+ *
+ */
 function wc_admin_handle_linkbacks($post_id) {
 
     global $WCDATA, $WC;
@@ -116,6 +154,15 @@ function wc_admin_handle_linkbacks($post_id) {
 }
 
 
+/**
+ * Returns the contents of a URL
+ *
+ * @param   string  $url            The URL to fetch
+ * @param   string  $method         The request type.
+ * @param   string  $request_data   Data to be passed in a POST request
+ * @return  mixed
+ *
+ */
 function wc_admin_get_url($url, $method="GET", $request_data="") {
 
     $data = "";

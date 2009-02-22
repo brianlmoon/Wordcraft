@@ -1,5 +1,16 @@
 <?php
 
+/**
+ * Create/Edit a user entry
+ *
+ * @author     Brian Moon <brian@moonspot.net>
+ * @copyright  1997-Present Brian Moon
+ * @package    Wordcraft
+ * @license    http://wordcraft.googlecode.com/files/license.txt
+ * @link       http://wordcraft.googlecode.com/
+ *
+ */
+
 include_once "./check_auth.php";
 include_once "./admin_functions.php";
 

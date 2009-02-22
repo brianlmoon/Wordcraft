@@ -1,3 +1,14 @@
+/**
+ * General CSS for the admin
+ *
+ * @author     Brian Moon <brian@moonspot.net>
+ * @copyright  1997-Present Brian Moon
+ * @package    Wordcraft
+ * @license    http://wordcraft.googlecode.com/files/license.txt
+ * @link       http://wordcraft.googlecode.com/
+ *
+ */
+
 a:link, a:visited {
     color: #73A822;
 }

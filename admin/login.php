@@ -1,5 +1,16 @@
 <?php
 
+/**
+ * Login form and login checking
+ *
+ * @author     Brian Moon <brian@moonspot.net>
+ * @copyright  1997-Present Brian Moon
+ * @package    Wordcraft
+ * @license    http://wordcraft.googlecode.com/files/license.txt
+ * @link       http://wordcraft.googlecode.com/
+ *
+ */
+
 include_once "../include/common.php";
 include_once "./admin_functions.php";
 

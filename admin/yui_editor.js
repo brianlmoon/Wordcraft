@@ -1,3 +1,13 @@
+/**
+ * Sets up the YUI rich text editor for any page that needs it
+ *
+ * @author     Brian Moon <brian@moonspot.net>
+ * @copyright  1997-Present Brian Moon
+ * @package    Wordcraft
+ * @license    http://wordcraft.googlecode.com/files/license.txt
+ * @link       http://wordcraft.googlecode.com/
+ *
+ */
 
 var Dom = YAHOO.util.Dom,
     Event = YAHOO.util.Event;

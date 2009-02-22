@@ -1,5 +1,16 @@
 <?php
 
+/**
+ * Install script that handles sanity checks and sets up the database
+ *
+ * @author     Brian Moon <brian@moonspot.net>
+ * @copyright  1997-Present Brian Moon
+ * @package    Wordcraft
+ * @license    http://wordcraft.googlecode.com/files/license.txt
+ * @link       http://wordcraft.googlecode.com/
+ *
+ */
+
 define("WC_INSTALLING", true);
 
 // do this so session check will not fail
