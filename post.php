@@ -1,5 +1,17 @@
 <?php
 
+/**
+ * Shows a single post to a user, with its comments
+ *
+ * @author     Brian Moon <brian@moonspot.net>
+ * @copyright  1997-Present Brian Moon
+ * @package    Wordcraft
+ * @license    http://wordcraft.googlecode.com/files/license.txt
+ * @link       http://wordcraft.googlecode.com/
+ *
+ */
+
+
 include_once "./include/common.php";
 include_once "./include/database.php";
 include_once "./include/output.php";

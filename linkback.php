@@ -1,5 +1,16 @@
 <?php
 
+/**
+ * This script handles linkbacks and pingbacks
+ *
+ * @author     Brian Moon <brian@moonspot.net>
+ * @copyright  1997-Present Brian Moon
+ * @package    Wordcraft
+ * @license    http://wordcraft.googlecode.com/files/license.txt
+ * @link       http://wordcraft.googlecode.com/
+ *
+ */
+
 include_once "./include/common.php";
 include_once "./include/database.php";
 include_once "./include/url.php";
@@ -22,7 +33,16 @@ $pingback_error_strings = array(
 );
 
 
-function handle_linkback($remote, $local, $title="", $except="") {
+/**
+ * Check linkbacks for validity and updates the posts comments
+ *
+ * @param   $remote     The remote URL reported in the pingback
+ * @param   $local      The local URL reported in the pingback
+ * @param   $title      Optional - the title of the remote page
+ * @return  integer
+ *
+ */
+function handle_linkback($remote, $local, $title="") {
 
     global $WC, $WCDATA;
 
@@ -222,7 +242,6 @@ if(!empty($xml)){
                 $response.= '</fault>';
                 $response.= '</methodResponse>';
             }
-file_put_contents("/tmp/db.log", $response."\n", FILE_APPEND);
 
             header("Content-Type: text/xml");
             echo $response;
