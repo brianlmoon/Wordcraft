@@ -1,5 +1,16 @@
 <?php
 
+/**
+ * Functions for formatting the data of various things in Wordcraft
+ *
+ * @author     Brian Moon <brian@moonspot.net>
+ * @copyright  1997-Present Brian Moon
+ * @package    Wordcraft
+ * @license    http://wordcraft.googlecode.com/files/license.txt
+ * @link       http://wordcraft.googlecode.com/
+ *
+ */
+
 // Check that this file is not loaded directly.
 if ( basename( __FILE__ ) == basename( $_SERVER["PHP_SELF"] ) ) exit();
 
@@ -8,6 +19,14 @@ if(!defined("WC")) return;
 
 include_once dirname(__FILE__)."/url.php";
 
+
+/**
+ * Formats the data of a post
+ *
+ * @param   type    $var    desctription
+ * @return  mixed
+ *
+ */
 function wc_format_post(&$post) {
 
     global $WC;
@@ -31,6 +50,13 @@ function wc_format_post(&$post) {
 }
 
 
+/**
+ * Formats the data of a comment
+ *
+ * @param   type    $var    desctription
+ * @return  mixed
+ *
+ */
 function wc_format_comment(&$comment) {
 
     global $WC;

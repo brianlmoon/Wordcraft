@@ -1,12 +1,24 @@
 <?php
 
+/**
+ * Databse access for the mysqli PHP extension is wrapped in this class
+ *
+ * @author     Brian Moon <brian@moonspot.net>
+ * @copyright  1997-Present Brian Moon
+ * @package    Wordcraft
+ * @license    http://wordcraft.googlecode.com/files/license.txt
+ * @link       http://wordcraft.googlecode.com/
+ *
+ */
+
+
 // Check that this file is not loaded directly.
 if ( basename( __FILE__ ) == basename( $_SERVER["PHP_SELF"] ) ) exit();
 
 // if init has not loaded, quit the file
 if(!defined("WC")) return;
 
-#define("WCDB_DEBUG_LOG", "/var/log/wc_sql.log");
+// define("WCDB_DEBUG_LOG", "/var/log/wc_sql.log");
 
 // constants for query_fetch() and fetch() method
 define("WC_DB_FETCH_ASSOC", 1);
@@ -23,8 +35,10 @@ define("WC_DB_FETCH_INSERT_ID", 9);
  * WCDB Class for PHP ext/mysqli
  *
  * This class creates a WCDB interface for using MySQL via the PHP mysqli extension
+ *
  * @author  Brian Moon <brian@phorum.org>
- * @package xaz
+ * @package Wordcraft
+ *
  */
 class WCDB {
 
@@ -360,6 +374,8 @@ class WCDB {
     /**
      * Set error reporting on or off
      * @access  public
+     * @param   bool    $report_errors  If true, errors will be sent as output.
+     * @return  void
      */
     public function report_errors($report_errors) {
         $this->report_errors = (bool)$report_errors;
@@ -368,11 +384,15 @@ class WCDB {
     /**
      * Method for connecting to mysql
      * @access  private
+     * @param   string  $server     If set, this server will be connected to.
+     *                              Otherwise, $this->server is used
+     * @param   bool    $report_errors  If true, errors will be sent as output.
+     * @return  bool
      */
     private function connect($server=false, $report_error=true) {
 
         $connect_server = (!$server) ? $this->server : $server;
-        $this->connection = mysqli_connect($this->server, $this->user, $this->password, $this->database);
+        $this->connection = mysqli_connect($connect_server, $this->user, $this->password, $this->database);
         /* check connection */
         if(!$server){
             $error = mysqli_connect_errno();

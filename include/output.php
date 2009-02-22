@@ -1,5 +1,16 @@
 <?php
 
+/**
+ * Functions to handle sending output to a browser
+ *
+ * @author     Brian Moon <brian@moonspot.net>
+ * @copyright  1997-Present Brian Moon
+ * @package    Wordcraft
+ * @license    http://wordcraft.googlecode.com/files/license.txt
+ * @link       http://wordcraft.googlecode.com/
+ *
+ */
+
 // Check that this file is not loaded directly.
 if ( basename( __FILE__ ) == basename( $_SERVER["PHP_SELF"] ) ) exit();
 
@@ -11,8 +22,8 @@ include_once dirname(__FILE__)."/url.php";
 /**
  * Controls the output of the public facing site
  *
- * @param   $page       The page we are currently rendering
- * @param   $WCDATA    The data that the page needs to render
+ * @param   string      $page       The page we are currently rendering
+ * @param   array       $WCDATA     The data that the page needs to render
  * @return  none
  *
  */
@@ -69,8 +80,8 @@ function wc_output($page, $WCDATA="") {
 /**
  * Builds common data that most/all template pages need
  *
- * @param   $WCDATA    A reference to the data array that will be
- *                      used later to render the page.
+ * @param   array   $WCDATA    A reference to the data array that will be
+ *                             used later to render the page.
  * @return  none
  *
  */

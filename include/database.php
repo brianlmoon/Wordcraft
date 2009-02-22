@@ -1,7 +1,14 @@
 <?php
 
 /**
- * This file controls all databsae access
+ * Lists posts made by users of the blog
+ *
+ * @author     Brian Moon <brian@moonspot.net>
+ * @copyright  1997-Present Brian Moon
+ * @package    Wordcraft
+ * @license    http://wordcraft.googlecode.com/files/license.txt
+ * @link       http://wordcraft.googlecode.com/
+ *
  */
 
 require_once dirname(__FILE__)."/config.php";

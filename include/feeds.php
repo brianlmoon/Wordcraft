@@ -1,7 +1,27 @@
 <?php
 
-// functions to make the different feeds
+/**
+ * Contains functions to generate feeds of different types
+ *
+ * @author     Brian Moon <brian@moonspot.net>
+ * @copyright  1997-Present Brian Moon
+ * @package    Wordcraft
+ * @license    http://wordcraft.googlecode.com/files/license.txt
+ * @link       http://wordcraft.googlecode.com/
+ *
+ */
 
+
+/**
+ * Creates an RSS feed
+ *
+ * @param   array   $posts              Array of posts to be put into the feed
+ * @param   array   $feed_url           The home URL for the site that created the feed
+ * @param   array   $feed_title         The title of this feed
+ * @param   array   $feed_description   The description of this feed
+ * @return  mixed
+ *
+ */
 function wc_feed_make_rss($posts, $feed_url, $feed_title, $feed_description) {
 
     global $WC;
@@ -43,6 +63,16 @@ function wc_feed_make_rss($posts, $feed_url, $feed_title, $feed_description) {
 }
 
 
+/**
+ * Creates an ATOM feed
+ *
+ * @param   array   $posts              Array of posts to be put into the feed
+ * @param   array   $feed_url           The home URL for the site that created the feed
+ * @param   array   $feed_title         The title of this feed
+ * @param   array   $feed_description   The description of this feed
+ * @return  mixed
+ *
+ */
 function wc_feed_make_atom($posts, $feed_url, $feed_title, $feed_description) {
 
     global $WC;
@@ -86,6 +116,16 @@ function wc_feed_make_atom($posts, $feed_url, $feed_title, $feed_description) {
 }
 
 
+/**
+ * Creates a JSON feed
+ *
+ * @param   array   $posts              Array of posts to be put into the feed
+ * @param   array   $feed_url           The home URL for the site that created the feed
+ * @param   array   $feed_title         The title of this feed
+ * @param   array   $feed_description   The description of this feed
+ * @return  mixed
+ *
+ */
 function wc_feed_make_json($posts, $feed_url, $feed_title, $feed_description) {
 
     global $WC;
@@ -95,20 +135,18 @@ function wc_feed_make_json($posts, $feed_url, $feed_title, $feed_description) {
         "description" => $feed_description,
         "url" => $feed_url,
         "updated" => date("r"),
+        "posts" => array()
     );
 
     foreach($posts as $post) {
 
-        $title = strip_tags($post["subject"]);
-        $body = strtr($post['body'], "\001\002\003\004\005\006\007\010\013\014\016\017\020\021\022\023\024\025\026\027\030\031\032\033\034\035\036\037", "????????????????????????????");
-
         $array["posts"][] = array(
-            "title" => $title,
+            "title" => $post["subject"],
             "url" => $post["url"],
             "tags" => $post["tags"],
             "published" => date("r", strtotime($post["post_date"])),
             "author" => $post["user_name"],
-            "post" => $body
+            "post" => $post['body']
         );
     }
 

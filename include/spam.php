@@ -1,6 +1,26 @@
 <?php
 
+/**
+ * Spam checking functions
+ *
+ * @author     Brian Moon <brian@moonspot.net>
+ * @copyright  1997-Present Brian Moon
+ * @package    Wordcraft
+ * @license    http://wordcraft.googlecode.com/files/license.txt
+ * @link       http://wordcraft.googlecode.com/
+ *
+ */
 
+
+/**
+ * Communicates with Akismet to check spam as well as tell Akismet when
+ * comments are spam or not.  See http://akismet.com/
+ *
+ * @param   string  $comment    The comment to be sent to Akismet.
+ * @param   string  $mode       The request mode for Akismet.
+ * @return  string
+ *
+ */
 function wc_akismet_request( $comment, $mode ) {
 
     global $WC, $WCDB;
@@ -86,6 +106,14 @@ function wc_akismet_request( $comment, $mode ) {
 }
 
 
+/**
+ * Scoring system to identify spam using common traits that tend to appear
+ * in blob comment spam.
+ *
+ * @param   string  $submission     Comment to be checked for spam
+ * @return  integer
+ *
+ */
 function wc_score_user_submission($submission) {
 
     $points = 0;
