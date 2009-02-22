@@ -2,11 +2,11 @@ The templates in Wordcraft are simply PHP scripts.  PHP is a great
 templating language.  Why reinvent the wheel?
 
 The templates are scoped so that global space will not interfere.  The
-variable that Wordcraft prepares within the template scope is name $WCDATA.
+variable that Wordcraft prepares within the template scope is named $WCDATA.
 All the data you will need to create your templates should be in this
 array.
 
-To display an element of this array, simple use PHP code like:
+To display an element of this array, simply use PHP code like:
 
 <?php echo $WCDATA["title"]; ?>
 
