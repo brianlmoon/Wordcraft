@@ -59,7 +59,7 @@ include_once "./header.php";
     }
 
     if(!function_exists("session_start") || !session_start()){
-        $warnings[] = "PHP Sessions are not available on this server.  You will not be able to use the Captcha spam prevention.";
+        $show_stoppers[] = "PHP Sessions are not available on this server.  This is required by Wordcraft.";
     } else {
         $ok[] = "Sessions check passed.";
     }
@@ -70,16 +70,13 @@ include_once "./header.php";
         $ok[] = "Magic quotes check passed.";
     }
 
-    $message = "";
-
-    if(isset($ok)){
-        $message.= "Good news, these items are just fine.<br><span style=\"color: green;\">";
-        $message.= implode("<br>", $ok);
-        $message.= "</span>";
-        if(empty($show_stoppers) && empty($warnings)){
-            $message.="<br>Hit continue and we can keep going.";
-        }
+    if (!defined("PHP_VERSION") || version_compare(PHP_VERSION, '5.0.5', '<')) {
+        $show_stoppers[] = "PHP version 5.0.5 or higher is required for Wordcraft.  Your server is using PHP ".phpversion().".";
+    } elseif(version_compare(PHP_VERSION, '5.2.2', '<')) {
+        $warnings[] = "It is recommended to use PHP 5.2.2 or higher.  Your server is using PHP ".PHP_VERSION.".";
     }
+
+    $message = "";
 
     if(isset($show_stoppers)){
         $message.= "Some major problems are preventing us from continuing.<br><span style=\"color: red;\">";
@@ -88,6 +85,15 @@ include_once "./header.php";
         $continue = false;
     } else {
         $step = "database";
+    }
+
+    if(isset($ok)){
+        $message.= "Good news, these items are just fine.<br><span style=\"color: green;\">";
+        $message.= implode("<br>", $ok);
+        $message.= "</span>";
+        if(empty($show_stoppers) && empty($warnings)){
+            $message.="<br>Hit continue and we can keep going.";
+        }
     }
 
     if(isset($warnings)){

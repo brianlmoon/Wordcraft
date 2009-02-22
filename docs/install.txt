@@ -1,6 +1,20 @@
 Wordcraft Installation
 ======================
 
+ Requirements
+ ------------
+
+ PHP 5.0.5 or higher is required
+    - PHP 5.2.2 or higher is recommended
+    - mysqli extension is required
+    - tidy extension is optional
+
+ MySQL 5.0 or higher
+
+
+ Instructions
+ ------------
+
  1. Download the Wordcraft package and unzip it, if you haven't already.
 
  2. If you do not already have a database, create one for your Wordcraft
