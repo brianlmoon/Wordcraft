@@ -1,0 +1,16 @@
+Information about the CAPTCHA used in Wordcraft
+===============================================
+
+This collection of captcha methods was oringally compiled and assembled
+by Maurice Makaay for the Phorum Development Team.  Wordcraft currently
+only uses a small portion of the abilities.  However, the full captcha
+code base is included here to allow for other to expand its use in Wordcraft.
+
+The various components of this captcha system are works by other authors
+and have separate licenses from Wordcraft.  Please see the various files
+for more information on each library.  All licenses are compatible with the
+Wordcaft license.
+
+Maurice Makaay - maurice@gitaar.net
+Phorum Development Team - http://www.phorum.org/
+
