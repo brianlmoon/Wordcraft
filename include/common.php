@@ -59,6 +59,8 @@ $WCDATA = array();
 
 session_name("WCSESSID");
 
+ini_set("session.gc_maxlifetime", $WC["session_days"] * 86400);
+
 session_start();
 
 // if the session is set to remember or remember
