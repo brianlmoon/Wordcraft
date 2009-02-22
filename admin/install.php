@@ -168,6 +168,7 @@ include_once "./header.php";
 
     <?php
         $default_settings = array(
+           "use_spam_score" => 1,
            "use_akismet" => 0,
            "use_captcha" => 0,
            "use_rewrite" => 0,
