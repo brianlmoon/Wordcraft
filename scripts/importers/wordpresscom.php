@@ -1,5 +1,16 @@
 <?php
 
+/**
+ * Imports a Wordpress.com export into Wordcraft
+ *
+ * @author     Brian Moon <brian@moonspot.net>
+ * @copyright  1997-Present Brian Moon
+ * @package    Wordcraft
+ * @license    http://wordcraft.googlecode.com/files/license.txt
+ * @link       http://wordcraft.googlecode.com/
+ *
+ */
+
 include dirname(dirname(dirname(__FILE__)))."/include/common.php";
 
 $opts = getopt("hf:");
