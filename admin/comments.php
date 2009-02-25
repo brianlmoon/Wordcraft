@@ -43,19 +43,18 @@ list($posts, $post_count) = wc_db_get_post_list(false, false, false, false, fals
 
 // get spam count
 $spam_count = 0;
-if($status!="spam"){
-    list($spam, $spam_count) = wc_db_get_comments(false, "spam", 0, 101, "");
-    unset($spam);
-    if($spam_count > 0){
 
-        if($spam_count > 100){
-            $spam_count = "more than $spam_count";
-        }
+list($spam, $spam_count) = wc_db_get_comments(false, "spam", 0, 101, "");
+unset($spam);
+if($spam_count > 0){
 
+    if($spam_count > 100){
+        $spam_count = "more than $spam_count";
     }
+
 }
 
-$WHEREAMI = "Comments";
+$WHEREAMI = "Manage Comments";
 
 include_once "./header.php";
 
@@ -103,6 +102,9 @@ if($last > $total) {
 <?php } ?>
 
 <?php if(!empty($comments)) { ?>
+    <div id="total">
+        Total Comments: <?php echo $total; ?>
+    </div>
     <?php foreach($comments as $comment) { ?>
         <div class="comment <?php echo $comment["status"]; ?>">
             <div class="status">Status: <?php echo $comment["status"]; ?></div>

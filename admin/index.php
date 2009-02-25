@@ -22,7 +22,7 @@ $limit = 50;
 
 list($posts, $total) = wc_db_get_post_list($start, $limit, false, $filter, "", false, false);
 
-$WHEREAMI = "Manage";
+$WHEREAMI = "Manage Posts";
 
 include_once "./header.php";
 
@@ -59,6 +59,9 @@ if($last > $total) {
 </div>
 
 <?php if(!empty($posts)) { ?>
+    <div id="total">
+        Total Post: <?php echo $total; ?>
+    </div>
     <table cellspacing="0" cellpadding="0" border="0" class="table">
         <tr class="table_header">
             <th>ID</th>

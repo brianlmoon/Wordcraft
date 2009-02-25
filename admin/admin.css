@@ -55,6 +55,10 @@ input.inputgri, textarea.inputgri {
     float: left;
 }
 
+#total {
+    margin-bottom: 5px;
+}
+
 div.comment {
     padding: 20px;
     border-top: 1px solid #CBD6DE;
