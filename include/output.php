@@ -36,6 +36,9 @@ function wc_output($page, $WCDATA="") {
 
     $page = basename($page);
 
+    // send the appropriate content type and character set
+    header("Content-Type: text/html; charset=UTF-8");
+
     if(file_exists("./templates/$template/$page.php")){
 
         include_once "./templates/$template/header.php";

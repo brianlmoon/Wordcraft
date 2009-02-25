@@ -6,6 +6,7 @@
 -->
 <html>
 <head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title><?php echo $WCDATA["title"]; ?></title>
 <meta name="description" content="<?php echo $WCDATA["description"]; ?>">
 <link rel="stylesheet" type="text/css" href="<?php echo $WCDATA["base_url"]; ?>/templates/terrafirma/default.css">
