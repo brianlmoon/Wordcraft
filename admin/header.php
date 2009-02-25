@@ -19,7 +19,7 @@ header("Content-Type: text/html; charset=UTF-8");
 
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-    <title>Wordcraft Admin</title>
+    <title><?php if(isset($WHEREAMI)) echo "$WHEREAMI - "; ?>Wordcraft Admin</title>
 
     <!-- YUI Stylesheets -->
     <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/combo?2.7.0/build/fonts/fonts-min.css&2.7.0/build/container/assets/skins/sam/container.css&2.7.0/build/menu/assets/skins/sam/menu.css&2.7.0/build/button/assets/skins/sam/button.css&2.7.0/build/editor/assets/skins/sam/editor.css">
