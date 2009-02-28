@@ -14,7 +14,7 @@
 // Check that this file is not loaded directly.
 if ( basename( __FILE__ ) == basename( $_SERVER["PHP_SELF"] ) ) exit();
 
-define("WC", "0.7");
+define("WC", "0.9");
 
 include_once dirname(__FILE__)."/config.php";
 include_once dirname(__FILE__)."/database.php";
