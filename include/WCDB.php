@@ -84,7 +84,7 @@ class WCDB {
      * Destructor for WCDB mysqli Class
      * @access  public
      */
-    public function __deconstruct() {
+    public function __destruct() {
         if($this->connection){
             mysqli_close($this->connection);
         }
