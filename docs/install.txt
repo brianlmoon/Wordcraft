@@ -8,6 +8,7 @@ Wordcraft Installation
     - PHP 5.2.2 or higher is recommended
     - mysqli extension is required
     - PHP Session support is required
+    - JSON functions are required
     - tidy extension is optional
 
  MySQL 5.0 or higher

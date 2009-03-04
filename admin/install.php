@@ -81,6 +81,12 @@ include_once "./header.php";
         $ok[] = "Magic quotes check passed.";
     }
 
+    if(!function_exists("json_encode")){
+        $show_stoppers[] = "Wordcraft requires the JSON extension.  This has been a default extension since PHP 5.2.0.  You can install it as a PECL module from http://pecl.php.net/package/json.";
+    } else {
+        $ok[] = "JSON check passed.";
+    }
+
     if (!defined("PHP_VERSION") || version_compare(PHP_VERSION, '5.0.5', '<')) {
         $show_stoppers[] = "PHP version 5.0.5 or higher is required for Wordcraft.  Your server is using PHP ".phpversion().".";
     } elseif(version_compare(PHP_VERSION, '5.2.2', '<')) {
