@@ -16,8 +16,15 @@ if ( basename( __FILE__ ) == basename( $_SERVER["PHP_SELF"] ) ) exit();
 
 define("WC", "0.9");
 
-include_once dirname(__FILE__)."/config.php";
-include_once dirname(__FILE__)."/database.php";
+require_once dirname(__FILE__)."/config.php";
+require_once dirname(__FILE__)."/database.php";
+
+if(file_exists(dirname(__FILE__)."/cache_config.php")){
+    require_once dirname(__FILE__)."/cache_config.php";
+    $WCCACHE = new WCCache();
+} else {
+    $WCCACHE = false;
+}
 
 // disable db errors if installing
 if(defined("WC_INSTALLING")){
