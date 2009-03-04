@@ -25,12 +25,29 @@ if(isset($_GET["s"])){
     $start = 0;
 }
 
-list($WCDATA["posts"], $total_posts) = wc_db_get_post_list($start, $display, true);
+$WCDATA["posts"] = array();
+$total_posts = 0;
 
-foreach($WCDATA["posts"] as &$post){
-    wc_format_post($post);
+if($WCCACHE){
+    $cache_key = "index - $start - $display";
+    $page_data = $WCCACHE->get($cache_key);
+    if($page_data !== false){
+        list($WCDATA["posts"], $total_posts) = $page_data;
+    }
 }
-unset($post);
+
+if(empty($WCDATA["posts"])){
+
+    list($WCDATA["posts"], $total_posts) = wc_db_get_post_list($start, $display, true);
+
+    wc_format_post($WCDATA["posts"], true);
+
+    if($WCCACHE){
+        $WCCACHE->set($cache_key, array($WCDATA["posts"], $total_posts));
+    }
+
+}
+
 
 $WCDATA["title"] = $WC["default_title"];
 
