@@ -23,57 +23,101 @@ include_once dirname(__FILE__)."/url.php";
 /**
  * Formats the data of a post
  *
- * @param   type    $var    desctription
+ * @param   array   $post   Either a single post or an array of posts
+ * @param   bool    $multi  If passing in more than one post, set to true
  * @return  mixed
  *
  */
-function wc_format_post(&$post) {
+function wc_format_post(&$post, $multi=false) {
 
     global $WC;
 
-    $post["post_date"] = strftime($WC["date_format_long"], strtotime($post["post_date"]));
+    if(!$multi){
+        $post = array($post);
+    }
+    if($post == null){
+        print_var(debug_print_backtrace());
+    }
+    foreach($post as &$p){
 
-    $post["subject"] = htmlspecialchars($post["subject"]);
+        $p["post_date"] = strftime($WC["date_format_long"], strtotime($p["post_date"]));
 
-    $post["url"] = wc_get_url("post", $post["post_id"], $post["uri"]);
+        $p["subject"] = htmlspecialchars($p["subject"], ENT_COMPAT, "UTF-8");
 
-    if(!empty($post["tags"])){
-        $tmp_tags = $post["tags"];
-        unset($post["tags"]);
-        foreach($tmp_tags as $tag){
-            $post["tags"][] = array(
-                "tag" => $tag,
-                "url" => wc_get_url("tag", $tag)
-            );
+        $p["url"] = wc_get_url("post", $p["post_id"], $p["uri"]);
+
+        if(!empty($p["tags"])){
+            $tmp_tags = $p["tags"];
+            unset($p["tags"]);
+            foreach($tmp_tags as $tag){
+                $p["tags"][] = array(
+                    "tag" => $tag,
+                    "url" => wc_get_url("tag", $tag)
+                );
+            }
         }
     }
+
+    if(!empty($WC["hooks"]["format_post"])){
+        $post = wc_hook("format_post", $post);
+    }
+
+    if(!$multi){
+        $post = array_shift($post);
+    }
+
 }
 
 
 /**
  * Formats the data of a comment
  *
- * @param   type    $var    desctription
+ * @param   array   $comments   A single comment or an array of comments
+ * @param   bool    $multi  If passing in more than one post, set to true
  * @return  mixed
  *
  */
-function wc_format_comment(&$comment) {
+function wc_format_comment(&$comment, $multi=false) {
 
     global $WC;
 
-    $comment["comment"] = strip_tags($comment["comment"]);
-    $comment["comment"] = htmlspecialchars($comment["comment"]);
+    if(!$multi){
+        $comment = array($comment);
+    }
 
-    $comment["comment"] = nl2br($comment["comment"]);
+    foreach($comment as &$c){
 
-    $comment["comment"] = preg_replace("/((http|https|ftp):\/\/[a-z0-9;\/\?:@=\&\$\-_\.\+!*'\(\),~%#]+)/i", "<a href=\"$1\" rel=\"nofollow\">$1</a>", $comment["comment"]);
+        $c["comment"] = htmlspecialchars($c["comment"], ENT_COMPAT, "UTF-8");
 
-    $comment["name"] = htmlspecialchars($comment["name"]);
-    $comment["url"] = htmlspecialchars($comment["url"]);
-    $comment["email"] = htmlspecialchars($comment["email"]);
-    $comment["status"] = ucfirst(strtolower($comment["status"]));
+        // testing out support for perserving leading space
+        if(preg_match_all('!\n +!', $c["comment"], $matches)){
+            $searches = array_unique($matches[0]);
+            foreach($searches as $search){
+                $repl = str_replace(" ", "&nbsp;", $search);
+                $c["comment"] = str_replace($search, $repl, $c["comment"]);
+            }
+        }
 
-    $comment["gravatar"] = "http://www.gravatar.com/avatar/".md5(strtolower(trim($comment["email"]))).".jpg?r=pg&d=".urlencode($WC["base_url"]."/resources/transparent.png")."&s=75";
+        $c["comment"] = nl2br($c["comment"]);
+
+        $c["comment"] = preg_replace("/((http|https|ftp):\/\/[a-z0-9;\/\?:@=\&\$\-_\.\+!*'\(\),~%#]+)/i", "<a href=\"$1\" rel=\"nofollow\">$1</a>", $c["comment"]);
+
+        $c["name"] = htmlspecialchars($c["name"], ENT_COMPAT, "UTF-8");
+        $c["url"] = htmlspecialchars($c["url"], ENT_COMPAT, "UTF-8");
+        $c["email"] = htmlspecialchars($c["email"], ENT_COMPAT, "UTF-8");
+        $c["status"] = ucfirst(strtolower($c["status"]));
+
+        $c["gravatar"] = "http://www.gravatar.com/avatar/".md5(strtolower(trim($c["email"]))).".jpg?r=pg&d=".urlencode($WC["base_url"]."/resources/transparent.png")."&s=75";
+    }
+
+    if(!empty($WC["hooks"]["format_comment"])){
+        $comment = wc_hook("format_comment", $comment);
+    }
+
+    if(!$multi){
+        $comment = array_shift($comment);
+    }
+
 }
 
 ?>
