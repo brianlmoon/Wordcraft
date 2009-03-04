@@ -1,0 +1,66 @@
+<?php
+
+/**
+ * Cache settings
+ *
+ * @author     Brian Moon <brian@moonspot.net>
+ * @copyright  1997-Present Brian Moon
+ * @package    Wordcraft
+ * @license    http://wordcraft.googlecode.com/files/license.txt
+ * @link       http://wordcraft.googlecode.com/
+ *
+ *
+ * To enable caching, you will need to uncomment one of the blocks
+ * below.
+ *
+ *
+ *
+ *
+ */
+
+
+
+
+$WC["CACHE_SETTINGS"] = array(
+
+    "default_ttl" => 3600,
+
+    /**
+     * File based caching
+     *
+     * The directory must be writable by the web server.
+     */
+     /*
+     "method" => "file",
+     "dir"    => "/some/cache/dir",
+     */
+
+    /**
+     * Memcached
+     * See http://www.php.net/memcache
+     */
+    /*
+    "method"  => "memcache",
+    "servers" => array(
+                    array("127.0.0.1", 11211)
+                 )
+    */
+
+    /**
+     * APC
+     * See http://www.php.net/apc
+     */
+
+     // "method" => "apc",
+
+
+    /**
+     * XCache
+     * See http://xcache.lighttpd.net/
+     */
+
+     // "method" => "xcache",
+
+);
+
+?>
