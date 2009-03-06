@@ -14,6 +14,17 @@ var Dom = YAHOO.util.Dom,
 
 Event.onDOMReady(function() {
 
+    function sureToLeave(e){
+        e.returnValue = "If you have started a post, you may lose it.  Yikes!"
+    }
+
+    Event.addListener(window,'beforeunload', sureToLeave);
+
+    YAHOO.util.Event.addListener(Dom.get("editor").form, 'submit', function(e){
+        YAHOO.util.Event.removeListener(window, "beforeunload", sureToLeave);
+    });
+
+
     var myConfig = {
         height: '300px',
         width: '930px',
@@ -90,7 +101,7 @@ Event.onDOMReady(function() {
         }
     };
 
-    var myEditor = new YAHOO.widget.Editor('editor', myConfig);
+        var myEditor = new YAHOO.widget.Editor('editor', myConfig);
     myEditor._defaultToolbar.buttonType = 'advanced';
 
     var state = 'off';
