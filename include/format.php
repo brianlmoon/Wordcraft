@@ -98,7 +98,12 @@ function wc_format_comment(&$comment, $multi=false) {
             }
         }
 
-        $c["comment"] = nl2br($c["comment"]);
+        if(version_compare(PHP_VERSION, "5.3.0", ">=")){
+            $c["comment"] = nl2br($c["comment"], false);
+        } else {
+            $c["comment"] = nl2br($c["comment"]);
+            $c["comment"] = str_replace("<br />", "<br>", $c["comment"]);
+        }
 
         $c["comment"] = preg_replace("/((http|https|ftp):\/\/[a-z0-9;\/\?:@=\&\$\-_\.\+!*'\(\),~%#]+)/i", "<a href=\"$1\" rel=\"nofollow\">$1</a>", $c["comment"]);
 
@@ -107,7 +112,7 @@ function wc_format_comment(&$comment, $multi=false) {
         $c["email"] = htmlspecialchars($c["email"], ENT_COMPAT, "UTF-8");
         $c["status"] = ucfirst(strtolower($c["status"]));
 
-        $c["gravatar"] = "http://www.gravatar.com/avatar/".md5(strtolower(trim($c["email"]))).".jpg?r=pg&d=".urlencode($WC["base_url"]."/resources/transparent.png")."&s=75";
+        $c["gravatar"] = "http://www.gravatar.com/avatar/".md5(strtolower(trim($c["email"]))).".jpg?r=pg&amp;d=".urlencode($WC["base_url"]."/resources/transparent.png")."&amp;s=75";
     }
 
     if(!empty($WC["hooks"]["format_comment"])){
