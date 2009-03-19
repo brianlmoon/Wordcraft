@@ -1,7 +1,7 @@
 <?php
 
-include_once "./check_auth.php";
-include_once "./admin_functions.php";
+require_once "./admin_common.php";
+require_once "./admin_functions.php";
 
 if(!empty($_POST["post_id"]) && is_numeric($_POST["post_id"])){
 
@@ -55,7 +55,7 @@ if($object=="post"){
 
 $WHEREAMI = "Delete";
 
-include_once "./header.php";
+require_once "./header.php";
 
 $x = 1;
 
@@ -77,5 +77,5 @@ $x = 1;
 
 </div>
 
-<?php include_once "./footer.php"; ?>
+<?php require_once "./footer.php"; ?>
 

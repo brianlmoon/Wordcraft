@@ -11,10 +11,10 @@
  *
  */
 
-include_once "./check_auth.php";
-include_once "./admin_functions.php";
-include_once "../include/format.php";
-include_once "../include/spam.php";
+require_once "./admin_common.php";
+require_once "./admin_functions.php";
+require_once "../include/format.php";
+require_once "../include/spam.php";
 
 if(count($_POST) && ($_POST["mode"]=="delete_spam" || (!empty($_POST["comment_id"]) && is_numeric($_POST["comment_id"])))){
 
@@ -101,7 +101,7 @@ if($_GET["mode"]!="delete_spam"){
 
 $WHEREAMI = "Comment Moderation";
 
-include_once "./header.php";
+require_once "./header.php";
 
 ?>
 
@@ -120,5 +120,5 @@ include_once "./header.php";
 
 </div>
 
-<?php include_once "./footer.php"; ?>
+<?php require_once "./footer.php"; ?>
 

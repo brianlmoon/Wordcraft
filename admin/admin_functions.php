@@ -11,7 +11,7 @@
  *
  */
 
-include_once "../include/url.php";
+require_once "../include/url.php";
 
 
 /**
@@ -27,7 +27,7 @@ function wc_admin_error($error_message, $exit=true) {
 
     global $WC;
 
-    if($exit) include_once "./header.php";
+    if($exit) require_once "./header.php";
 
     ?>
         <div class="notice_error">
@@ -35,7 +35,7 @@ function wc_admin_error($error_message, $exit=true) {
         </div>
     <?php
 
-    if($exit) include_once "./footer.php";
+    if($exit) require_once "./footer.php";
 
     if($exit){
         exit();
@@ -56,7 +56,7 @@ function wc_admin_message($message, $exit=true, $redir=null) {
 
     global $WC;
 
-    if($exit) include_once "./header.php";
+    if($exit) require_once "./header.php";
 
     ?>
         <div class="notice">
@@ -73,7 +73,7 @@ function wc_admin_message($message, $exit=true, $redir=null) {
 
 
 
-    if($exit) include_once "./footer.php";
+    if($exit) require_once "./footer.php";
 
     if($exit){
         exit();

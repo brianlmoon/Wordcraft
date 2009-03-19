@@ -47,7 +47,30 @@ function wc_db_get_settings(){
 
     global $WC, $WCDB;
 
-    $sql = "select * from {$WC['settings_table']}";
+    $sql = "select *
+            from {$WC['settings_table']}
+            where name in (
+                'akismet_key',
+                'allow_comments',
+                'base_url',
+                'date_format_long',
+                'date_format_short',
+                'default_description',
+                'default_title',
+                'email_comment',
+                'moderate_all',
+                'send_linkbacks',
+                'session_days',
+                'session_domain',
+                'session_path',
+                'session_secret',
+                'template',
+                'use_akismet',
+                'use_captcha',
+                'use_rewrite',
+                'use_spam_score',
+                'db_version'
+            )";
 
     $WCDB->query($sql);
 
@@ -100,6 +123,7 @@ function wc_db_save_settings($settings){
             case "default_description":
             case "akismet_key":
             case "email_comment":
+            case "db_version":
                 $clean_arr[] = array("name"=>$name, "type"=>"V", "data"=>$WCDB->escape($data));
                 break;
 
@@ -214,6 +238,7 @@ function wc_db_save_post(&$post){
             case "user_id":
             case "allow_comments":
             case "published":
+            case "post_date":
                 $clean_arr[$field] = (int)$value;
                 break;
 
@@ -222,7 +247,6 @@ function wc_db_save_post(&$post){
 
             case "subject":
             case "body":
-            case "post_date":
             case "uri":
                 $clean_arr[$field] = $WCDB->escape($value);
                 break;
@@ -410,7 +434,8 @@ function wc_db_get_post_list($start=false, $limit=false, $bodies=false, $filter=
     }
 
     if($current) {
-        $where[] = "post_date < now() and published=1";
+        $now = time();
+        $where[] = "post_date < $now and published=1";
     }
 
     if(count($where)){
@@ -735,7 +760,7 @@ function wc_db_save_comment($comment) {
         if(empty($comment["post_id"])) return false;
         if(empty($comment["name"])) return false;
 
-        if(empty($comment["comment_date"])) $comment["comment_date"] = date("Y-m-d H:i:s");
+        if(empty($comment["comment_date"])) $comment["comment_date"] = time();
     }
 
     foreach($comment as $field=>$value){

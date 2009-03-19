@@ -11,8 +11,8 @@
  *
  */
 
-include_once "./check_auth.php";
-include_once "./admin_functions.php";
+require_once "./admin_common.php";
+require_once "./admin_functions.php";
 
 if(!empty($_POST["user_id"]) && is_numeric($_POST["user_id"])){
 
@@ -36,7 +36,7 @@ $user = wc_db_get_user($_GET["user_id"]);
 
 $WHEREAMI = "Delete User";
 
-include_once "./header.php";
+require_once "./header.php";
 
 $x = 1;
 
@@ -54,5 +54,5 @@ $x = 1;
 
 </div>
 
-<?php include_once "./footer.php"; ?>
+<?php require_once "./footer.php"; ?>
 

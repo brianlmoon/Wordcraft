@@ -11,8 +11,8 @@
  *
  */
 
-include_once "./check_auth.php";
-include_once "../include/url.php";
+require_once "./admin_common.php";
+require_once "../include/url.php";
 
 $start = (empty($_GET["start"])) ? 0 : (int)$_GET["start"];
 
@@ -24,7 +24,7 @@ list($posts, $total) = wc_db_get_post_list($start, $limit, false, $filter, "", f
 
 $WHEREAMI = "Manage Posts";
 
-include_once "./header.php";
+require_once "./header.php";
 
 $x = 1;
 
@@ -75,7 +75,7 @@ if($last > $total) {
             <tr class="row<?php echo $x; ?>">
                 <td><?php echo $post["post_id"]; ?></td>
                 <td><?php echo htmlspecialchars($post["subject"]); ?></td>
-                <td><?php echo strftime($WC["date_format_long"], strtotime($post["post_date"])); ?></td>
+                <td><?php echo strftime($WC["date_format_long"], $post["post_date"]); ?></td>
                 <td><?php echo htmlspecialchars(implode(", ", $post["tags"])); ?></td>
                 <td><a href="<?php echo wc_get_url("post", $post["post_id"]); ?>" target="_blank">View</a>&nbsp;&nbsp;<a href="post.php?mode=edit&post_id=<?php echo $post["post_id"]; ?>">Edit</a>&nbsp;&nbsp;<a href="delete.php?post_id=<?php echo $post["post_id"]; ?>">Delete</a></td>
             </tr>
@@ -97,5 +97,5 @@ if($last > $total) {
     You have not made any posts yet.
 <?php } ?>
 
-<?php include_once "./footer.php"; ?>
+<?php require_once "./footer.php"; ?>
 

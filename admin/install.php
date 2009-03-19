@@ -16,8 +16,8 @@ define("WC_INSTALLING", true);
 // do this so session check will not fail
 ob_start();
 
-include_once "../include/common.php";
-include_once "./admin_functions.php";
+require_once "../include/common.php";
+require_once "./admin_functions.php";
 
 $steps = array("", "check", "database", "account", "settings", "done");
 
@@ -31,7 +31,7 @@ $continue = true;
 
 $WHEREAMI = "Install";
 
-include_once "./header.php";
+require_once "./header.php";
 ?>
 
 <h1>Welcome to the Wordcraft installer!</h1>
@@ -335,5 +335,5 @@ include_once "./header.php";
 </form>
 <?php } ?>
 
-<?php include_once "./footer.php"; ?>
+<?php require_once "./footer.php"; ?>
 

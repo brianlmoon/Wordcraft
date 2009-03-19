@@ -40,7 +40,7 @@ function wc_format_post(&$post, $multi=false) {
     }
     foreach($post as &$p){
 
-        $p["post_date"] = strftime($WC["date_format_long"], strtotime($p["post_date"]));
+        $p["post_date"] = strftime($WC["date_format_long"], $p["post_date"]);
 
         $p["subject"] = htmlspecialchars($p["subject"], ENT_COMPAT, "UTF-8");
 

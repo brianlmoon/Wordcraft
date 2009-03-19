@@ -11,9 +11,9 @@
  *
  */
 
-include_once "../include/common.php";
-include_once "./check_auth.php";
-include_once "./admin_functions.php";
+require_once "../include/common.php";
+require_once "./admin_common.php";
+require_once "./admin_functions.php";
 
 // check the mode
 if(isset($_POST["mode"])){
@@ -49,14 +49,12 @@ if(count($_POST)){
     }
 
     if(isset($_POST["custom_date"])){
-        $ts = strtotime($_POST["date"]);
-        if(empty($ts)){
+        $post_date = strtotime($_POST["date"]);
+        if(empty($post_date)){
             $error = "Sorry, I don't recognize the date ".$_POST["date"];
-        } else {
-            $post_date = date("Y-m-d H:i:s", $ts);
         }
     } elseif($mode=="new"){
-        $post_date = date("Y-m-d H:i:s");
+        $post_date = time();
     }
 
     if(empty($_POST["post_id"]) && (empty($_POST["custom_uri"]) || empty($_POST["uri"]))){
@@ -74,7 +72,7 @@ if(count($_POST)){
         $published = 1;
         $redir = false;
         if(empty($post_date)){
-            $post_date = date("Y-m-d H:i:s");
+            $post_date = time();
         }
     } elseif($_POST["save_mode"]=="Save"){
         $published = 0;
@@ -164,7 +162,7 @@ if(count($_POST)){
             $post_subject = $post["subject"];
             $post_body = $post["body"];
             $post_tags = $post["tags_text"];
-            $post_date = strftime("%c", strtotime($post["post_date"]));
+            $post_date = strftime("%c", $post["post_date"]);
             $post_allow_comments = $post["allow_comments"];
             $post_published = $post["published"];
         } else {
@@ -193,7 +191,7 @@ $WHEREAMI = ($mode=="edit") ? "Edit Post" : "New Post";
 $WC_ADMIN_EDITOR = true;
 
 // begin output
-include_once "./header.php";
+require_once "./header.php";
 
 if(!empty($error)){
     wc_admin_error($error, false);
@@ -259,6 +257,6 @@ if(!empty($error)){
 
 <?php
 
-include_once "./footer.php";
+require_once "./footer.php";
 
 ?>

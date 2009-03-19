@@ -40,7 +40,10 @@ if(empty($WCDATA["posts"])){
 
     list($WCDATA["posts"], $total_posts) = wc_db_get_post_list($start, $display, true);
 
-    wc_format_post($WCDATA["posts"], true);
+    if($total_posts > 0){
+
+        wc_format_post($WCDATA["posts"], true);
+    }
 
     if($WCCACHE){
         $WCCACHE->set($cache_key, array($WCDATA["posts"], $total_posts));

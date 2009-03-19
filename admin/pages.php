@@ -11,8 +11,8 @@
  *
  */
 
-include_once "./check_auth.php";
-include_once "../include/url.php";
+require_once "./admin_common.php";
+require_once "../include/url.php";
 
 $start = (empty($_GET["start"])) ? 0 : (int)$_GET["start"];
 
@@ -24,7 +24,7 @@ list($pages, $total) = wc_db_get_page_list($start, $limit, false, $filter);
 
 $WHEREAMI = "Manage Pages";
 
-include_once "./header.php";
+require_once "./header.php";
 
 $x = 1;
 
@@ -88,5 +88,5 @@ if($last > $total) {
     No pages match your filter.
 <?php } ?>
 
-<?php include_once "./footer.php"; ?>
+<?php require_once "./footer.php"; ?>
 

@@ -16,6 +16,8 @@ if ( basename( __FILE__ ) == basename( $_SERVER["PHP_SELF"] ) ) exit();
 
 define("WC", "0.9");
 
+define("WC_DB_VERSION", "2009031901");
+
 require_once dirname(__FILE__)."/config.php";
 require_once dirname(__FILE__)."/database.php";
 
@@ -37,6 +39,15 @@ $settings = wc_db_get_settings();
 $WC = array_merge($WC, $settings);
 
 unset($settings);
+
+// check for internal version mismatch
+if(!isset($WC["db_version"]) || $WC["db_version"] != WC_DB_VERSION){
+    if(!defined("WC_ADMIN") && !defined("WC_INSTALLING")){
+        header("Content-Type: text/plain");
+        echo "It appears you need to upgrade the Wordcraft database.  Please load the Wordcraft administration interface.";
+        exit();
+    }
+}
 
 // check for template preview
 if($_GET["preview"]){

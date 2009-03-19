@@ -11,10 +11,10 @@
  *
  */
 
-include_once "./check_auth.php";
-include_once "../include/common.php";
-include_once "./admin_functions.php";
-include_once "../include/spam.php";
+require_once "./admin_common.php";
+require_once "../include/common.php";
+require_once "./admin_functions.php";
+require_once "../include/spam.php";
 
 if(count($_POST)){
 
@@ -99,7 +99,7 @@ foreach($templates as $t){
 
 $WHEREAMI = "Settings";
 
-include_once "./header.php";
+require_once "./header.php";
 
 ?>
 
@@ -210,5 +210,5 @@ include_once "./header.php";
 
 </form>
 
-<?php include_once "./footer.php"; ?>
+<?php require_once "./footer.php"; ?>
 

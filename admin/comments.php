@@ -11,8 +11,8 @@
  *
  */
 
-include_once "./check_auth.php";
-include_once "../include/format.php";
+require_once "./admin_common.php";
+require_once "../include/format.php";
 
 $start = (empty($_GET["start"])) ? 0 : (int)$_GET["start"];
 
@@ -56,7 +56,7 @@ if($spam_count > 0){
 
 $WHEREAMI = "Manage Comments";
 
-include_once "./header.php";
+require_once "./header.php";
 
 $x = 1;
 
@@ -131,7 +131,7 @@ if($last > $total) {
                     <?php } ?>
                 </form>
             </div>
-            <?php echo strftime($WC["date_format_short"], strtotime($comment["comment_date"])); ?>&nbsp;
+            <?php echo strftime($WC["date_format_short"], $comment["comment_date"]); ?>&nbsp;
             Response To: <a href="post.php?mode=edit&post_id=<?php echo $comment["post_id"];?>"><?php echo $posts[$comment["post_id"]]["subject"]; ?></a>
         </div>
     <?php } ?>
@@ -149,5 +149,5 @@ if($last > $total) {
     No comments match your filter.
 <?php } ?>
 
-<?php include_once "./footer.php"; ?>
+<?php require_once "./footer.php"; ?>
 

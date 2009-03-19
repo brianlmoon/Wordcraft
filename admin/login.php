@@ -11,8 +11,8 @@
  *
  */
 
-include_once "../include/common.php";
-include_once "./admin_functions.php";
+require_once "../include/common.php";
+require_once "./admin_functions.php";
 
 $error = false;
 
@@ -24,7 +24,7 @@ if(count($_POST)){
 
     } else {
 
-        include_once "../include/database.php";
+        require_once "../include/database.php";
 
         $user_id = wc_db_check_login($_POST["user_name"], $_POST["password"]);
 

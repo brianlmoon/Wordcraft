@@ -11,8 +11,8 @@
  *
  */
 
-include_once "./check_auth.php";
-include_once "./admin_functions.php";
+require_once "./admin_common.php";
+require_once "./admin_functions.php";
 
 
 // check the mode
@@ -115,7 +115,7 @@ $WHEREAMI = ($mode=="edit") ? "Edit User" : "New User";
 $WC_ADMIN_EDITOR = true;
 
 // begin output
-include_once "./header.php";
+require_once "./header.php";
 
 if(!empty($error)){
     wc_admin_error($error, false);
@@ -161,6 +161,6 @@ if(!empty($error)){
 
 <?php
 
-include_once "./footer.php";
+require_once "./footer.php";
 
 ?>
