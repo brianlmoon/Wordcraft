@@ -114,6 +114,8 @@ $WHEREAMI = ($mode=="edit") ? "Edit User" : "New User";
 
 $WC_ADMIN_EDITOR = true;
 
+$secret = wc_gen_form_secret();
+
 // begin output
 require_once "./header.php";
 
@@ -125,6 +127,7 @@ if(!empty($error)){
 
 <form method="post" action="user.php" id="user-form">
 
+    <input type="hidden" name="secret" value="<?php echo htmlspecialchars($secret, ENT_COMPAT, "UTF-8"); ?>">
     <input type="hidden" name="user_id" value="<?php echo htmlspecialchars($user_id, ENT_COMPAT, "UTF-8"); ?>">
     <input type="hidden" name="mode" value="<?php echo htmlspecialchars($mode, ENT_COMPAT, "UTF-8"); ?>">
 

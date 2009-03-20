@@ -36,6 +36,8 @@ $user = wc_db_get_user($_GET["user_id"]);
 
 $WHEREAMI = "Delete User";
 
+$secret = wc_gen_form_secret();
+
 require_once "./header.php";
 
 $x = 1;
@@ -48,6 +50,7 @@ $x = 1;
 
     <h1><?php echo $user["user_name"]; ?></h1>
     <form action="user_delete.php" method="post">
+        <input type="hidden" name="secret" value="<?php echo htmlspecialchars($secret, ENT_COMPAT, "UTF-8"); ?>">
         <input type="hidden" name="user_id" value="<?php echo $user["user_id"]; ?>">
         <input type="submit" name="delete" value="Yes">&nbsp;&nbsp;<input type="submit" name="delete" value="No">
     </form>

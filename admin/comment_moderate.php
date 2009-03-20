@@ -101,6 +101,8 @@ if($_GET["mode"]!="delete_spam"){
 
 $WHEREAMI = "Comment Moderation";
 
+$secret = wc_gen_form_secret();
+
 require_once "./header.php";
 
 ?>
@@ -113,6 +115,7 @@ require_once "./header.php";
         <h1>Comment by <?php echo $comment["name"]; ?>. In response to <?php echo $post["subject"]; ?></h1>
     <?php } ?>
     <form action="comment_moderate.php" method="post">
+        <input type="hidden" name="secret" value="<?php echo htmlspecialchars($secret, ENT_COMPAT, "UTF-8"); ?>">
         <input type="hidden" name="comment_id" value="<?php echo (int)$_GET["comment_id"]; ?>">
         <input type="hidden" name="mode" value="<?php echo $_GET["mode"]; ?>">
         <input type="submit" name="confirm" value="Yes">&nbsp;&nbsp;<input type="submit" name="confirm" value="No">

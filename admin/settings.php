@@ -99,11 +99,15 @@ foreach($templates as $t){
 
 $WHEREAMI = "Settings";
 
+$secret = wc_gen_form_secret();
+
 require_once "./header.php";
 
 ?>
 
 <form method="post" action="settings.php" id="settings-form">
+
+    <input type="hidden" name="secret" value="<?php echo htmlspecialchars($secret, ENT_COMPAT, "UTF-8"); ?>">
 
     <h2>General Settings</h2>
 

@@ -75,6 +75,7 @@ if(isset($user_id)){
 // set breadcrumb
 $WHEREAMI = "Set User Password";
 
+$secret = wc_gen_form_secret();
 
 // begin output
 require_once "./header.php";
@@ -87,6 +88,7 @@ if(!empty($error)){
 
 <form method="post" action="user_password.php" id="user-form">
 
+    <input type="hidden" name="secret" value="<?php echo htmlspecialchars($secret, ENT_COMPAT, "UTF-8"); ?>">
     <input type="hidden" name="user_id" value="<?php echo htmlspecialchars($user_id, ENT_COMPAT, "UTF-8"); ?>">
 
     <p>

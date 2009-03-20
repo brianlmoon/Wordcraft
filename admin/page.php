@@ -110,6 +110,8 @@ $WHEREAMI = ($mode=="edit") ? "Edit Page" : "New Page";
 
 $WC_ADMIN_EDITOR = true;
 
+$secret = wc_gen_form_secret();
+
 // begin output
 require_once "./header.php";
 
@@ -121,6 +123,7 @@ if(!empty($error)){
 
 <form method="post" action="page.php" id="post-form">
 
+    <input type="hidden" name="secret" value="<?php echo htmlspecialchars($secret, ENT_COMPAT, "UTF-8"); ?>">
     <input type="hidden" name="page_id" value="<?php echo htmlspecialchars($page_id, ENT_COMPAT, "UTF-8"); ?>">
     <input type="hidden" name="mode" value="<?php echo htmlspecialchars($mode, ENT_COMPAT, "UTF-8"); ?>">
 

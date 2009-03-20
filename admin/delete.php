@@ -55,6 +55,8 @@ if($object=="post"){
 
 $WHEREAMI = "Delete";
 
+$secret = wc_gen_form_secret();
+
 require_once "./header.php";
 
 $x = 1;
@@ -67,6 +69,7 @@ $x = 1;
 
     <h1><?php echo $subject; ?></h1>
     <form action="delete.php" method="post">
+        <input type="hidden" name="secret" value="<?php echo htmlspecialchars($secret, ENT_COMPAT, "UTF-8"); ?>">
         <?php if($object=="post") { ?>
             <input type="hidden" name="post_id" value="<?php echo $post["post_id"]; ?>">
         <?php } elseif($object=="page") { ?>

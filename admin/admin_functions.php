@@ -186,4 +186,25 @@ function wc_admin_get_url($url, $method="GET", $request_data="") {
     return $data;
 }
 
+
+/**
+ * Generates a secret token for use in post forms
+ *
+ * @return  string
+ */
+function wc_gen_form_secret() {
+
+    static $secret;
+
+    if(empty($secret)){
+        $secret = uniqid();
+        if(!isset($_SESSION["form_secrets"])) $_SESSION["form_secrets"] = array();
+        array_unshift($_SESSION["form_secrets"], $secret);
+        // keep the last 20 secrets around to allow for opening forms in tabs and such
+        $_SESSION["form_secrets"] = array_slice($_SESSION["form_secrets"], 0, 20);
+    }
+
+    return $secret;
+}
+
 ?>
