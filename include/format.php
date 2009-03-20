@@ -87,7 +87,7 @@ function wc_format_comment(&$comment, $multi=false) {
 
     foreach($comment as &$c){
 
-        $c["comment"] = htmlspecialchars($c["comment"], ENT_COMPAT, "UTF-8", ENT_COMPAT, "UTF-8");
+        $c["comment"] = htmlspecialchars($c["comment"], ENT_COMPAT, "UTF-8");
 
         // testing out support for perserving leading space
         if(preg_match_all('!\n +!', $c["comment"], $matches)){
@@ -107,9 +107,9 @@ function wc_format_comment(&$comment, $multi=false) {
 
         $c["comment"] = preg_replace("/((http|https|ftp):\/\/[a-z0-9;\/\?:@=\&\$\-_\.\+!*'\(\),~%#]+)/i", "<a href=\"$1\" rel=\"nofollow\">$1</a>", $c["comment"]);
 
-        $c["name"] = htmlspecialchars($c["name"], ENT_COMPAT, "UTF-8", ENT_COMPAT, "UTF-8");
-        $c["url"] = htmlspecialchars($c["url"], ENT_COMPAT, "UTF-8", ENT_COMPAT, "UTF-8");
-        $c["email"] = htmlspecialchars($c["email"], ENT_COMPAT, "UTF-8", ENT_COMPAT, "UTF-8");
+        $c["name"] = htmlspecialchars($c["name"], ENT_COMPAT, "UTF-8");
+        $c["url"] = htmlspecialchars($c["url"], ENT_COMPAT, "UTF-8");
+        $c["email"] = htmlspecialchars($c["email"], ENT_COMPAT, "UTF-8");
         $c["status"] = ucfirst(strtolower($c["status"]));
 
         $c["gravatar"] = "http://www.gravatar.com/avatar/".md5(strtolower(trim($c["email"]))).".jpg?r=pg&amp;d=".urlencode($WC["base_url"]."/resources/transparent.png")."&amp;s=75";
