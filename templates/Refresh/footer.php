@@ -14,7 +14,7 @@
 
                 <a href="<?php echo $WCDATA["home_url"]; ?>">Home</a> |
                 <?php if(isset($WCDATA["nav_pages"])) foreach($WCDATA["nav_pages"] as $nav_page) { ?>
-                    <a href="<?php echo $nav_page["url"]; ?>"><?php echo htmlspecialchars($nav_page["nav_label"]); ?></a> |
+                    <a href="<?php echo $nav_page["url"]; ?>"><?php echo $nav_page["nav_label"]; ?></a> |
                 <?php } ?>
                 <a href="<?php echo $WCDATA["feed_url"]; ?>">RSS Feed</a>
 

@@ -43,8 +43,8 @@ foreach($WCDATA["posts"] as &$post){
 }
 unset($post);
 
-$WCDATA["title"] = "Posts containing `".htmlspecialchars($query)."` - ".$WC["default_title"];
-$WCDATA["description"] = "Posts containing `".htmlspecialchars($query)."`. ".$WC["default_description"];
+$WCDATA["title"] = "Posts containing `".htmlspecialchars($query, ENT_COMPAT, "UTF-8")."` - ".$WC["default_title"];
+$WCDATA["description"] = "Posts containing `".htmlspecialchars($query, ENT_COMPAT, "UTF-8")."`. ".$WC["default_description"];
 
 $WCDATA["feed_url"] = wc_get_url("feed", "rss", "", $query);
 

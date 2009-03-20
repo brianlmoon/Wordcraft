@@ -87,7 +87,7 @@ if(!empty($error)){
 
 <form method="post" action="user_password.php" id="user-form">
 
-    <input type="hidden" name="user_id" value="<?php echo htmlspecialchars($user_id); ?>">
+    <input type="hidden" name="user_id" value="<?php echo htmlspecialchars($user_id, ENT_COMPAT, "UTF-8"); ?>">
 
     <p>
         <strong>User Name: </strong><?php echo $user["user_name"]; ?>

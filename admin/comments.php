@@ -89,7 +89,7 @@ if($last > $total) {
         <input type="radio" id="status-approved" name="status" value="approved" <?php if($_GET["status"]=="approved") echo "checked"; ?>><label for="status-approved"> Approved</label>
         <input type="radio" id="status-hidden" name="status" value="unapproved" <?php if($_GET["status"]=="unapproved") echo "checked"; ?>><label for="status-hidden"> Hidden</label>
         <input type="radio" id="status-spam" name="status" value="spam" <?php if($_GET["status"]=="spam") echo "checked"; ?>><label for="status-spam"> Spam</label><br>
-        <input type="text" class="inputgri" name="filter" value="<?php echo htmlspecialchars($filter); ?>">
+        <input type="text" class="inputgri" name="filter" value="<?php echo htmlspecialchars($filter, ENT_COMPAT, "UTF-8"); ?>">
         <input type="submit" class="button" value="Filter">
         <a href="comments.php">Reset</a>
     </form>

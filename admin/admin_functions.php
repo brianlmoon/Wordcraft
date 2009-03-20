@@ -31,7 +31,7 @@ function wc_admin_error($error_message, $exit=true) {
 
     ?>
         <div class="notice_error">
-            <?php echo htmlspecialchars($error_message); ?>
+            <?php echo htmlspecialchars($error_message, ENT_COMPAT, "UTF-8"); ?>
         </div>
     <?php
 
@@ -60,7 +60,7 @@ function wc_admin_message($message, $exit=true, $redir=null) {
 
     ?>
         <div class="notice">
-            <?php echo htmlspecialchars($message); ?>
+            <?php echo htmlspecialchars($message, ENT_COMPAT, "UTF-8"); ?>
         </div>
 
         <?php if(!empty($redir)){ ?>

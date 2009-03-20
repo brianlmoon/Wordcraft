@@ -25,7 +25,7 @@ if(isset($_POST["mode"])){
 }
 
 if($mode!="new" && $mode!="edit"){
-    wc_admin_error("Invalid mode '".htmlspecialchars($mode)."' for user page.");
+    wc_admin_error("Invalid mode '".htmlspecialchars($mode)."' for user page.", ENT_COMPAT, "UTF-8");
 }
 
 if($mode=="edit" && empty($_GET["user_id"]) && empty($_POST["user_id"])){
@@ -125,32 +125,32 @@ if(!empty($error)){
 
 <form method="post" action="user.php" id="user-form">
 
-    <input type="hidden" name="user_id" value="<?php echo htmlspecialchars($user_id); ?>">
-    <input type="hidden" name="mode" value="<?php echo htmlspecialchars($mode); ?>">
+    <input type="hidden" name="user_id" value="<?php echo htmlspecialchars($user_id, ENT_COMPAT, "UTF-8"); ?>">
+    <input type="hidden" name="mode" value="<?php echo htmlspecialchars($mode, ENT_COMPAT, "UTF-8"); ?>">
 
     <p>
         <strong>User Name:</strong><br>
-        <input class="inputgri" type="text" value="<?php echo htmlspecialchars($user_name); ?>" id="user_name" name="user_name" maxlength="20">
+        <input class="inputgri" type="text" value="<?php echo htmlspecialchars($user_name, ENT_COMPAT, "UTF-8"); ?>" id="user_name" name="user_name" maxlength="20">
     </p>
 
     <p>
         <strong>Email:</strong><br>
-        <input class="inputgri" type="text" value="<?php echo htmlspecialchars($user_email); ?>" id="email" name="email" maxlength="50">
+        <input class="inputgri" type="text" value="<?php echo htmlspecialchars($user_email, ENT_COMPAT, "UTF-8"); ?>" id="email" name="email" maxlength="50">
     </p>
 
     <p>
         <strong>First Name:</strong><br>
-        <input class="inputgri" type="text" value="<?php echo htmlspecialchars($user_first_name); ?>" id="first_name" name="first_name" maxlength="25">
+        <input class="inputgri" type="text" value="<?php echo htmlspecialchars($user_first_name, ENT_COMPAT, "UTF-8"); ?>" id="first_name" name="first_name" maxlength="25">
     </p>
 
     <p>
         <strong>Last Name:</strong><br>
-        <input class="inputgri" type="text" value="<?php echo htmlspecialchars($user_last_name); ?>" id="last_name" name="last_name" maxlength="25">
+        <input class="inputgri" type="text" value="<?php echo htmlspecialchars($user_last_name, ENT_COMPAT, "UTF-8"); ?>" id="last_name" name="last_name" maxlength="25">
     </p>
 
     <p>
         <strong>About This User:</strong><br>
-        <textarea id="editor" name="editor" rows="20" cols="75"><?php echo htmlspecialchars($user_about); ?></textarea>
+        <textarea id="editor" name="editor" rows="20" cols="75"><?php echo htmlspecialchars($user_about, ENT_COMPAT, "UTF-8"); ?></textarea>
     </p>
 
     <p>

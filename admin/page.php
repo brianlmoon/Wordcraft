@@ -25,7 +25,7 @@ if(isset($_POST["mode"])){
 }
 
 if($mode!="new" && $mode!="edit"){
-    wc_admin_error("Invalid mode '".htmlspecialchars($mode)."' for pages page");
+    wc_admin_error("Invalid mode '".htmlspecialchars($mode)."' for pages page", ENT_COMPAT, "UTF-8");
 }
 
 if($mode=="edit" && empty($_GET["page_id"]) && empty($_POST["page_id"])){
@@ -121,22 +121,22 @@ if(!empty($error)){
 
 <form method="post" action="page.php" id="post-form">
 
-    <input type="hidden" name="page_id" value="<?php echo htmlspecialchars($page_id); ?>">
-    <input type="hidden" name="mode" value="<?php echo htmlspecialchars($mode); ?>">
+    <input type="hidden" name="page_id" value="<?php echo htmlspecialchars($page_id, ENT_COMPAT, "UTF-8"); ?>">
+    <input type="hidden" name="mode" value="<?php echo htmlspecialchars($mode, ENT_COMPAT, "UTF-8"); ?>">
 
     <p>
         <strong>Navigation Label:</strong><br>
-        <input class="inputgri" type="text" value="<?php echo htmlspecialchars($page_nav_label); ?>" id="page_nav_label" name="nav_label" maxlength="30">
+        <input class="inputgri" type="text" value="<?php echo htmlspecialchars($page_nav_label, ENT_COMPAT, "UTF-8"); ?>" id="page_nav_label" name="nav_label" maxlength="30">
     </p>
 
     <p>
         <strong>Title:</strong><br>
-        <input class="inputgri" type="text" value="<?php echo htmlspecialchars($page_title); ?>" id="page_title" name="title" maxlength="100">
+        <input class="inputgri" type="text" value="<?php echo htmlspecialchars($page_title, ENT_COMPAT, "UTF-8"); ?>" id="page_title" name="title" maxlength="100">
     </p>
 
     <p>
         <strong>Page Body:</strong><br>
-        <textarea id="editor" name="editor" rows="20" cols="75"><?php echo htmlspecialchars($page_body); ?></textarea>
+        <textarea id="editor" name="editor" rows="20" cols="75"><?php echo htmlspecialchars($page_body, ENT_COMPAT, "UTF-8"); ?></textarea>
     </p>
 
     <p>

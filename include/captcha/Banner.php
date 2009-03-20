@@ -51,7 +51,7 @@ class CaptchaBanner {
 
             if (! isset($this->font[$char])) {
                 die("banner class does not have character " .
-                    htmlspecialchars($char) . " defined in its font.");
+                    htmlspecialchars($char, ENT_COMPAT, "UTF-8") . " defined in its font.");
             }
             $fontchar = $this->font[$char];
 

@@ -52,7 +52,7 @@ if($last > $total) {
 
 <div id="filter">
     <form action="pages.php" method="get">
-        <input type="text" class="inputgri" name="filter" value="<?php echo htmlspecialchars($filter); ?>">
+        <input type="text" class="inputgri" name="filter" value="<?php echo htmlspecialchars($filter, ENT_COMPAT, "UTF-8"); ?>">
         <input type="submit" class="button" value="Filter">
         <a href="pages.php">Reset</a>
     </form>
@@ -69,7 +69,7 @@ if($last > $total) {
             <?php $x = ($x==1) ? 2 : 1; ?>
             <tr class="row<?php echo $x; ?>">
                 <td><?php echo $page["page_id"]; ?></td>
-                <td><?php echo htmlspecialchars($page["title"]); ?></td>
+                <td><?php echo htmlspecialchars($page["title"], ENT_COMPAT, "UTF-8"); ?></td>
                 <td><a href="<?php echo wc_get_url("page", $page["page_id"]); ?>" target="_blank">View</a>&nbsp;&nbsp;<a href="page.php?mode=edit&page_id=<?php echo $page["page_id"]; ?>">Edit</a>&nbsp;&nbsp;<a href="delete.php?page_id=<?php echo $page["page_id"]; ?>">Delete</a></td>
             </tr>
         <?php } ?>

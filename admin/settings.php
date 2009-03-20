@@ -109,7 +109,7 @@ require_once "./header.php";
 
     <p>
         <strong>Base URL:</strong><br>
-        <input class="inputgri" type="text" value="<?php echo htmlspecialchars($settings["base_url"]); ?>" id="base_url" name="base_url">
+        <input class="inputgri" type="text" value="<?php echo htmlspecialchars($settings["base_url"], ENT_COMPAT, "UTF-8"); ?>" id="base_url" name="base_url">
     </p>
 
     <p>
@@ -130,12 +130,12 @@ require_once "./header.php";
 
     <p>
         <strong>Default HTML Title:</strong><br>
-        <input class="inputgri" type="text" value="<?php echo htmlspecialchars($settings["default_title"]); ?>" id="default_title" name="default_title">
+        <input class="inputgri" type="text" value="<?php echo htmlspecialchars($settings["default_title"], ENT_COMPAT, "UTF-8"); ?>" id="default_title" name="default_title">
     </p>
 
     <p>
         <strong>Default HTML META Description:</strong><br>
-        <textarea class="inputgri" id="default_description" name="default_description"><?php echo htmlspecialchars($settings["default_description"]); ?></textarea>
+        <textarea class="inputgri" id="default_description" name="default_description"><?php echo htmlspecialchars($settings["default_description"], ENT_COMPAT, "UTF-8"); ?></textarea>
     </p>
 
     <h2>Comment Moderation</h2>
@@ -175,7 +175,7 @@ require_once "./header.php";
     <strong><input type="checkbox" value="1" <?php if(!empty($settings["use_akismet"])) echo "checked"; ?> id="use_akismet" name="use_akismet"> <label for="use_akismet">Use Aksimet</label></strong><br>
     <blockquote>
         <strong>Akismet Key:</strong><br>
-        <input class="inputgri" type="text" value="<?php echo htmlspecialchars($settings["akismet_key"]); ?>" id="akismet_key" name="akismet_key"><br>
+        <input class="inputgri" type="text" value="<?php echo htmlspecialchars($settings["akismet_key"], ENT_COMPAT, "UTF-8"); ?>" id="akismet_key" name="akismet_key"><br>
         Akismet is a web services based spam checking system.  It utilizes knowledge from thousands of blogs to identify spam comments.
         Akismet is free for personal use, but does require you register your blog and obtain a key. For more information see <a href="http://akismet.com/">http://akismet.com/</a>
     </blockquote>
@@ -185,7 +185,7 @@ require_once "./header.php";
 
     <p>
         <strong>Days to remember logged in sessions:</strong><br>
-        <input class="inputgri" type="text" value="<?php echo htmlspecialchars($settings["session_days"]); ?>" id="session_days" name="session_days">
+        <input class="inputgri" type="text" value="<?php echo htmlspecialchars($settings["session_days"], ENT_COMPAT, "UTF-8"); ?>" id="session_days" name="session_days">
     </p>
 
 
@@ -195,12 +195,12 @@ require_once "./header.php";
 
     <p>
         <strong>Long Date Format:</strong><br>
-        <input class="inputgri" type="text" value="<?php echo htmlspecialchars($settings["date_format_long"]); ?>" id="date_format_long" name="date_format_long">
+        <input class="inputgri" type="text" value="<?php echo htmlspecialchars($settings["date_format_long"], ENT_COMPAT, "UTF-8"); ?>" id="date_format_long" name="date_format_long">
     </p>
 
     <p>
         <strong>Short Date Format:</strong><br>
-        <input class="inputgri" type="text" value="<?php echo htmlspecialchars($settings["date_format_short"]); ?>" id="date_format_short" name="date_format_short">
+        <input class="inputgri" type="text" value="<?php echo htmlspecialchars($settings["date_format_short"], ENT_COMPAT, "UTF-8"); ?>" id="date_format_short" name="date_format_short">
     </p>
 
 

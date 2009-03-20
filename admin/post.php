@@ -27,7 +27,7 @@ if(isset($_POST["mode"])){
 }
 
 if($mode!="new" && $mode!="edit"){
-    wc_admin_error("Invalid mode '".htmlspecialchars($mode)."' for post page");
+    wc_admin_error("Invalid mode '".htmlspecialchars($mode)."' for post page", ENT_COMPAT, "UTF-8");
 }
 
 if($mode=="edit" && empty($_GET["post_id"]) && empty($_POST["post_id"])){
@@ -201,8 +201,8 @@ if(!empty($error)){
 
 <form method="post" action="post.php" id="post-form">
 
-    <input type="hidden" name="post_id" value="<?php echo htmlspecialchars($post_id); ?>">
-    <input type="hidden" name="mode" value="<?php echo htmlspecialchars($mode); ?>">
+    <input type="hidden" name="post_id" value="<?php echo htmlspecialchars($post_id, ENT_COMPAT, "UTF-8"); ?>">
+    <input type="hidden" name="mode" value="<?php echo htmlspecialchars($mode, ENT_COMPAT, "UTF-8"); ?>">
 
     <div id="post-options">
         <p>
@@ -215,31 +215,31 @@ if(!empty($error)){
 
         <p>
             <strong><input type="checkbox" name="custom_date" id="custom_date" value="1" <?php if(!empty($post_custom_date)) echo "checked "; ?>><label for="custom_date">Custom Date:</label></strong><br>
-            <input class="inputgri" type="text" value="<?php echo htmlspecialchars($post_date); ?>" id="date" name="date"><br>
+            <input class="inputgri" type="text" value="<?php echo htmlspecialchars($post_date, ENT_COMPAT, "UTF-8"); ?>" id="date" name="date"><br>
         </p>
     </div>
 
     <p>
         <strong>Subject:</strong><br>
-        <input class="inputgri" type="text" value="<?php echo htmlspecialchars($post_subject); ?>" id="subject" name="subject" maxlength="100">
+        <input class="inputgri" type="text" value="<?php echo htmlspecialchars($post_subject, ENT_COMPAT, "UTF-8"); ?>" id="subject" name="subject" maxlength="100">
     </p>
 
     <?php if($WC["use_rewrite"]) { ?>
     <p>
         <strong>Post URI:</strong> <input type="checkbox" name="custom_uri" id="custom_uri" value="1" <?php if(!empty($post_custom_uri)) echo "checked "; ?>><label for="custom_uri">Custom URI</label><br>
-        <input class="inputgri" type="text" value="<?php echo htmlspecialchars($post_uri); ?>" id="uri" name="uri"><br>
+        <input class="inputgri" type="text" value="<?php echo htmlspecialchars($post_uri, ENT_COMPAT, "UTF-8"); ?>" id="uri" name="uri"><br>
     </p>
     <?php } ?>
 
     <p>
         <strong>Tags:</strong><br>
-        <input class="inputgri" type="text" value="<?php echo htmlspecialchars($post_tags); ?>" id="tags" name="tags"><br>
+        <input class="inputgri" type="text" value="<?php echo htmlspecialchars($post_tags, ENT_COMPAT, "UTF-8"); ?>" id="tags" name="tags"><br>
         <small>Separate with commas. Example: kids, ball game, park</small>
     </p>
 
     <p class="clear">
         <strong>Post:</strong><br>
-        <textarea id="editor" name="editor" rows="20" cols="75"><?php echo htmlspecialchars($post_body); ?></textarea>
+        <textarea id="editor" name="editor" rows="20" cols="75"><?php echo htmlspecialchars($post_body, ENT_COMPAT, "UTF-8"); ?></textarea>
     </p>
 
     <p>

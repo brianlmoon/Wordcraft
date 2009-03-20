@@ -43,8 +43,8 @@ foreach($WCDATA["posts"] as &$post){
 }
 unset($post);
 
-$WCDATA["title"] = "Posts tagged with `".htmlspecialchars($tag)."` - ".$WC["default_title"];
-$WCDATA["description"] = "Posts tagged with `".htmlspecialchars($tag)."`. ".$WC["default_description"];
+$WCDATA["title"] = "Posts tagged with `".htmlspecialchars($tag, ENT_COMPAT, "UTF-8")."` - ".$WC["default_title"];
+$WCDATA["description"] = "Posts tagged with `".htmlspecialchars($tag, ENT_COMPAT, "UTF-8")."`. ".$WC["default_description"];
 
 $WCDATA["feed_url"] = wc_get_url("feed", "rss", $tag, "");
 

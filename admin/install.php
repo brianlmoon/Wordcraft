@@ -278,7 +278,7 @@ require_once "./header.php";
         <h2>Create your first user</h2>
 
         <?php if(!empty($message)){ ?>
-            <p><?php echo htmlspecialchars($message); ?></p>
+            <p><?php echo htmlspecialchars($message, ENT_COMPAT, "UTF-8"); ?></p>
             <?php unset($message); ?>
         <?php } ?>
 
@@ -287,12 +287,12 @@ require_once "./header.php";
 
             <p>
                 <strong>User Name:</strong><br>
-                <input class="inputgri" type="text" value="<?php echo htmlspecialchars($user_name); ?>" id="user_name" name="user_name" maxlength="20">
+                <input class="inputgri" type="text" value="<?php echo htmlspecialchars($user_name, ENT_COMPAT, "UTF-8"); ?>" id="user_name" name="user_name" maxlength="20">
             </p>
 
             <p>
                 <strong>Email:</strong><br>
-                <input class="inputgri" type="text" value="<?php echo htmlspecialchars($user_email); ?>" id="email" name="email" maxlength="50">
+                <input class="inputgri" type="text" value="<?php echo htmlspecialchars($user_email, ENT_COMPAT, "UTF-8"); ?>" id="email" name="email" maxlength="50">
             </p>
 
             <p>

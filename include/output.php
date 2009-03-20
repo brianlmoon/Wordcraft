@@ -102,11 +102,13 @@ function wc_build_common_data(&$WCDATA) {
 
     $WCDATA["nav_pages"] = wc_db_get_nav_pages();
     foreach($WCDATA["nav_pages"] as $key=>$page){
+        $WCDATA["nav_pages"][$key]["nav_label"] = htmlspecialchars($page["nav_label"], ENT_COMPAT, "UTF-8");
         $WCDATA["nav_pages"][$key]["url"] = wc_get_url("page", $page["page_id"], $page["uri"]);
     }
 
     $WCDATA["tags"] = wc_db_get_tags();
     foreach($WCDATA["tags"] as $key=>$tag){
+        $WCDATA["tags"][$key]["tag"] = htmlspecialchars($tag["tag"], ENT_COMPAT, "UTF-8");
         $WCDATA["tags"][$key]["url"] = wc_get_url("tag", $tag["tag"]);
     }
 

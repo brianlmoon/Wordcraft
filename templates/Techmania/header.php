@@ -21,7 +21,7 @@
                 <ul>
                     <li><a href="<?php echo $WCDATA["home_url"]; ?>"><span>Home</span></a></li>
                     <?php if(isset($WCDATA["nav_pages"])) foreach($WCDATA["nav_pages"] as $nav_page) { ?>
-                        <li><a href="<?php echo $nav_page["url"]; ?>"><span><?php echo htmlspecialchars($nav_page["nav_label"]); ?></span></a></li>
+                        <li><a href="<?php echo $nav_page["url"]; ?>"><span><?php echo $nav_page["nav_label"]; ?></span></a></li>
                     <?php } ?>
                 </ul>
             </div>

@@ -52,7 +52,7 @@ if($last > $total) {
 
 <div id="filter">
     <form action="index.php" method="get">
-        <input type="text" class="inputgri" name="filter" value="<?php echo htmlspecialchars($filter); ?>">
+        <input type="text" class="inputgri" name="filter" value="<?php echo htmlspecialchars($filter, ENT_COMPAT, "UTF-8"); ?>">
         <input type="submit" class="button" value="Filter">
         <a href="index.php">Reset</a>
     </form>
@@ -74,9 +74,9 @@ if($last > $total) {
             <?php $x = ($x==1) ? 2 : 1; ?>
             <tr class="row<?php echo $x; ?>">
                 <td><?php echo $post["post_id"]; ?></td>
-                <td><?php echo htmlspecialchars($post["subject"]); ?></td>
+                <td><?php echo htmlspecialchars($post["subject"], ENT_COMPAT, "UTF-8"); ?></td>
                 <td><?php echo strftime($WC["date_format_long"], $post["post_date"]); ?></td>
-                <td><?php echo htmlspecialchars(implode(", ", $post["tags"])); ?></td>
+                <td><?php echo htmlspecialchars(implode(", ", $post["tags"]), ENT_COMPAT, "UTF-8"); ?></td>
                 <td><a href="<?php echo wc_get_url("post", $post["post_id"]); ?>" target="_blank">View</a>&nbsp;&nbsp;<a href="post.php?mode=edit&post_id=<?php echo $post["post_id"]; ?>">Edit</a>&nbsp;&nbsp;<a href="delete.php?post_id=<?php echo $post["post_id"]; ?>">Delete</a></td>
             </tr>
         <?php } ?>

@@ -119,7 +119,7 @@ class CaptchaBase {
     public function generate_captcha_html($question) {
 
         die("generate_captcha_html() method not implemented for " .
-            "CAPTCHA class " . htmlspecialchars(get_class($this)));
+            "CAPTCHA class " . htmlspecialchars(get_class($this), ENT_COMPAT, "UTF-8"));
     }
     // }}}
 
@@ -209,7 +209,7 @@ class CaptchaBase {
     */
     public function generate_image($answer) {
         die("generate_image() method not implemented for " .
-            "CAPTCHA class " . htmlspecialchars(get_class($this)));
+            "CAPTCHA class " . htmlspecialchars(get_class($this), ENT_COMPAT, "UTF-8"));
     }
     // }}}
 

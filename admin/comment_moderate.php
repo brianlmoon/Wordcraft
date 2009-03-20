@@ -56,7 +56,7 @@ if(count($_POST) && ($_POST["mode"]=="delete_spam" || (!empty($_POST["comment_id
             wc_admin_message("Spam deleted.", true, "comments.php");
             break;
         default:
-            wc_admin_error("Invalid mode ".htmlspecialchars($_POST["mode"])." for comment moderation.");
+            wc_admin_error("Invalid mode ".htmlspecialchars($_POST["mode"])." for comment moderation.", ENT_COMPAT, "UTF-8");
 
     }
 
@@ -82,7 +82,7 @@ switch($_GET["mode"]){
         $question = "delete all comments marked as spam";
         break;
     default:
-        wc_admin_error("Invalid mode ".htmlspecialchars($_POST["mode"])." for comment moderation.");
+        wc_admin_error("Invalid mode ".htmlspecialchars($_POST["mode"])." for comment moderation.", ENT_COMPAT, "UTF-8");
 
 }
 
