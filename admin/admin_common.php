@@ -32,7 +32,13 @@ if(count($_POST)){
 
     if(empty($_POST["secret"]) ||
        !in_array($_POST["secret"], $_SESSION["form_secrets"])){
+        print_var($_POST);
+        print_var($_SESSION);
         wc_admin_error("The form information you submitted is invalid.  Please go back and reload the page before submitting the form.");
+    }
+
+    if(isset($_POST["secret"])){
+        unset($_POST["secret"]);
     }
 }
 
