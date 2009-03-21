@@ -93,7 +93,7 @@ function wc_admin_handle_linkbacks($post_id) {
     global $WCDATA, $WC;
 
     $post = wc_db_get_post($post_id);
-    $post_url = wc_get_url("post", $post_id, $post["uri"]);
+    $post_url = wc_get_url("post", array($post_id, $post["uri"]));
 
 
     // handle pingbacks/trackbacks

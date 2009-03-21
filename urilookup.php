@@ -31,7 +31,7 @@ if(empty($uri_data)){
 }
 
 if(isset($uri_data["current_uri"])){
-    $new_url = wc_get_url($uri_data["type"], $uri_data["object_id"], $uri_data["current_uri"]);
+    $new_url = wc_get_url($uri_data["type"], array($uri_data["object_id"], $uri_data["current_uri"]), false);
     header("HTTP/1.1 301 Moved Permanently");
     header("Location: $new_url");
     exit();

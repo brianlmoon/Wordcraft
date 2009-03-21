@@ -16,17 +16,18 @@
  * Builds a URL to a wordcraft page
  *
  * @param   string  $page_type  The type of page (index,post,page,etc) to build a URL for.
- * @param   string  $1...$n     A dynamic list of page parameters to be used to build the URL.
+ * @param   array   $args       Array of page parameters to be used to build the URL.
+ * @param   bool    $escape     If true, the URL is escaped for use in HTML.
  * @return  string
  *
  */
-function wc_get_url($page_type) {
+function wc_get_url($page_type, $args=null, $escape=true) {
 
     global $WC;
 
     $url = "";
 
-    $args = func_get_args();
+    if(empty($args)) $args = array();
 
     if(!isset($WC["url_formats"][$page_type])){
 
@@ -42,10 +43,10 @@ function wc_get_url($page_type) {
         if($WC["use_rewrite"]){
             if($page_type=="post" || $page_type=="page"){
                 // only create a sef url if there is a custom uri value
-                if(!empty($args[2])){
+                if(!empty($args[1])){
                     $page_type = $page_type."_sef";
-                    $args[1] = $args[2];
-                    unset($args[2]);
+                    $args[0] = $args[1];
+                    unset($args[1]);
                     $encode_args = false;
                 }
             }
@@ -59,25 +60,20 @@ function wc_get_url($page_type) {
             }
         }
 
-        switch(count($args)){
+        array_unshift($args, $WC["url_formats"][$page_type]["page"]);
+        array_unshift($args, $WC["base_url"]);
 
-            case 1:
-                $url = sprintf("%s/%s", $WC["base_url"], $WC["url_formats"][$page_type]["page"]);
-                break;
-            case 2:
-                $url = sprintf("%s/%s".$WC["url_formats"][$page_type]["format"], $WC["base_url"], $WC["url_formats"][$page_type]["page"], $args[1]);
-                break;
-            case 3:
-                $url = sprintf("%s/%s".$WC["url_formats"][$page_type]["format"], $WC["base_url"], $WC["url_formats"][$page_type]["page"], $args[1], $args[2]);
-                break;
-            case 4:
-                $url = sprintf("%s/%s".$WC["url_formats"][$page_type]["format"], $WC["base_url"], $WC["url_formats"][$page_type]["page"], $args[1], $args[2], $args[3]);
-                break;
-            default:
-                $bt = debug_backtrace();
-                trigger_error("Wrong parameter count for ".__FUNCTION__."() in ".$bt[0]["file"]." on line ".$bt[0]["line"], E_USER_WARNING);
-                break;
+        $format = "";
+        if(count($args) > 2){
+            $format = $WC["url_formats"][$page_type]["format"];
         }
+
+        $url = vsprintf("%s/%s".$format, $args);
+
+    }
+
+    if($escape){
+        $url = htmlspecialchars($url, ENT_COMPAT, "UTF-8");
     }
 
     return $url;

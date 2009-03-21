@@ -11,6 +11,8 @@
  *
  */
 
+ob_start();
+
 include_once "./include/common.php";
 include_once "./include/database.php";
 include_once "./include/format.php";
@@ -38,7 +40,7 @@ $WCDATA["description"] = $WC["default_description"];
 
 $feed_type = (empty($_GET["type"])) ? "rss" : $_GET["type"];
 
-$url = wc_get_url("feed", $feed_type, $tag, $query);
+$url = wc_get_url("feed", array($feed_type, $tag, $query));
 
 switch($feed_type){
     case "atom":
@@ -55,6 +57,7 @@ switch($feed_type){
 }
 
 header("Content-Type: $ct");
+echo ob_get_clean();
 echo $output;
 
 ?>

@@ -38,7 +38,7 @@ function wc_feed_make_rss($posts, $feed_url, $feed_title, $feed_description) {
     foreach($posts as $post) {
 
         $title = strip_tags($post["subject"]);
-        $date = date("r", $post["post_date"]);
+        $date = date("r", $post["raw_post_date"]);
         $body = strtr($post['body'], "\001\002\003\004\005\006\007\010\013\014\016\017\020\021\022\023\024\025\026\027\030\031\032\033\034\035\036\037", "????????????????????????????");
 
         $buffer.= "        <item>\n";

@@ -46,18 +46,18 @@ unset($post);
 $WCDATA["title"] = "Posts tagged with `".htmlspecialchars($tag, ENT_COMPAT, "UTF-8")."` - ".$WC["default_title"];
 $WCDATA["description"] = "Posts tagged with `".htmlspecialchars($tag, ENT_COMPAT, "UTF-8")."`. ".$WC["default_description"];
 
-$WCDATA["feed_url"] = wc_get_url("feed", "rss", $tag, "");
+$WCDATA["feed_url"] = wc_get_url("feed", array("rss", $tag, ""));
 
 if($total_posts > $start + $display) {
     $s = $start + $display;
-    $WCDATA["older_url"] = wc_get_url("tag", $tag)."&s=$s";
+    $WCDATA["older_url"] = wc_get_url("tag", array($tag))."&amp;s=$s";
 }
 
 if(($start > 0)){
-    $WCDATA["newer_url"] = wc_get_url("tag", $tag);
+    $WCDATA["newer_url"] = wc_get_url("tag", array($tag));
     $s = $start - $display;
     if($s>0){
-        $WCDATA["newer_url"].="&s=$s";
+        $WCDATA["newer_url"].="&amp;s=$s";
     }
 }
 

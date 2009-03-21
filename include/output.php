@@ -92,7 +92,7 @@ function wc_build_common_data(&$WCDATA) {
 
     global $WC;
 
-    $WCDATA["base_url"] = $WC["base_url"];
+    $WCDATA["base_url"] = htmlspecialchars($WC["base_url"], ENT_COMPAT, "UTF-8");
     $WCDATA["home_url"] = wc_get_url("main");
     $WCDATA["search_url"] = wc_get_url("search");
 
@@ -103,13 +103,13 @@ function wc_build_common_data(&$WCDATA) {
     $WCDATA["nav_pages"] = wc_db_get_nav_pages();
     foreach($WCDATA["nav_pages"] as $key=>$page){
         $WCDATA["nav_pages"][$key]["nav_label"] = htmlspecialchars($page["nav_label"], ENT_COMPAT, "UTF-8");
-        $WCDATA["nav_pages"][$key]["url"] = wc_get_url("page", $page["page_id"], $page["uri"]);
+        $WCDATA["nav_pages"][$key]["url"] = wc_get_url("page", array($page["page_id"], $page["uri"]));
     }
 
     $WCDATA["tags"] = wc_db_get_tags();
     foreach($WCDATA["tags"] as $key=>$tag){
         $WCDATA["tags"][$key]["tag"] = htmlspecialchars($tag["tag"], ENT_COMPAT, "UTF-8");
-        $WCDATA["tags"][$key]["url"] = wc_get_url("tag", $tag["tag"]);
+        $WCDATA["tags"][$key]["url"] = wc_get_url("tag", array($tag["tag"]));
     }
 
     $WCDATA["default_title"] = $WC["default_title"];
@@ -126,15 +126,15 @@ function wc_build_common_data(&$WCDATA) {
 
         $WCDATA["user"] = $WC["user"];
 
-        $WCDATA["admin"]["base_url"] = $WC["base_url"]."/admin/";
-        $WCDATA["admin"]["logout_url"] = $WC["base_url"]."/admin/logout.php";
-        $WCDATA["admin"]["new_post_url"] = $WC["base_url"]."/admin/post.php";
-        $WCDATA["admin"]["new_page_url"] = $WC["base_url"]."/admin/page.php";
+        $WCDATA["admin"]["base_url"] = $WCDATA["base_url"]."/admin/";
+        $WCDATA["admin"]["logout_url"] = $WCDATA["base_url"]."/admin/logout.php";
+        $WCDATA["admin"]["new_post_url"] = $WCDATA["base_url"]."/admin/post.php";
+        $WCDATA["admin"]["new_page_url"] = $WCDATA["base_url"]."/admin/page.php";
         if(isset($WCDATA["post"]["post_id"])) {
-            $WCDATA["admin"]["edit_post_url"] = $WC["base_url"]."/admin/post.php?post_id=".$WCDATA["post"]["post_id"];
+            $WCDATA["admin"]["edit_post_url"] = $WCDATA["base_url"]."/admin/post.php?post_id=".$WCDATA["post"]["post_id"];
         }
         if(isset($WCDATA["page"]["page_id"])) {
-            $WCDATA["admin"]["edit_page_url"] = $WC["base_url"]."/admin/page.php?page_id=".$WCDATA["page"]["page_id"];
+            $WCDATA["admin"]["edit_page_url"] = $WCDATA["base_url"]."/admin/page.php?page_id=".$WCDATA["page"]["page_id"];
         }
     }
 

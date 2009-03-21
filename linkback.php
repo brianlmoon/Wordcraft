@@ -171,7 +171,7 @@ function handle_linkback($remote, $local, $title="") {
 
             $subject = "[".$WC["default_title"]."] Link to $post[subject]";
             $body = "There is a new link back to your post \"$post[subject]\"\n";
-            $body.= wc_get_url("post", $post["post_id"], $post["uri"])."#comments\n\n";
+            $body.= wc_get_url("post", array($post["post_id"], $post["uri"]), false)."#comments\n\n";
             $body.= "URL    : $comment[url]\n";
             $body.= "Delete:  $WC[base_url]/admin/comment_moderate.php?mode=delete&comment_id=$comment[comment_id]\n";
 

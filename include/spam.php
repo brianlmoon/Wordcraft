@@ -54,7 +54,7 @@ function wc_akismet_request( $comment, $mode ) {
             $data.= "&user_ip=".urlencode($_SERVER["REMOTE_ADDR"]);
             $data.= "&user_agent=".urlencode($_SERVER["HTTP_USER_AGENT"]);
             $data.= "&referrer=".urlencode($_SERVER["HTTP_REFERER"]);
-            $data.= "&permalink=".urlencode(wc_get_url("post", $comment["post_id"]));
+            $data.= "&permalink=".urlencode(wc_get_url("post", array($comment["post_id"])));
             $data.= "&comment_type=".urlencode("forum");
             $data.= "&comment_author=".urlencode($comment["name"]);
             $data.= "&comment_author_email=".urlencode($comment["email"]);

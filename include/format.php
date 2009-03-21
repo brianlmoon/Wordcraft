@@ -36,15 +36,17 @@ function wc_format_post(&$post, $multi=false) {
         $post = array($post);
     }
     if($post == null){
-        print_var(debug_print_backtrace());
+        return;
     }
     foreach($post as &$p){
+
+        $p["raw_post_date"] = $p["post_date"];
 
         $p["post_date"] = strftime($WC["date_format_long"], $p["post_date"]);
 
         $p["subject"] = htmlspecialchars($p["subject"], ENT_COMPAT, "UTF-8");
 
-        $p["url"] = wc_get_url("post", $p["post_id"], $p["uri"]);
+        $p["url"] = wc_get_url("post", array($p["post_id"], $p["uri"]));
 
         if(!empty($p["tags"])){
             $tmp_tags = $p["tags"];
@@ -52,7 +54,7 @@ function wc_format_post(&$post, $multi=false) {
             foreach($tmp_tags as $tag){
                 $p["tags"][] = array(
                     "tag" => $tag,
-                    "url" => wc_get_url("tag", $tag)
+                    "url" => wc_get_url("tag", array($tag))
                 );
             }
         }
@@ -86,6 +88,10 @@ function wc_format_comment(&$comment, $multi=false) {
     }
 
     foreach($comment as &$c){
+
+        $c["raw_comment_date"] = $c["comment_date"];
+
+        $c["comment_date"] = strftime($WC["date_format_long"], $c["comment_date"]);
 
         $c["comment"] = htmlspecialchars($c["comment"], ENT_COMPAT, "UTF-8");
 

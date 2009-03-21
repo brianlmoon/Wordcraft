@@ -70,7 +70,7 @@ if($last > $total) {
             <tr class="row<?php echo $x; ?>">
                 <td><?php echo $page["page_id"]; ?></td>
                 <td><?php echo htmlspecialchars($page["title"], ENT_COMPAT, "UTF-8"); ?></td>
-                <td><a href="<?php echo wc_get_url("page", $page["page_id"]); ?>" target="_blank">View</a>&nbsp;&nbsp;<a href="page.php?mode=edit&page_id=<?php echo $page["page_id"]; ?>">Edit</a>&nbsp;&nbsp;<a href="delete.php?page_id=<?php echo $page["page_id"]; ?>">Delete</a></td>
+                <td><a href="<?php echo wc_get_url("page", array($page["page_id"], $page["uri"])); ?>" target="_blank">View</a>&nbsp;&nbsp;<a href="page.php?mode=edit&page_id=<?php echo $page["page_id"]; ?>">Edit</a>&nbsp;&nbsp;<a href="delete.php?page_id=<?php echo $page["page_id"]; ?>">Delete</a></td>
             </tr>
         <?php } ?>
     </table>

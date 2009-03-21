@@ -135,7 +135,7 @@ if($success){
 
         $subject = "[".$WC["default_title"]."] Comment on $post[subject]";
         $body = "There is a new comment on your post \"$post[subject]\"\n";
-        $body.= wc_get_url("post", $post["post_id"], $post["uri"])."#comments\n\n";
+        $body.= wc_get_url("post", array($post["post_id"], $post["uri"]). false)."#comments\n\n";
         $body.= "Author : $comment[name] (IP: $comment[ip_address] )\n";
         $body.= "E-mail : $comment[email]\n";
         $body.= "URL    : $comment[url]\n";
@@ -160,7 +160,7 @@ if($success){
     if($comment["status"]=="APPROVED"){
         $post_id = (int)$_POST["post_id"];
         $post = wc_db_get_post($post_id);
-        $post_url = wc_get_url("post", $post_id, $post["uri"]);
+        $post_url = wc_get_url("post", array($post_id, $post["uri"]), false);
         header("Location: $post_url#add_comment");
         exit();
     } else {
