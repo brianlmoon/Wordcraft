@@ -14,7 +14,7 @@
 // Check that this file is not loaded directly.
 if ( basename( __FILE__ ) == basename( $_SERVER["PHP_SELF"] ) ) exit();
 
-define("WC", "0.9");
+define("WC", "0.9.1");
 
 define("WC_DB_VERSION", "2009031901");
 
