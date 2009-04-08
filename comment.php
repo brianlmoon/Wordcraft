@@ -135,7 +135,7 @@ if($success){
 
         $subject = "[".$WC["default_title"]."] Comment on $post[subject]";
         $body = "There is a new comment on your post \"$post[subject]\"\n";
-        $body.= wc_get_url("post", array($post["post_id"], $post["uri"]). false)."#comments\n\n";
+        $body.= wc_get_url("post", array($post["post_id"], $post["uri"]), false)."#comments\n\n";
         $body.= "Author : $comment[name] (IP: $comment[ip_address] )\n";
         $body.= "E-mail : $comment[email]\n";
         $body.= "URL    : $comment[url]\n";
