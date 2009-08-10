@@ -70,7 +70,7 @@ header("Content-Type: text/html; charset=UTF-8");
 
     <form action="login.php" method="post">
 
-    <h1>Wordcraft! <?php echo WC; ?></h1>
+    <h1>Wordcraft <?php echo WC; ?></h1>
 
     <?php
         if(!empty($error)) {

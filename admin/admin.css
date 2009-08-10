@@ -35,7 +35,17 @@ input.inputgri, textarea.inputgri {
 }
 
 #login h1 {
+    padding-top: 65px;
+    text-align: center;
+    background: transparent url(img/wordcraft.png) no-repeat center 0;
     color: #73A822;
+    font-size: 110%;
+}
+
+#title {
+    height: 45px;
+    padding: 10px 0 0 112px;
+    background: transparent url(img/wordcraft.png) no-repeat 0 center;
 }
 
 #delete {
