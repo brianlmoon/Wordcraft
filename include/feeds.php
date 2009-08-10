@@ -38,7 +38,7 @@ function wc_feed_make_rss($posts, $feed_url, $feed_title, $feed_description) {
     foreach($posts as $post) {
 
         $title = strip_tags($post["subject"]);
-        $date = date("r", $post["raw_post_date"]);
+        $date = date("r", (int)$post["raw_post_date"]);
         $body = strtr($post['body'], "\001\002\003\004\005\006\007\010\013\014\016\017\020\021\022\023\024\025\026\027\030\031\032\033\034\035\036\037", "????????????????????????????");
 
         $buffer.= "        <item>\n";
@@ -94,8 +94,8 @@ function wc_feed_make_atom($posts, $feed_url, $feed_title, $feed_description) {
         $buffer.= "    <entry>\n";
         $buffer.= "        <title type=\"html\">$title</title>\n";
         $buffer.= "        <link href=\"".htmlspecialchars($post["url"], ENT_COMPAT, "UTF-8")."\" />\n";
-        $buffer.= "        <published>".date("c", $post["post_date"])."</published>\n";
-        $buffer.= "        <updated>".date("c", $post["post_date"])."</updated>\n";
+        $buffer.= "        <published>".date("c", (int)$post["post_date"])."</published>\n";
+        $buffer.= "        <updated>".date("c", (int)$post["post_date"])."</updated>\n";
         $buffer.= "        <id>".htmlspecialchars($post["url"], ENT_COMPAT, "UTF-8")."</id>\n";
         $buffer.= "        <author>\n";
         $buffer.= "            <name>".htmlspecialchars($post["user_name"], ENT_COMPAT, "UTF-8")."</name>\n";
@@ -144,7 +144,7 @@ function wc_feed_make_json($posts, $feed_url, $feed_title, $feed_description) {
             "title" => $post["subject"],
             "url" => $post["url"],
             "tags" => $post["tags"],
-            "published" => date("r", $post["post_date"]),
+            "published" => date("r", (int)$post["post_date"]),
             "author" => $post["user_name"],
             "post" => $post['body']
         );
