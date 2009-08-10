@@ -55,7 +55,7 @@ if($last > $total) {
         <a href="user.php">Add a User</a>
     </p>
     <form action="users.php" method="get">
-        <input type="text" class="inputgri" name="filter" value="<?php echo htmlspecialchars($filter, ENT_COMPAT, "UTF-8", ENT_COMPAT, "UTF-8"); ?>">
+        <input type="text" class="inputgri" name="filter" value="<?php echo htmlspecialchars($filter, ENT_COMPAT, "UTF-8"); ?>">
         <input type="submit" class="button" value="Filter">
         <a href="users.php">Reset</a>
     </form>
@@ -74,9 +74,9 @@ if($last > $total) {
             <?php $x = ($x==1) ? 2 : 1; ?>
             <tr class="row<?php echo $x; ?>">
                 <td><?php echo $user["user_id"]; ?></td>
-                <td><?php echo htmlspecialchars($user["user_name"], ENT_COMPAT, "UTF-8", ENT_COMPAT, "UTF-8"); ?></td>
-                <td><?php echo htmlspecialchars($user["first_name"]); ?> <?php echo htmlspecialchars($user["last_name"], ENT_COMPAT, "UTF-8", ENT_COMPAT, "UTF-8"); ?></td>
-                <td><?php echo htmlspecialchars($user["email"], ENT_COMPAT, "UTF-8", ENT_COMPAT, "UTF-8"); ?></td>
+                <td><?php echo htmlspecialchars($user["user_name"], ENT_COMPAT, "UTF-8"); ?></td>
+                <td><?php echo htmlspecialchars($user["first_name"]); ?> <?php echo htmlspecialchars($user["last_name"], ENT_COMPAT, "UTF-8"); ?></td>
+                <td><?php echo htmlspecialchars($user["email"], ENT_COMPAT, "UTF-8"); ?></td>
                 <td><a href="user.php?mode=edit&user_id=<?php echo $user["user_id"]; ?>">Edit</a>&nbsp;&nbsp;<a href="user_delete.php?user_id=<?php echo $user["user_id"]; ?>">Delete</a>&nbsp;&nbsp;<a href="user_password.php?user_id=<?php echo $user["user_id"]; ?>">Password</a></td>
             </tr>
         <?php } ?>
